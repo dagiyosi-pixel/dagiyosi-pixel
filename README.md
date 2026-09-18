@@ -509,6 +509,9 @@ Absolutely — fork it, swap the username, delete whatever does not apply to you
 <a href="https://github.com/dagiyosi-pixel">
   <img src="https://img.shields.io/badge/GitHub-dagiyosi--pixel-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
 </a>
+<a href="https://dagiyosi-pixel.github.io/dagiyosi-pixel/">
+  <img src="https://img.shields.io/badge/Portfolio-Live%20site-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio website" />
+</a>
 <!--
   ✏️ Add your other profiles here — uncomment and replace the links:
 <a href="https://www.linkedin.com/in/YOUR-HANDLE/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
