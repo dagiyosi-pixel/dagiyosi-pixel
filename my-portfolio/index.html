@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dagiyosi &middot; Web Developer</title>
+<meta name="description" content="Dagiyosi is a web developer building fast, responsive and accessible websites and web apps. Frontend-focused, full-stack capable with HTML, CSS, JavaScript, TypeScript, React and Node." />
+<meta name="author" content="Dagiyosi" />
+<meta name="color-scheme" content="dark light" />
+<meta name="theme-color" content="#0b1020" />
+<link rel="canonical" href="https://dagiyosi-pixel.github.io/dagiyosi-pixel/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Dagiyosi &middot; Web Developer" />
+<meta property="og:description" content="Fast, responsive and accessible websites and web apps. Frontend-focused, full-stack capable." />
+<meta property="og:url" content="https://dagiyosi-pixel.github.io/dagiyosi-pixel/" />
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/234554877?v=4" />
+<meta property="og:image:alt" content="Dagiyosi, web developer" />
+<meta property="og:site_name" content="Dagiyosi" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Dagiyosi &middot; Web Developer" />
+<meta name="twitter:description" content="Fast, responsive and accessible websites and web apps." />
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/234554877?v=4" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='17' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dagiyosi",
+  "jobTitle": "Web Developer",
+  "url": "https://dagiyosi-pixel.github.io/dagiyosi-pixel/",
+  "sameAs": ["https://github.com/dagiyosi-pixel"],
+  "email": "mailto:dagiyosi5321@gmail.com",
+  "knowsAbout": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express", "REST APIs", "MongoDB", "PostgreSQL", "Accessibility", "Web Performance"]
+}
+</script>
+
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      var stored = localStorage.getItem('theme');
+      var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      d.setAttribute('data-theme', stored || (prefersLight ? 'light' : 'dark'));
+    } catch (e) { /* keep the default theme */ }
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<header class="site-header" id="siteHeader">
+  <nav class="nav container" aria-label="Main">
+    <a class="brand" href="#home" aria-label="Dagiyosi, back to top">
+      <span class="brand-mark" aria-hidden="true">D</span>
+      <span class="brand-text">Dagiyosi<em>.dev</em></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Open navigation menu">
+      <span class="nav-toggle-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme" aria-pressed="false">
+          <span class="theme-icon" aria-hidden="true"></span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="home">
+    <div class="hero-glow" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+      <span class="grid-lines"></span>
+    </div>
+
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Open to freelance work and collaboration
+        </p>
+
+        <h1>
+          I build <span class="grad">fast, responsive</span><br />
+          web experiences.
+        </h1>
+
+        <p class="typed-line">
+          <span class="prompt" aria-hidden="true">&gt;</span>
+          <span id="typed" class="typed">Web developer &mdash; frontend focused, full-stack capable</span>
+          <span class="caret" aria-hidden="true"></span>
+        </p>
+
+        <p class="lede">
+          I am <strong>Dagiyosi</strong>, a web developer who cares about the whole journey: semantic
+          markup, layouts that behave on every screen size, accessible components, and code a human can
+          still read six months later. I would rather ship something small and solid than something big
+          and broken.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#work">
+            See my work
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          <a class="btn btn-quiet" href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" /></svg>
+            GitHub
+          </a>
+        </div>
+
+        <dl class="stats">
+          <div class="stat">
+            <dt>Technologies in my toolbelt</dt>
+            <dd><span class="count" data-count="12">12</span><span class="plus">+</span></dd>
+          </div>
+          <div class="stat">
+            <dt>Layers in my stack</dt>
+            <dd><span class="count" data-count="7">7</span></dd>
+          </div>
+          <div class="stat">
+            <dt>Responsive by default</dt>
+            <dd><span class="count" data-count="100">100</span><span class="plus">%</span></dd>
+          </div>
+        </dl>
+      </div>
+
+      <aside class="hero-card reveal" aria-label="A sample of my code style">
+        <div class="code-card">
+          <div class="code-bar">
+            <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="code-name">hero.js</span>
+          </div>
+<pre class="code"><code><span class="c-key">const</span> <span class="c-var">me</span> = {
+  <span class="c-prop">role</span>: <span class="c-str">'web developer'</span>,
+  <span class="c-prop">focus</span>: [<span class="c-str">'responsive UI'</span>, <span class="c-str">'a11y'</span>],
+  <span class="c-prop">stack</span>: [<span class="c-str">'js'</span>, <span class="c-str">'ts'</span>, <span class="c-str">'react'</span>, <span class="c-str">'node'</span>],
+  <span class="c-prop">values</span>: [<span class="c-str">'ship small'</span>, <span class="c-str">'ship clean'</span>],
+};
+
+<span class="c-key">export</span> <span class="c-key">default</span> <span class="c-fn">build</span>(me);</code></pre>
+        </div>
+
+        <ul class="chip-row" aria-label="Highlights">
+          <li class="chip">Clean code</li>
+          <li class="chip">Mobile first</li>
+          <li class="chip">Accessible</li>
+          <li class="chip">Fast by default</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+  <section class="section" id="about">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-tag">About</p>
+        <h2>A design-thinking developer who ships</h2>
+        <p class="section-sub">I work where design meets engineering &mdash; the place where a layout has to meet real data.</p>
+      </header>
+
+      <div class="about-grid">
+        <article class="about-text reveal">
+          <p>I am a <strong>web developer</strong> who enjoys the whole journey of a product: from a rough idea on a whiteboard, to a pixel-clean interface, to a deployed app that people actually use.</p>
+          <p>I care about semantic markup, layouts that behave on every screen size, accessible components, and JavaScript that stays readable six months later. On the other side of the stack I am comfortable wiring up APIs, databases and authentication so the frontend has something real to talk to.</p>
+          <p>I would rather ship something small and solid than something big and broken. And I would rather explain my choices in plain words than hide behind buzzwords.</p>
+
+          <ul class="fact-list">
+            <li><span class="fact-key">Role</span><span class="fact-val">Web developer &mdash; frontend focused, full-stack capable</span></li>
+            <li><span class="fact-key">Focus</span><span class="fact-val">Responsive UI, component architecture, API integration</span></li>
+            <li><span class="fact-key">Approach</span><span class="fact-val">Mobile first, accessibility aware, performance conscious</span></li>
+            <li><span class="fact-key">Open to</span><span class="fact-val">Freelance builds, open-source collaboration, study partners</span></li>
+            <li><span class="fact-key">Email</span><span class="fact-val"><a href="mailto:dagiyosi5321@gmail.com">dagiyosi5321@gmail.com</a></span></li>
+          </ul>
+        </article>
+
+        <aside class="about-card reveal">
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/234554877?v=4" width="260" height="260" loading="lazy" alt="Portrait of Dagiyosi" />
+          <p class="about-quote">&ldquo;First make it work, then make it right, then make it fast.&rdquo;</p>
+          <ul class="mini-chips" aria-label="Core technologies">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Node</li>
+          </ul>
+          <a class="link-arrow" href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener noreferrer">Follow my work on GitHub <span aria-hidden="true">&rarr;</span></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-tag">Skills</p>
+        <h2>The stack, layer by layer</h2>
+        <p class="section-sub">From the markup up to the database, plus the tooling that keeps the whole thing honest.</p>
+      </header>
+
+      <div class="skill-grid">
+        <article class="skill-card reveal">
+          <span class="skill-icon" aria-hidden="true">&lt;/&gt;</span>
+          <h3>Structure and styling</h3>
+          <p class="skill-note">Layouts that behave from a 320px phone to a 4K monitor.</p>
+          <ul class="bars">
+            <li style="--level:95%"><span class="bar-label">HTML5 and semantics</span></li>
+            <li style="--level:92%"><span class="bar-label">CSS3, Grid and Flexbox</span></li>
+            <li style="--level:85%"><span class="bar-label">Tailwind CSS</span></li>
+            <li style="--level:78%"><span class="bar-label">Sass and Bootstrap</span></li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <span class="skill-icon" aria-hidden="true">{ }</span>
+          <h3>Behaviour and logic</h3>
+          <p class="skill-note">Interfaces that react instantly and fail gracefully.</p>
+          <ul class="bars">
+            <li style="--level:92%"><span class="bar-label">JavaScript (ES2020+)</span></li>
+            <li style="--level:80%"><span class="bar-label">TypeScript</span></li>
+            <li style="--level:88%"><span class="bar-label">DOM and events</span></li>
+            <li style="--level:86%"><span class="bar-label">fetch, async and await</span></li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <span class="skill-icon" aria-hidden="true">[]</span>
+          <h3>UI architecture</h3>
+          <p class="skill-note">Reusable pieces instead of copy-pasted screens.</p>
+          <ul class="bars">
+            <li style="--level:85%"><span class="bar-label">React</span></li>
+            <li style="--level:78%"><span class="bar-label">Next.js</span></li>
+            <li style="--level:88%"><span class="bar-label">Component design</span></li>
+            <li style="--level:80%"><span class="bar-label">State management</span></li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <span class="skill-icon" aria-hidden="true">()</span>
+          <h3>Server and APIs</h3>
+          <p class="skill-note">Real functionality behind the buttons.</p>
+          <ul class="bars">
+            <li style="--level:82%"><span class="bar-label">Node.js and Express</span></li>
+            <li style="--level:85%"><span class="bar-label">REST API design</span></li>
+            <li style="--level:70%"><span class="bar-label">GraphQL</span></li>
+            <li style="--level:68%"><span class="bar-label">Python and PHP</span></li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <span class="skill-icon" aria-hidden="true">udb</span>
+          <h3>Data and identity</h3>
+          <p class="skill-note">Information that survives a refresh, users who stay logged in.</p>
+          <ul class="bars">
+            <li style="--level:80%"><span class="bar-label">MongoDB</span></li>
+            <li style="--level:78%"><span class="bar-label">PostgreSQL and MySQL</span></li>
+            <li style="--level:76%"><span class="bar-label">Firebase and Supabase</span></li>
+            <li style="--level:75%"><span class="bar-label">Auth and JWT</span></li>
+          </ul>
+        </article>
+
+        <article class="skill-card reveal">
+          <span class="skill-icon" aria-hidden="true">git</span>
+          <h3>Delivery and tooling</h3>
+          <p class="skill-note">Predictable deploys instead of dragging files around.</p>
+          <ul class="bars">
+            <li style="--level:90%"><span class="bar-label">Git and GitHub</span></li>
+            <li style="--level:80%"><span class="bar-label">GitHub Actions</span></li>
+            <li style="--level:78%"><span class="bar-label">Vercel and Netlify</span></li>
+            <li style="--level:70%"><span class="bar-label">Docker</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="footnote reveal">Levels are self-assessed and I keep them honest on purpose: I would rather under-promise and over-deliver.</p>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>Express</span><span>REST</span><span>GraphQL</span><span>MongoDB</span><span>PostgreSQL</span><span>Firebase</span><span>Supabase</span><span>Tailwind</span><span>Vite</span><span>Docker</span><span>Git</span><span>Figma</span><span>Vercel</span>
+        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>Express</span><span>REST</span><span>GraphQL</span><span>MongoDB</span><span>PostgreSQL</span><span>Firebase</span><span>Supabase</span><span>Tailwind</span><span>Vite</span><span>Docker</span><span>Git</span><span>Figma</span><span>Vercel</span>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="work">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-tag">Work</p>
+        <h2>Built, shipped, and online</h2>
+        <p class="section-sub">Everything below can be opened right now. Nothing here is a mockup, and nothing is faked.</p>
+      </header>
+
+      <div class="work-grid">
+        <article class="work-card reveal">
+          <div class="work-top">
+            <h3>This portfolio site</h3>
+            <span class="badge badge-live">Live</span>
+          </div>
+          <p>Plain HTML, CSS and JavaScript with no frameworks and no build step: a dark and light theme, scroll-reveal animations, a typing headline, animated skill bars and a fully responsive layout down to 320px.</p>
+          <ul class="tags">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub Pages</li>
+          </ul>
+          <a class="link-arrow" href="https://github.com/dagiyosi-pixel/dagiyosi-pixel/tree/main/my-portfolio" target="_blank" rel="noopener noreferrer">View the source <span aria-hidden="true">&rarr;</span></a>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="work-top">
+            <h3>GitHub profile README</h3>
+            <span class="badge badge-live">Live</span>
+          </div>
+          <p>An animated profile page with live GitHub cards, dark and light aware images, and a contribution snake that a GitHub Action regenerates every 12 hours into an output branch.</p>
+          <ul class="tags">
+            <li>Markdown</li><li>SVG</li><li>GitHub Actions</li>
+          </ul>
+          <a class="link-arrow" href="https://github.com/dagiyosi-pixel/dagiyosi-pixel" target="_blank" rel="noopener noreferrer">Open the repository <span aria-hidden="true">&rarr;</span></a>
+        </article>
+
+        <article class="work-card work-soon reveal">
+          <div class="work-top">
+            <h3>Component playground</h3>
+            <span class="badge badge-wip">In progress</span>
+          </div>
+          <p>A documented set of the UI patterns I reuse most often: buttons, cards, form fields, modals and empty states, each with the accessibility notes that go with them.</p>
+          <ul class="tags">
+            <li>React</li><li>TypeScript</li><li>Testing</li>
+          </ul>
+          <p class="work-status">Currently on my bench &mdash; shipping in small steps.</p>
+        </article>
+
+        <article class="work-card work-soon reveal">
+          <div class="work-top">
+            <h3>Full-stack CRUD app</h3>
+            <span class="badge badge-wip">In progress</span>
+          </div>
+          <p>A small application with real authentication, a documented REST API, database modelling and every loading, empty and error state handled properly.</p>
+          <ul class="tags">
+            <li>Node.js</li><li>PostgreSQL</li><li>Auth</li>
+          </ul>
+          <p class="work-status">Currently on my bench &mdash; shipping in small steps.</p>
+        </article>
+      </div>
+
+      <p class="footnote reveal">No fake portfolio entries: when something is finished and deployed, it moves into the two top cards.</p>
+    </div>
+  </section>
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-tag">Services</p>
+        <h2>What I can do for you</h2>
+        <p class="section-sub">Clear deliverables, small pull requests, and questions asked early instead of guessed at.</p>
+      </header>
+
+      <div class="service-grid">
+        <article class="service-card reveal">
+          <h3>Websites that load fast</h3>
+          <p>Semantic markup, lean CSS, optimised images and fonts, responsive from the very first commit. Built to be found by search engines and pleasant on a phone.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <h3>Apps with real data</h3>
+          <p>API integration, authentication flows, CRUD screens, plus the loading, empty and error states that most people forget about until the demo goes wrong.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <h3>Redesigns without breakage</h3>
+          <p>A component-by-component refactor instead of a risky big-bang rewrite. The site keeps working the whole way, so nobody has to hold their breath.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <h3>Reviews and cleanups</h3>
+          <p>Code review, accessibility pass, Core Web Vitals audit, and feedback that says the uncomfortable thing kindly but clearly.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <h3>Performance work</h3>
+          <p>Measuring before and after, then fixing what actually matters: images, bundles, fonts, render-blocking code and layout shift.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <h3>An extra pair of hands</h3>
+          <p>Clear commit messages, focused pull requests and code with names a human can read &mdash; easy to hand over, easy to maintain.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="journey">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-tag">Journey</p>
+        <h2>What I am levelling up in 2026</h2>
+        <p class="section-sub">A roadmap I actually keep to: foundations first, then depth, then shipping.</p>
+      </header>
+
+      <ol class="timeline">
+        <li class="timeline-item is-done reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body">
+            <div class="timeline-top">
+              <h3>Foundations</h3>
+              <span class="badge badge-live">Done</span>
+            </div>
+            <p>Semantic HTML, modern CSS layouts with Flexbox and Grid, and mobile-first thinking as the default rather than an afterthought.</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-done reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body">
+            <div class="timeline-top">
+              <h3>JavaScript and the browser</h3>
+              <span class="badge badge-live">Done</span>
+            </div>
+            <p>The DOM, events, fetch, async and await, ES modules &mdash; and reading DevTools properly instead of guessing at errors.</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-done reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body">
+            <div class="timeline-top">
+              <h3>Git and GitHub workflow</h3>
+              <span class="badge badge-live">Done</span>
+            </div>
+            <p>Branching, meaningful commits, pull requests, and GitHub Actions doing the boring parts automatically.</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-wip reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body">
+            <div class="timeline-top">
+              <h3>TypeScript in real projects</h3>
+              <span class="badge badge-wip">In progress</span>
+            </div>
+            <p>Generics, strict mode and typed API layers, so mistakes get caught by the compiler instead of by a user.</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-wip reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body">
+            <div class="timeline-top">
+              <h3>Testing habits</h3>
+              <span class="badge badge-wip">In progress</span>
+            </div>
+            <p>Unit tests with Vitest and component tests with Testing Library, built into the workflow rather than bolted on at the end.</p>
+          </div>
+        </li>
+
+        <li class="timeline-item is-next reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body">
+            <div class="timeline-top">
+              <h3>Backend depth and deployment</h3>
+              <span class="badge badge-next">Next</span>
+            </div>
+            <p>Authentication, database modelling, API validation, CI pipelines and monitoring &mdash; so an app stays healthy after launch day.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-tag">Contact</p>
+        <h2>Let us build something together</h2>
+        <p class="section-sub">Got a website idea, a bug that will not die, or a project that needs an extra pair of hands? My inbox is always open.</p>
+      </header>
+
+      <div class="contact-grid">
+        <article class="contact-card reveal">
+          <h3>Email me directly</h3>
+          <p>The fastest way to reach me. Tell me what you are building and what &ldquo;done&rdquo; looks like, and I will reply with how I would approach it.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:dagiyosi5321@gmail.com?subject=Project%20enquiry">Send an email</a>
+            <button class="btn btn-ghost" id="copyEmail" type="button" data-email="dagiyosi5321@gmail.com">Copy address</button>
+          </div>
+          <p class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></p>
+        </article>
+
+        <article class="contact-card reveal">
+          <h3>Elsewhere</h3>
+          <ul class="contact-list">
+            <li>
+              <span>GitHub</span>
+              <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener noreferrer">@dagiyosi-pixel</a>
+            </li>
+            <li>
+              <span>Profile README</span>
+              <a href="https://github.com/dagiyosi-pixel/dagiyosi-pixel" target="_blank" rel="noopener noreferrer">dagiyosi-pixel</a>
+            </li>
+            <li>
+              <span>This site</span>
+              <a href="https://github.com/dagiyosi-pixel/dagiyosi-pixel/tree/main/my-portfolio" target="_blank" rel="noopener noreferrer">Source code</a>
+            </li>
+          </ul>
+          <p class="availability"><span class="dot" aria-hidden="true"></span> Available for freelance work and collaboration</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">D</span>
+      <div>
+        <p class="footer-name">Dagiyosi</p>
+        <p class="footer-role">Web developer &middot; frontend focused, full-stack capable</p>
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <ul class="footer-social">
+      <li><a href="mailto:dagiyosi5321@gmail.com">dagiyosi5321@gmail.com</a></li>
+      <li><a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener noreferrer">github.com/dagiyosi-pixel</a></li>
+      <li><a href="https://github.com/dagiyosi-pixel/dagiyosi-pixel" target="_blank" rel="noopener noreferrer">Profile README repository</a></li>
+    </ul>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; <span id="year">2026</span> Dagiyosi &middot; Hand-built with plain HTML, CSS and JavaScript.</p>
+    <p>Hosted on GitHub Pages &middot; No trackers, no frameworks, no build step.</p>
+  </div>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+  </button>
+</footer>
+
+<noscript>
+  <p class="noscript-note">This site works without JavaScript, but the theme switch and animations stay off.</p>
+</noscript>
+
+<script src="script.js" defer></script>
+</body>
+</html>
