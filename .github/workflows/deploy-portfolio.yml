@@ -29,8 +29,6 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload the my-portfolio folder as the site
         uses: actions/upload-pages-artifact@v3
