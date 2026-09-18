@@ -585,6 +585,11 @@ html.js .reveal {
 
 html.js .reveal.is-visible { opacity: 1; transform: none; }
 
+/* Failsafe: if script.js fails to run, nothing stays hidden. */
+html.no-reveal .reveal { opacity: 1; transform: none; }
+
+html.no-reveal .bars li::before { width: var(--level, 60%); }
+
 /* ---------- About ---------- */
 .about-grid {
   display: grid;

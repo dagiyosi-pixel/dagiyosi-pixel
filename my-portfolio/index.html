@@ -51,6 +51,11 @@
       var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
       d.setAttribute('data-theme', stored || (prefersLight ? 'light' : 'dark'));
     } catch (e) { /* keep the default theme */ }
+
+    /* Failsafe: if script.js never runs, never leave content hidden. */
+    window.setTimeout(function () {
+      if (!d.classList.contains('is-ready')) { d.classList.add('no-reveal'); }
+    }, 2500);
   })();
 </script>
 </head>

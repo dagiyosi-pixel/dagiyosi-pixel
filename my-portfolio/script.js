@@ -10,6 +10,9 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (id) { return doc.getElementById(id); };
 
+  /* Tells the inline head script that this file is alive. */
+  root.classList.add('is-ready');
+
   /* ---------- Theme switching ---------- */
   var themeToggle = $('themeToggle');
 
