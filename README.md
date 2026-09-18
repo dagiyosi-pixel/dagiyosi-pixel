@@ -38,8 +38,35 @@
 <img src="https://img.shields.io/github/followers/dagiyosi-pixel?label=Followers&style=for-the-badge&color=2563EB&logo=github&logoColor=white" alt="Followers" />
 <img src="https://img.shields.io/badge/Role-Web%20Developer-06B6D4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Role: Web Developer" />
 <img src="https://img.shields.io/badge/Status-Open%20to%20Collaborate-22C55E?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Open to collaborate" />
+<img src="https://img.shields.io/github/last-commit/dagiyosi-pixel/dagiyosi-pixel?label=Last%20update&style=for-the-badge&color=6D28D9&logo=git&logoColor=white" alt="Last commit" />
 
 </div>
+
+<br/>
+
+## 🖥️ Terminal Snapshot
+
+```console
+dagiyosi@dev:~$ whoami
+Dagiyosi — web developer (frontend-focused, full-stack capable)
+
+dagiyosi@dev:~$ stack --list
+[structure]  HTML5 · CSS3 · Grid & Flexbox · Tailwind · Sass · Bootstrap
+[behaviour]  JavaScript (ES2020+) · TypeScript · DOM · fetch · async/await
+[ui]         React · Next.js · reusable components · design tokens
+[server]     Node.js · Express · REST · GraphQL · Python · PHP
+[data]       MongoDB · PostgreSQL · MySQL · Firebase · Supabase · JWT
+[delivery]   Git · GitHub Actions · Docker · Vercel · Netlify
+
+dagiyosi@dev:~$ focus --now
+Responsive UI · accessible components · clean and readable code
+TypeScript depth · testing habits · shipping my own side projects
+
+dagiyosi@dev:~$ echo "let's build something together 👋"
+let's build something together 👋
+```
+
+<sub>💡 Most images on this page are live — they refresh themselves from my GitHub activity.</sub>
 
 <br/>
 
@@ -138,6 +165,22 @@ I like building things that are **fast, responsive and obvious to use** — and 
 
 <br/>
 
+## 🧠 The Stack, Layer by Layer
+
+| Layer | What I reach for | Why it matters in the final product |
+| :-- | :-- | :-- |
+| 🎨 **Structure & styling** | HTML5, CSS3 (Grid & Flexbox), Tailwind, Sass, Bootstrap | A layout that holds up from a 320px phone to a 4K monitor — no hacks, no horizontal scrollbars |
+| 🧠 **Behaviour** | JavaScript (ES2020+), TypeScript, DOM APIs, `fetch` & async/await | Interfaces that react instantly and fail gracefully instead of silently |
+| 🧩 **UI architecture** | React, Next.js, component design, state management | Reusable pieces, so page number ten takes ten minutes instead of ten hours |
+| ⚙️ **Server & APIs** | Node.js, Express, REST, GraphQL, Python, PHP | Real functionality behind the buttons — not just a pretty shell |
+| 🗄️ **Data & identity** | MongoDB, PostgreSQL, MySQL, Firebase, Supabase, JWT | Information that survives a refresh and users who stay logged in |
+| 🚚 **Delivery** | Git & GitHub, GitHub Actions, Docker, Vercel, Netlify | Predictable deploys and rollbacks instead of dragging files around |
+| 🔍 **Craft & tools** | VS Code, Chrome DevTools, Figma, Postman, Linux | Faster debugging and interfaces that are designed, not guessed |
+
+<sub>⚖️ Honest note: this is the toolbox I work with, not a claim of mastery in every tile — I go deep on the foundations and keep expanding outward.</sub>
+
+<br/>
+
 ## 🚀 What I Build
 
 <table>
@@ -175,6 +218,20 @@ Auditing a slow site and fixing it: images, bundles, fonts, render-blocking code
 
 <br/>
 
+## 💼 What I Can Do For You
+
+| **You need** | **What I bring to it** |
+| :-- | :-- |
+| 🌐 **A website that looks sharp and loads fast** | Semantic markup, lean CSS, optimised images and fonts, responsive from the very first commit |
+| 🧩 **An app with real data behind it** | API integration, auth flows, CRUD screens, plus the loading / empty / error states most people forget |
+| 🎯 **A redesign without breaking things** | A component-by-component refactor instead of a risky big-bang rewrite — the site keeps working the whole way |
+| 👀 **A fresh pair of eyes** | Code review, accessibility pass, Core Web Vitals audit, and feedback that says the uncomfortable thing kindly |
+| 🤝 **An extra pair of hands** | Small readable pull requests, clear commit messages, questions asked early instead of guessed at |
+| 📱 **Something that has to work on phones too** | Mobile-first thinking, touch-friendly targets, testing on real devices — not just a shrunk-down desktop |
+| 📚 **A repo that is easy to hand over** | A README, commented setup steps, and code with names a human can read six months later |
+
+<br/>
+
 ## 🛠️ How I Work
 
 ```text
@@ -195,6 +252,43 @@ Auditing a slow site and fixing it: images, bundles, fonts, render-blocking code
 - ✅ Descriptive commits and clean, reviewable pull requests
 - ✅ Code with names a human can actually understand
 - ✅ A README in every repo — future me says thank you
+
+<br/>
+
+## ⚙️ My Dev Setup
+
+| | |
+| :-- | :-- |
+| 💻 **Editor** | VS Code — Prettier, ESLint, GitLens, Error Lens, a very dark theme |
+| 🔤 **Font** | Fira Code, ligatures on |
+| 🌐 **Browser** | Chrome, with DevTools permanently open — the real IDE |
+| ⌨️ **Terminal** | Git Bash + PowerShell, with a Linux mindset |
+| 🎨 **Design** | Figma for layouts and tokens; pen and paper before that |
+| 🧭 **Method** | Mobile-first, then scale up — never the other way around |
+| 📚 **Learning style** | Docs first, error messages second, tutorials third |
+| ☕ **Fuel** | Coffee, curiosity and a long to-do list |
+
+<br/>
+
+## ⚙️ Engineering Principles I Actually Follow
+
+<details>
+<summary><b>Open the fine print 🧷</b></summary>
+
+<br/>
+
+- 🪒 **KISS over clever** — if another developer can't read it quickly, it isn't finished
+- 🔁 **DRY, but not obsessive** — two similar lines beat one clever, wrong abstraction
+- 🧱 **Mobile-first, fluid forever** — `clamp()` and relative units are features, not tricks
+- ♿️ **Accessible by default** — real labels, visible focus states, colour contrast, keyboard-only paths
+- ⚡ **Performance is a feature** — measure before and after, every single time
+- 🧪 **If it isn't tested, it's broken** — a habit I'm deliberately building
+- 📝 **Write it down** — every bug I fix becomes a note, so it never costs me twice
+- 🚫 **No copy-paste screens** — components exist so the tenth page takes ten minutes
+- 🗣️ **Ask early, guess never** — a five-minute question prevents a five-hour rework
+- 🚀 **Ship small** — a released MVP teaches more than a perfect plan ever will
+
+</details>
 
 <br/>
 
@@ -264,6 +358,51 @@ Auditing a slow site and fixing it: images, bundles, fonts, render-blocking code
 
 ---
 
+## 🚧 On the Workbench
+
+My public work here is just getting started, and the first thing I shipped is the page you are reading right now.
+
+<table>
+<tr>
+<td width="34%" align="center" valign="middle">
+
+<a href="https://github.com/dagiyosi-pixel/dagiyosi-pixel">
+<img src="https://img.shields.io/badge/%F0%9F%93%84_dagiyosi--pixel-Profile_README-2563EB?style=for-the-badge" alt="dagiyosi-pixel/dagiyosi-pixel" />
+</a>
+
+<br/><br/>
+
+<sub>Public · main branch</sub>
+
+</td>
+<td width="66%" valign="top">
+
+**What it actually does** — it is more than a wall of text:
+
+- 🎨 An animated hero and a typing banner, built from SVG image APIs
+- 📊 Live GitHub cards: stats, streaks, languages and my most productive hours
+- 🌗 Every card uses `<picture>`, so it follows GitHub dark / light mode
+- 🐍 A GitHub Action regenerates my contribution snake every 12 hours into an `output` branch
+- 📝 A commented edit guide at the top, so anyone can fork it and make it their own
+
+<a href="https://github.com/dagiyosi-pixel/dagiyosi-pixel"><b>Take a look at the repo →</b></a>
+
+</td>
+</tr>
+</table>
+
+**Coming next** — small, finished, public projects, one at a time:
+
+- 🧪 A component playground for the UI patterns I reuse the most
+- 🔗 A small full-stack CRUD app with real authentication and a documented API
+- 📓 Dev notes: the bugs I fixed and how, so neither of us repeats them
+
+<sub>❌ No fake portfolio entries here. When something is finished and deployed, it goes on this list.</sub>
+
+<br/>
+
+---
+
 ## 🧭 Currently Leveling Up
 
 <details>
@@ -300,6 +439,65 @@ Auditing a slow site and fixing it: images, bundles, fonts, render-blocking code
 </details>
 
 <br/>
+
+## ❓ FAQ
+
+<details>
+<summary><b>What kind of projects do you take on?</b></summary>
+
+<br/>
+
+Frontend-heavy websites and web apps, dashboards and CRUD interfaces, responsive rebuilds, API integrations and performance cleanups. If it runs in a browser, I am interested.
+
+</details>
+
+<details>
+<summary><b>Are you available for collaboration or freelance work?</b></summary>
+
+<br/>
+
+Yes — send me a short description of the project and what "done" looks like, and I will reply with how I would approach it. Small, well-defined scopes are my favourite.
+
+</details>
+
+<details>
+<summary><b>Which part of the stack are you strongest in?</b></summary>
+
+<br/>
+
+HTML, CSS and JavaScript are the foundations I lean on every day. TypeScript, React and Node are where I am investing the most time right now.
+
+</details>
+
+<details>
+<summary><b>Do you do backend work too?</b></summary>
+
+<br/>
+
+Yes. APIs, databases and authentication are things I have built with and keep learning. I am happy on either side of the stack.
+
+</details>
+
+<details>
+<summary><b>How do you like to communicate on a project?</b></summary>
+
+<br/>
+
+Short and frequent beats long and rare: clear written updates, small pull requests, and questions asked early instead of guessed at.
+
+</details>
+
+<details>
+<summary><b>Can I reuse this profile README?</b></summary>
+
+<br/>
+
+Absolutely — fork it, swap the username, delete whatever does not apply to you. There is an edit guide in the comments at the top of the file telling you exactly what to change.
+
+</details>
+
+<br/>
+
 
 ## 📫 Let's Connect
 
