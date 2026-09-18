@@ -8,6 +8,16 @@
   ║   • Delete any tech badge you don't actually use — keep it honest.        ║
   ║   • Uncomment the LinkedIn / X / portfolio rows in "Let's Connect".       ║
   ║   • HTML comments (like this one) never appear on your public profile.    ║
+  ║                                                                           ║
+  ║  🧩 HOW THE LIVE CARDS WORK                                               ║
+  ║   • Stats / language / productive-time cards → free API from              ║
+  ║     github-profile-summary-cards.vercel.app                               ║
+  ║   • Streak card → free API from streak-stats.demolab.com                  ║
+  ║   • Snake → generated into the "output" branch by the GitHub Action        ║
+  ║     in .github/workflows/snake.yml (runs automatically twice a day)       ║
+  ║   • Every card uses <picture> so it follows GitHub's dark/light mode      ║
+  ║   • If one of those free services ever dies, just swap its URL — no       ║
+  ║     other change needed
   ╚═══════════════════════════════════════════════════════════════════════════╝
 -->
 
@@ -112,7 +122,7 @@ I like building things that are **fast, responsive and obvious to use** — and 
 <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
 <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
 
-###  DevOps, Tooling &amp; Design
+### 🔧 DevOps, Tooling &amp; Design
 <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
 <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions" />
