@@ -139,11 +139,12 @@ I like building things that are **fast, responsive and obvious to use** — and 
 ### ⚡ SQ3R Master Platform • Grade 7 & 8 Ethiopian Curriculum
 An interactive, offline-first study and learning platform for Ethiopian middle school students based on the evidence-backed **SQ3R study method** (Survey, Question, Read, Recite, Review).
 
-- **Dual Grade Engine:** Instant switcher between Grade 7 and Grade 8 full national syllabi.
-- **6 Subjects Covered:** Mathematics, General Science, English, Social Studies, Citizenship & IT.
-- **Working Examples Vault:** Exhaustive step-by-step problem solutions with mathematical reasoning and traps to avoid.
-- **Active Recall & Gamification:** 3D flip flashcards, Pomodoro timer, synthesized Web Audio FX, XP levels, and reward shop.
-- **PWA & Offline Ready:** Installs on Android/iOS/Desktop with service workers and zero external dependencies.
+- **Complete Curriculum Scope:** 76 Units & 85 Subtopics across Grade 7 and Grade 8 (Mathematics, General Science, English, Social Studies, Citizenship, and IT).
+- **Strict 80% Mastery Gate:** Students must pass each level's mastery test with at least 80% before advancing to subsequent missions.
+- **AMT Exam-Style Engine:** Real-time questions with step-by-step strategies, mathematical derivations, and traps hidden until attempted.
+- **Expedition Roadmap:** Interactive cosmic constellation path showing Mastered, Active, and Locked levels.
+- **Active Recall & Gamification:** Cosmic Holo-Scanner (S stage) with countdown timer, 3D flip flashcards, synthesized Web Audio FX, XP levels, and reward shop.
+- **PWA & Offline Ready:** Installs on Android/iOS/Desktop with service workers and zero external audio/image dependencies.
 
 <br/>
 
