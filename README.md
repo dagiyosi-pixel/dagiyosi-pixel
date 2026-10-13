@@ -139,8 +139,9 @@ I like building things that are **fast, responsive and obvious to use** — and 
 ### ⚡ SQ3R Master Platform • Grade 7 & 8 Ethiopian Curriculum
 An interactive, offline-first study and learning platform for Ethiopian middle school students based on the evidence-backed **SQ3R study method** (Survey, Question, Read, Recite, Review).
 
-- **Complete Curriculum Scope:** 81+ Units & 89+ Subtopics across Grade 7 and Grade 8 (Mathematics, General Science, English, Social Studies, Citizenship Education, and IT) matching the official Ethiopian Ministry of Education textbooks and CBA booklets.
-- **Deep Textbook Theory & Notes:** Multi-section explanations, formulas, theorems, real-world Ethiopian examples, and step-by-step worked solutions.
+- **Complete Curriculum Scope:** 84 Units & 116 Subtopics across Grade 7 and Grade 8 (Mathematics, General Science, English, Social Studies, Citizenship Education, and IT) matching the official Ethiopian Ministry of Education textbooks, the `ethiopia-grade7-8-study-notes` skill, and official CBA exam booklets.
+- **Deep Textbook Theory & Notes:** Multi-section explanations, formulas, theorems, authentic Ethiopian contexts (Afar hominins, Aksum stelae, Lalibela volcanic churches, Gadaa system, Erta Ale active lava lake, GERD), and step-by-step worked solutions.
+- **Official CBA Examination Engines:** Dedicated examination practice modules containing the official 30-question Social Studies CBA test, 25-question Mathematics CBA test, and high-yield difference tables.
 - **Strict 80% Mastery Gate:** Students must pass each level's mastery test with at least 80% before advancing to subsequent missions.
 - **AMT Exam-Style Engine:** Real-time questions with step-by-step strategies, mathematical derivations, and traps hidden until attempted.
 - **Expedition Roadmap:** Interactive cosmic constellation path showing Mastered, Active, and Locked levels.
