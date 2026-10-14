@@ -143,7 +143,7 @@ An interactive, offline-first study and learning platform for Ethiopian middle s
 - **Deep Textbook Theory & Notes:** Multi-section explanations, formulas, theorems, authentic Ethiopian contexts (Afar hominins, Aksum stelae, Lalibela volcanic churches, Gadaa system, Erta Ale active lava lake, GERD), and step-by-step worked solutions.
 - **Official CBA Examination Engines:** Dedicated examination practice modules containing the official 30-question Social Studies CBA test, 25-question Mathematics CBA test, and high-yield difference tables.
 - **Strict 80% Mastery Gate:** Students must pass each level's mastery test with at least 80% before advancing to subsequent missions.
-- **AMT Exam-Style Engine:** Real-time questions with step-by-step strategies, mathematical derivations, and traps hidden until attempted.
+- **395+ AMT Exam-Style Questions:** Every single subtopic features multi-question diagnostic tests with hidden step-by-step strategies, mathematical derivations, and distractor warnings.
 - **Expedition Roadmap:** Interactive cosmic constellation path showing Mastered, Active, and Locked levels.
 - **Active Recall & Gamification:** Cosmic Holo-Scanner (S stage) with countdown timer, 3D flip flashcards, synthesized Web Audio FX, XP levels, and reward shop.
 - **PWA & Offline Ready:** Installs on Android/iOS/Desktop with service workers and zero external audio/image dependencies.
