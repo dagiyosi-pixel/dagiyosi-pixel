@@ -136,17 +136,18 @@ I like building things that are **fast, responsive and obvious to use** — and 
 <tr>
 <td width="60%" valign="top">
 
-### ⚡ SQ3R Master Platform • Grade 7 & 8 Ethiopian Curriculum
-An interactive, offline-first study and learning platform for Ethiopian middle school students based on the evidence-backed **SQ3R study method** (Survey, Question, Read, Recite, Review).
+### 🇪🇹 Ethiopian National Curriculum Platform • Grade 7 & 8 Examination Mastery (SQ3R)
+An authentic, offline-first study, examination simulation, and honors certification platform for Ethiopian middle school students based on the evidence-backed **SQ3R study method** (Survey, Question, Read, Recite, Review) and aligned with the official FDRE Ministry of Education CBA curriculum.
 
-- **Complete Curriculum Scope:** 96 Units & 184 Subtopics across Grade 7 and Grade 8 (Mathematics, General Science, English, Social Studies, Citizenship Education, and IT) matching the official Ethiopian Ministry of Education textbooks, the `ethiopia-grade7-8-study-notes` skill, and official CBA exam booklets.
-- **Deep Textbook Theory & Notes:** Multi-section explanations, formulas, theorems, authentic Ethiopian contexts (Afar hominins, Aksum stelae, Lalibela volcanic churches, Gadaa system, Erta Ale active lava lake, GERD), and step-by-step worked solutions.
-- **Official CBA Examination Engines:** Dedicated examination practice modules containing the official 30-question Social Studies CBA test, 25-question Mathematics CBA test, and high-yield difference tables.
-- **Strict 80% Mastery Gate:** Students must pass each level's mastery test with at least 80% before advancing to subsequent missions.
-- **577+ AMT Exam-Style Questions:** Every single subtopic features multi-question diagnostic tests with hidden step-by-step strategies, micro baby-step mathematical/conceptual derivations, 4-option distractor autopsies, and exam trap warnings.
-- **Expedition Roadmap:** Interactive cosmic constellation path showing Mastered, Active, and Locked levels.
-- **Active Recall & Gamification:** Cosmic Holo-Scanner (S stage) with countdown timer, 3D flip flashcards, synthesized Web Audio FX, XP levels, and reward shop.
-- **PWA & Offline Ready:** Installs on Android/iOS/Desktop with service workers and zero external audio/image dependencies.
+- **Complete Curriculum Scope:** 96 Units & 184 Subtopics across Grade 7 and Grade 8 (Mathematics, General Science, English, Social Studies, Citizenship Education, and IT) directly aligned with official Ethiopian Ministry of Education textbooks and CBA exam booklets.
+- **🏛️ Ministry Exam Hall Simulator (የፈተና አዳራሽ):** Full-featured timed mock examination engine with selectable question counts (10, 20, 40, or 60 Qs), real-time countdown clock, interactive question palette navigator (1 to N), flag/bookmark for review, letter grading ($A+$ Distinction to $F$), and chapter-by-chapter diagnostic prescriptions.
+- **🎓 Shareable "Ministry Honors Certificate" Generator (የምስክር ወረቀት ሰሪ):** Custom HTML5 Canvas ($1200 \times 840$ px) drawing the official FDRE MoE crest, Ethiopian tricolor ribbon, verified score, student rank, 1-click HD PNG export, and direct Telegram sharing challenge.
+- **📚 High-Accuracy Reference Library & Curriculum Archive (ማጣቀሻ እና መዛግብት):** Authoritative MoE textbook citations, mathematical formulas & number sets ($\mathbb{N}, \mathbb{W}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}$), scientific constants ($c, g, \rho$), first 20 chemical elements table, Ethiopian paleoanthropology (Lucy/Dinkinesh, Ardi, Selam), Rift Valley geology, Gadaa system, Adwa victory, and SQ3R methodology.
+- **🖨️ 1-Page Printable Summary & Formula Sheets:** Print-optimized A4 summary sheet generator for every unit, allowing students to save as PDF or print hardcopies for study without screens or electricity.
+- **577+ AMT Exam-Style Questions:** Comprehensive diagnostic tests for every subtopic with step-by-step strategies, micro baby-step mathematical/conceptual derivations, 4-option distractor autopsies, and exam pitfall alerts.
+- **Strict 80% Mastery Gate:** Students must pass each subtopic's review exam with at least 80% to sequentially unlock subsequent missions (with optional Free-Roam mode).
+- **🛡️ Military-Grade Security Fortification:** Strict Content Security Policy (CSP), Permissions Policy, XSS input sanitization, prototype pollution defense, and isolated execution.
+- **📲 100% Offline PWA Ready:** Installs on Android, iOS, Windows, and Mac with service worker zero-data caching and synthesized Web Audio FX.
 
 <br/>
 
@@ -156,13 +157,16 @@ An interactive, offline-first study and learning platform for Ethiopian middle s
 <td width="40%" valign="top">
 
 ```text
-Tech Stack:
+Tech Stack & Security:
 • Progressive Web App (PWA)
 • Vanilla JS (ES6+) & Modern CSS
+• HTML5 Canvas (1200x840 HD Engine)
 • Synthesized Web Audio API
 • Canvas Particle Physics
+• Strict CSP & Permissions Policy
+• Prototype Pollution Defense
 • LocalStorage Persistence
-• Fully Offline Capable
+• Fully Offline Capable (Zero-Data)
 ```
 
 </td>
