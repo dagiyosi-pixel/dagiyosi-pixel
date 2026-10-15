@@ -1,621 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Love Quest</title>
-    <meta
-      name="description"
-      content="A romantic love quest for the girl I adore."
-    />
-    <style>
-      :root {
-        --bg-1: #140b2d;
-        --bg-2: #2b0d3f;
-        --bg-3: #4a1047;
-        --card: rgba(255, 255, 255, 0.08);
-        --card-strong: rgba(255, 255, 255, 0.12);
-        --line: rgba(255, 255, 255, 0.15);
-        --text: #fff7fb;
-        --muted: #f8d7ea;
-        --pink: #ff77b6;
-        --pink-2: #ff9bd5;
-        --purple: #b984ff;
-        --lavender: #d4c4ff;
-        --gold: #ffd86b;
-        --shadow: rgba(12, 4, 22, 0.5);
-      }
-
-      * { box-sizing: border-box; }
-
-      html, body {
-        margin: 0;
-        min-height: 100%;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 30%, var(--bg-3) 100%);
-        color: var(--text);
-      }
-
-      body {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow-x: hidden;
-      }
-
-      .background {
-        position: fixed;
-        inset: 0;
-        overflow: hidden;
-        pointer-events: none;
-      }
-
-      .orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(30px);
-        opacity: 0.35;
-        animation: float 12s ease-in-out infinite alternate;
-      }
-
-      .orb.one {
-        width: 240px;
-        height: 240px;
-        background: rgba(255, 119, 182, 0.5);
-        top: 8%;
-        left: 8%;
-      }
-
-      .orb.two {
-        width: 300px;
-        height: 300px;
-        background: rgba(185, 132, 255, 0.45);
-        bottom: 10%;
-        right: 8%;
-        animation-delay: 2s;
-      }
-
-      .orb.three {
-        width: 220px;
-        height: 220px;
-        background: rgba(255, 216, 107, 0.18);
-        top: 45%;
-        left: 48%;
-        animation-delay: 4s;
-      }
-
-      .sparkles {
-        position: absolute;
-        inset: 0;
-        background-image:
-          radial-gradient(circle, rgba(255,255,255,0.7) 0 1px, transparent 1.5px),
-          radial-gradient(circle, rgba(255,255,255,0.6) 0 1px, transparent 1.5px);
-        background-size: 130px 130px;
-        background-position: 0 0, 60px 60px;
-        opacity: 0.55;
-      }
-
-      .app {
-        position: relative;
-        width: min(780px, calc(100% - 28px));
-        min-height: 700px;
-        background: rgba(15, 10, 25, 0.42);
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        overflow: hidden;
-        box-shadow: 0 30px 90px var(--shadow);
-        backdrop-filter: blur(10px);
-      }
-
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 18px 22px 14px;
-        background: rgba(255, 255, 255, 0.03);
-        border-bottom: 1px solid var(--line);
-      }
-
-      .brand {
-        font-size: 0.9rem;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: var(--muted);
-      }
-
-      .level-indicator {
-        padding: 8px 14px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid var(--line);
-        font-size: 0.75rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--lavender);
-      }
-
-      .progress {
-        height: 8px;
-        width: 100%;
-        background: rgba(255,255,255,0.06);
-        overflow: hidden;
-      }
-
-      .progress-bar {
-        width: 0%;
-        height: 100%;
-        background: linear-gradient(90deg, var(--pink), var(--purple), var(--gold));
-        box-shadow: 0 0 18px rgba(255, 119, 182, 0.8);
-        transition: width 0.45s ease;
-      }
-
-      .game-shell {
-        position: relative;
-        min-height: 620px;
-        padding: 34px 24px 24px;
-      }
-
-      .screen {
-        display: none;
-        animation: fadeUp 0.5s ease;
-      }
-
-      .screen.active {
-        display: block;
-      }
-
-      .eyebrow {
-        margin: 0 0 16px;
-        font-size: 0.75rem;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
-        color: var(--gold);
-      }
-
-      h1, h2, h3, p {
-        margin: 0;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.5rem, 7vw, 5rem);
-        line-height: 0.96;
-        letter-spacing: -0.06em;
-      }
-
-      .hero h1 .highlight {
-        display: inline-block;
-        background: linear-gradient(135deg, var(--pink-2), var(--lavender), var(--gold));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .hero .subtitle {
-        margin-top: 20px;
-        max-width: 560px;
-        font-size: 1.05rem;
-        line-height: 1.7;
-        color: var(--muted);
-      }
-
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 28px;
-      }
-
-      button {
-        font: inherit;
-      }
-
-      .btn {
-        border: 0;
-        border-radius: 16px;
-        background: linear-gradient(130deg, var(--pink), var(--purple));
-        color: white;
-        padding: 15px 22px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        cursor: pointer;
-        box-shadow: 0 15px 30px rgba(255, 119, 182, 0.35);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 18px 36px rgba(185, 132, 255, 0.36);
-      }
-
-      .btn.secondary {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid var(--line);
-        box-shadow: none;
-      }
-
-      .mini-note {
-        margin-top: 22px;
-        color: var(--muted);
-        font-size: 0.85rem;
-        letter-spacing: 0.04em;
-      }
-
-      .screen h2 {
-        font-size: clamp(2rem, 5vw, 3.2rem);
-        letter-spacing: -0.05em;
-        margin-bottom: 18px;
-      }
-
-      .screen p.lead {
-        max-width: 640px;
-        color: var(--muted);
-        font-size: 1.02rem;
-        line-height: 1.7;
-      }
-
-      .memory-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(80px, 1fr));
-        gap: 14px;
-        margin-top: 28px;
-      }
-
-      .memory-card {
-        appearance: none;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--text);
-        min-height: 110px;
-        border-radius: 22px;
-        display: grid;
-        place-items: center;
-        font-size: 2rem;
-        cursor: pointer;
-        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-      }
-
-      .memory-card:hover {
-        transform: translateY(-2px);
-      }
-
-      .memory-card.correct {
-        background: rgba(255, 216, 107, 0.15);
-        border-color: rgba(255, 216, 107, 0.65);
-      }
-
-      .memory-card.wrong {
-        background: rgba(255, 106, 142, 0.08);
-        border-color: rgba(255, 119, 182, 0.45);
-      }
-
-      .status-note {
-        min-height: 28px;
-        margin-top: 14px;
-        color: var(--gold);
-        font-weight: 600;
-      }
-
-      .choices {
-        display: grid;
-        gap: 14px;
-        margin-top: 26px;
-      }
-
-      .choice {
-        width: 100%;
-        text-align: left;
-        border: 1px solid var(--line);
-        background: rgba(255,255,255,0.04);
-        color: var(--text);
-        border-radius: 18px;
-        padding: 18px 18px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-      }
-
-      .choice:hover {
-        border-color: rgba(255, 255, 255, 0.3);
-        transform: translateX(4px);
-      }
-
-      .choice.correct {
-        background: rgba(109, 229, 166, 0.12);
-        border-color: rgba(109, 229, 166, 0.8);
-      }
-
-      .choice.wrong {
-        background: rgba(255, 119, 182, 0.08);
-        border-color: rgba(255, 119, 182, 0.7);
-      }
-
-      .envelope-wrap {
-        margin-top: 30px;
-        display: grid;
-        place-items: center;
-      }
-
-      .envelope {
-        position: relative;
-        width: min(100%, 420px);
-        height: 240px;
-        border-radius: 22px;
-        background: linear-gradient(180deg, #f9d4e3 0%, #f4b7d5 100%);
-        border: 1px solid rgba(128, 76, 107, 0.25);
-        box-shadow: 0 24px 45px rgba(88, 31, 64, 0.3);
-        overflow: hidden;
-        transition: transform 0.5s ease;
-      }
-
-      .envelope::before,
-      .envelope::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-
-      .envelope::before {
-        clip-path: polygon(0 0, 50% 50%, 100% 0);
-        background: rgba(240, 161, 194, 0.7);
-      }
-
-      .envelope::after {
-        clip-path: polygon(0 0, 100% 0, 50% 50%);
-        background: rgba(255,255,255,0.3);
-      }
-
-      .envelope.open {
-        transform: rotateY(180deg);
-      }
-
-      .letter {
-        position: absolute;
-        inset: 22px 22px 18px;
-        display: grid;
-        place-items: center;
-        padding: 18px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.62);
-        color: #3f2039;
-        box-shadow: inset 0 0 0 1px rgba(77, 38, 62, 0.12);
-        opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-      }
-
-      .envelope.open .letter {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .letter-text {
-        font-size: 1rem;
-        line-height: 1.8;
-        text-align: center;
-      }
-
-      .final-stage {
-        text-align: center;
-      }
-
-      .heart-burst {
-        margin: 22px auto 18px;
-        width: 140px;
-        height: 140px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(255,255,255,0.6), rgba(255,119,182,0.15));
-        font-size: 4rem;
-        color: #ff5ea8;
-        box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.28), 0 0 35px rgba(255, 119, 182, 0.35);
-        animation: pulse 1.5s ease-in-out infinite;
-      }
-
-      .big-love {
-        font-size: clamp(3rem, 12vw, 8rem);
-        letter-spacing: -0.08em;
-        background: linear-gradient(135deg, #fff4f9, #ffd7ec, #d9c7ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        margin: 18px 0 12px;
-      }
-
-      .final-message {
-        max-width: 620px;
-        margin: 0 auto;
-        color: var(--muted);
-        font-size: 1.05rem;
-        line-height: 1.8;
-      }
-
-      .signature {
-        margin-top: 18px;
-        font-size: 1.1rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--gold);
-      }
-
-      .hidden {
-        display: none !important;
-      }
-
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(14px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.08); }
-      }
-
-      @keyframes float {
-        from { transform: translateY(0) translateX(0); }
-        to { transform: translateY(-18px) translateX(12px); }
-      }
-
-      @media (max-width: 600px) {
-        .app {
-          min-height: 100vh;
-          border-radius: 0;
-          width: 100%;
-          border-left: 0;
-          border-right: 0;
-        }
-
-        .game-shell {
-          padding-left: 18px;
-          padding-right: 18px;
-        }
-
-        .brand {
-          letter-spacing: 0.18em;
-          font-size: 0.75rem;
-        }
-
-        .topbar {
-          padding-left: 18px;
-          padding-right: 18px;
-        }
-
-        .memory-grid {
-          grid-template-columns: repeat(2, minmax(90px, 1fr));
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="background" aria-hidden="true">
-      <div class="orb one"></div>
-      <div class="orb two"></div>
-      <div class="orb three"></div>
-      <div class="sparkles"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0xDagi // CODE ARCHITECT & FULL-STACK ENGINEER</title>
+  <meta name="description" content="Portfolio of Dagi — Full-Stack Developer, BIM Automation Engineer, and Code Architect." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="fire">
+  <!-- Interactive Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Cyber Grid Overlay -->
+  <div class="cyber-grid-overlay"></div>
+  <div class="vignette"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="hud-nav">
+    <div class="hud-brand">
+      <span class="hud-bracket">[</span>
+      <span class="brand-glitch" data-text="0xDagi">0xDagi</span>
+      <span class="hud-bracket">]</span>
+      <span class="pulse-dot"></span>
+      <span class="brand-tag">SYS_ONLINE</span>
+    </div>
+    
+    <div class="nav-links">
+      <a href="#hero" class="nav-item active"><span class="nav-num">01.</span>CORE</a>
+      <a href="#arsenal" class="nav-item"><span class="nav-num">02.</span>ARSENAL</a>
+      <a href="#terminal" class="nav-item"><span class="nav-num">03.</span>TERMINAL</a>
+      <a href="#projects" class="nav-item"><span class="nav-num">04.</span>PROJECTS</a>
+      <a href="#contact" class="nav-item"><span class="nav-num">05.</span>UPLINK</a>
     </div>
 
-    <div class="app">
-      <header class="topbar">
-        <div class="brand">Love Quest</div>
-        <div class="level-indicator">Level <span id="currentLevel">1</span> / 5</div>
-      </header>
+    <div class="nav-controls">
+      <!-- Mode Toggle -->
+      <button id="mode-toggle" class="hud-btn" title="Toggle FX Theme">
+        <span class="btn-icon">🔥</span>
+        <span class="btn-text">MODE: FIRE</span>
+      </button>
+      <!-- Sound FX Toggle -->
+      <button id="sfx-toggle" class="hud-btn" title="Toggle Audio FX">
+        <span class="sfx-icon">🔊</span>
+        <span class="sfx-status">SFX: ON</span>
+      </button>
+    </div>
+  </nav>
 
-      <div class="progress" aria-hidden="true">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
+  <!-- Main Content Container -->
+  <main class="page-container">
+    
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-hud-frame">
+        <div class="hud-corner top-left"></div>
+        <div class="hud-corner top-right"></div>
+        <div class="hud-corner bottom-left"></div>
+        <div class="hud-corner bottom-right"></div>
 
-      <main class="game-shell">
-        <section class="screen hero active" id="screen-intro">
-          <p class="eyebrow">Mission start</p>
-          <h1>My favorite <span class="highlight">adventure</span> is you.</h1>
-          <p class="subtitle">
-            This is a tiny love quest made just for you. Finish the levels, unlock the truth,
-            and discover the sweetest message at the very end.
-          </p>
-          <div class="cta-row">
-            <button class="btn" id="startBtn">Start the quest</button>
+        <div class="status-strip">
+          <span class="badge red-glow">STATUS: LEVEL 99 CODE ARCHITECT</span>
+          <span class="badge blue-glow">LOCATION: ADDIS ABABA // CYBERSPACE</span>
+          <span class="badge green-glow">HIRE STATUS: READY TO SHIP</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="cyber-subtitle">// INITIALIZING NEURAL INTERFACE...</p>
+            <h1 class="hero-title">
+              DAGI <span class="accent-fire">YOSI</span>
+            </h1>
+            <h2 class="typewriter-container">
+              <span class="hud-bracket">&gt; </span>
+              <span id="typewriter" class="typewriter-text"></span>
+              <span class="cursor">_</span>
+            </h2>
+
+            <p class="hero-desc">
+              I don't just write code — I forge high-performance digital engines. Bridging high-level 
+              <strong>Full-Stack Web Engineering</strong> with complex <strong>BIM Automation & Computational Architecture</strong>.
+              From microservices to parametric 3D generative pipelines.
+            </p>
+
+            <div class="hero-cta">
+              <a href="#projects" class="btn-cyber primary">
+                <span class="btn-glitch"></span>
+                <span>EXPLORE BATTLEGROUNDS</span>
+                <span class="arrow">→</span>
+              </a>
+              <a href="#terminal" class="btn-cyber secondary">
+                <span>OPEN TERMINAL</span>
+                <span class="terminal-indicator">&gt;_</span>
+              </a>
+              <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="btn-cyber outline">
+                <span>GITHUB REPO</span>
+                <span class="star-badge">★</span>
+              </a>
+            </div>
           </div>
-          <p class="mini-note">One heart, one smile, one forever.</p>
-        </section>
 
-        <section class="screen" id="screen-level-1">
-          <p class="eyebrow">Level 1</p>
-          <h2>Find the hidden heart</h2>
-          <p class="lead">Tap the one card that holds my secret: the heart is not hiding far. It is waiting where my love for you is strongest.</p>
-
-          <div class="memory-grid" id="memoryGrid">
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-            <button class="memory-card" type="button">?</button>
-          </div>
-
-          <div class="status-note" id="level1Status">Pick the hidden heart.</div>
-        </section>
-
-        <section class="screen" id="screen-level-2">
-          <p class="eyebrow">Level 2</p>
-          <h2>What do I love most?</h2>
-          <p class="lead">Choose the answer that makes my heart feel seen.</p>
-
-          <div class="choices">
-            <button class="choice" type="button">Your smile</button>
-            <button class="choice" type="button">Your silence</button>
-            <button class="choice" type="button">Your laugh</button>
-            <button class="choice" type="button">Your everything</button>
-          </div>
-
-          <div class="status-note" id="level2Status">Select the right answer.</div>
-        </section>
-
-        <section class="screen" id="screen-level-3">
-          <p class="eyebrow">Level 3</p>
-          <h2>Open my letter</h2>
-          <p class="lead">This is the part where my feelings are honest and real.</p>
-
-          <div class="envelope-wrap">
-            <div class="envelope" id="envelope">
-              <div class="letter">
-                <div class="letter-text">
-                  Hey love,<br /><br />
-                  You make my days softer, brighter, and more beautiful.<br />
-                  I love you more than I know how to say in one sentence.
+          <!-- Hero Cyber Avatar Graphic -->
+          <div class="hero-visual">
+            <div class="hologram-wrap">
+              <div class="holo-ring outer"></div>
+              <div class="holo-ring middle"></div>
+              <div class="holo-ring inner"></div>
+              <div class="avatar-glow"></div>
+              <div class="avatar-card">
+                <div class="avatar-code-bg">
+                  <code>01000100 01000001 01000111 01001001</code>
+                </div>
+                <div class="avatar-core">
+                  <div class="cyber-skull">⚡</div>
+                  <div class="core-label">0xDagi_CORE</div>
+                </div>
+                <div class="stat-pill">
+                  <span class="pill-dot"></span> 99.9% COMPILER VELOCITY
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="cta-row" style="justify-content: center; margin-top: 22px;">
-            <button class="btn secondary" id="revealLetterBtn" type="button">Open the letter</button>
+        <!-- Quick Stats Matrix HUD -->
+        <div class="hud-stats-bar">
+          <div class="stat-cell">
+            <div class="stat-val" data-target="99.9">0%</div>
+            <div class="stat-lbl">CRASH IMMUNITY</div>
           </div>
-        </section>
+          <div class="stat-divider"></div>
+          <div class="stat-cell">
+            <div class="stat-val" data-target="500">0+</div>
+            <div class="stat-lbl">BUGS EXTERMINATED</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-cell">
+            <div class="stat-val" data-target="18">0+</div>
+            <div class="stat-lbl">STACK WEAPONS</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-cell">
+            <div class="stat-val highlight">04:00 AM</div>
+            <div class="stat-lbl">PEAK ENERGY</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section class="screen final-stage" id="screen-final">
-          <p class="eyebrow">Final level</p>
-          <h2>The truth is finally here</h2>
-          <div class="heart-burst" aria-hidden="true">?</div>
-          <div class="big-love">I LOVE YOU</div>
-          <p class="final-message">
-            You are my peace, my favorite person, my safe place, and the reason my heart feels complete.
-            Thank you for being you. I�m lucky to have you.
+    <!-- ARSENAL SECTION -->
+    <section id="arsenal" class="arsenal-section">
+      <div class="section-header">
+        <span class="section-tag">// WEAPONRY</span>
+        <h2 class="section-title">TECH <span class="accent-fire">ARSENAL</span></h2>
+        <p class="section-desc">Battle-tested tools, frameworks, and engineering disciplines in my daily rotation.</p>
+      </div>
+
+      <div class="arsenal-tabs">
+        <button class="tab-btn active" data-filter="all">ALL WEAPONS</button>
+        <button class="tab-btn" data-filter="fullstack">FULL-STACK</button>
+        <button class="tab-btn" data-filter="bim">BIM & CAD</button>
+        <button class="tab-btn" data-filter="languages">LANGUAGES</button>
+        <button class="tab-btn" data-filter="devops">DEVOPS & DB</button>
+      </div>
+
+      <div class="weapons-grid">
+        <!-- Python -->
+        <div class="weapon-card" data-cat="languages fullstack bim">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">🐍</span>
+            <span class="weapon-lvl">LVL 95</span>
+          </div>
+          <h3 class="weapon-name">Python</h3>
+          <p class="weapon-detail">Automation scripts, FastAPI, Django, Revit Dynamo pipelines & computational algorithms.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 95%;"></div></div>
+        </div>
+
+        <!-- TypeScript / JS -->
+        <div class="weapon-card" data-cat="languages fullstack">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">⚡</span>
+            <span class="weapon-lvl">LVL 94</span>
+          </div>
+          <h3 class="weapon-name">TypeScript / JS</h3>
+          <p class="weapon-detail">Strict typing, dynamic UI systems, event-driven web applications and scalable frontends.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 94%;"></div></div>
+        </div>
+
+        <!-- C# / .NET -->
+        <div class="weapon-card" data-cat="languages bim">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">🔷</span>
+            <span class="weapon-lvl">LVL 90</span>
+          </div>
+          <h3 class="weapon-name">C# & .NET</h3>
+          <p class="weapon-detail">Native Revit API plugins, WPF ribbons, high-throughput desktop automation & tools.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 90%;"></div></div>
+        </div>
+
+        <!-- React & Next.js -->
+        <div class="weapon-card" data-cat="fullstack">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">⚛️</span>
+            <span class="weapon-lvl">LVL 92</span>
+          </div>
+          <h3 class="weapon-name">React & Next.js</h3>
+          <p class="weapon-detail">Server-side rendering, App Router, responsive micro-frontends and reactive state trees.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 92%;"></div></div>
+        </div>
+
+        <!-- Node & Express -->
+        <div class="weapon-card" data-cat="fullstack devops">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">🟢</span>
+            <span class="weapon-lvl">LVL 88</span>
+          </div>
+          <h3 class="weapon-name">Node.js & Express</h3>
+          <p class="weapon-detail">RESTful APIs, WebSockets, background job queues, and robust middleware pipelines.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 88%;"></div></div>
+        </div>
+
+        <!-- Autodesk Revit API -->
+        <div class="weapon-card" data-cat="bim">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">🏛️</span>
+            <span class="weapon-lvl">LVL 96</span>
+          </div>
+          <h3 class="weapon-name">Autodesk Revit API</h3>
+          <p class="weapon-detail">Automated wall/slab framing, clash arbitration, family injection, and headless extraction.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 96%;"></div></div>
+        </div>
+
+        <!-- AutoCAD & Dynamo -->
+        <div class="weapon-card" data-cat="bim">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">📐</span>
+            <span class="weapon-lvl">LVL 91</span>
+          </div>
+          <h3 class="weapon-name">AutoCAD & Dynamo</h3>
+          <p class="weapon-detail">Visual algorithmic programming, DWG layer parsing, automatic geometry alignment.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 91%;"></div></div>
+        </div>
+
+        <!-- PostgreSQL & MongoDB -->
+        <div class="weapon-card" data-cat="devops fullstack">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">🗄️</span>
+            <span class="weapon-lvl">LVL 89</span>
+          </div>
+          <h3 class="weapon-name">Postgres & MongoDB</h3>
+          <p class="weapon-detail">Relational integrity, indexing strategies, NoSQL document stores and Redis caching.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 89%;"></div></div>
+        </div>
+
+        <!-- Docker & Linux -->
+        <div class="weapon-card" data-cat="devops">
+          <div class="card-glow"></div>
+          <div class="weapon-header">
+            <span class="weapon-icon">🐳</span>
+            <span class="weapon-lvl">LVL 87</span>
+          </div>
+          <h3 class="weapon-name">Docker & Linux</h3>
+          <p class="weapon-detail">Containerized environments, multi-stage builds, shell automation, and CI/CD pipelines.</p>
+          <div class="progress-track"><div class="progress-bar" style="width: 87%;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE HACKER TERMINAL -->
+    <section id="terminal" class="terminal-section">
+      <div class="section-header">
+        <span class="section-tag">// COMMAND PROTOCOL</span>
+        <h2 class="section-title">HACKER <span class="accent-fire">TERMINAL</span></h2>
+        <p class="section-desc">Type commands to probe my systems or click the quick command chips below.</p>
+      </div>
+
+      <div class="terminal-window">
+        <div class="term-titlebar">
+          <div class="term-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="term-title">0xDagi@nexus-server:~ (zsh)</div>
+          <div class="term-badge">ENCRYPTED // SHA-256</div>
+        </div>
+
+        <div class="term-body" id="term-body">
+          <div class="term-row term-welcome">
+            <pre class="ascii-art">
+   ___          ___               _ 
+  / _ \__ _____/   \__ _  __ _ (_)
+ / // /\ \ / _  / /\ / _` |/ _` | |
+/____//_\_\___//___/ \__,_|\__, |_|
+                           |___/   
+            </pre>
+            <p>Welcome to <strong>0xDagi Cyber Shell v3.8.0</strong>.</p>
+            <p>Type <span class="term-hl">help</span> to list available commands.</p>
+          </div>
+        </div>
+
+        <div class="term-input-line">
+          <span class="term-prompt">0xDagi@root:~$</span>
+          <input type="text" id="term-input" autocomplete="off" spellcheck="false" placeholder="type 'help' or click buttons below..." />
+        </div>
+
+        <div class="term-chips">
+          <button class="chip-btn" data-cmd="skills">⚡ skills</button>
+          <button class="chip-btn" data-cmd="projects">🚀 projects</button>
+          <button class="chip-btn" data-cmd="whoami">👤 whoami</button>
+          <button class="chip-btn" data-cmd="fire">🔥 fire-storm</button>
+          <button class="chip-btn" data-cmd="matrix">👾 matrix</button>
+          <button class="chip-btn" data-cmd="contact">📡 contact</button>
+          <button class="chip-btn" data-cmd="clear">🧹 clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section id="projects" class="projects-section">
+      <div class="section-header">
+        <span class="section-tag">// BATTLEGROUNDS</span>
+        <h2 class="section-title">FEATURED <span class="accent-fire">PROJECTS</span></h2>
+        <p class="section-desc">Real code. Real impact. Built for scale, precision, and zero-compromise performance.</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-tag">BIM & API ENGINE</span>
+            <span class="project-id">#01</span>
+          </div>
+          <h3 class="project-title">RevitCopilot & Automation Bridge</h3>
+          <p class="project-summary">
+            A high-speed WebSocket coordination engine bridging AI agent directives directly with Autodesk Revit.
+            Executes autonomous clash avoidance, parametric slab grading, and full construction-section QA polish.
           </p>
-          <div class="cta-row" style="justify-content: center; margin-top: 28px;">
-            <button class="btn" id="finalRevealBtn" type="button">Claim my forever</button>
+          <div class="tech-tags">
+            <span class="tag">C#</span>
+            <span class="tag">Revit API</span>
+            <span class="tag">Python</span>
+            <span class="tag">WebSockets</span>
           </div>
-        </section>
+          <div class="project-actions">
+            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="proj-link">
+              <span>EXPLORE REPO</span> →
+            </a>
+          </div>
+        </article>
 
-        <section class="screen final-stage" id="screen-ending">
-          <p class="eyebrow">Unlocked</p>
-          <h2>Forever starts with you.</h2>
-          <div class="heart-burst" aria-hidden="true">?</div>
-          <p class="final-message">
-            You are my dream, my comfort, and the love I never want to lose.<br />
-            Thank you for every smile, every moment, and every reason I keep falling for you.
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-tag">FULL-STACK WEB</span>
+            <span class="project-id">#02</span>
+          </div>
+          <h3 class="project-title">Nexus Cloud Architect Platform</h3>
+          <p class="project-summary">
+            Enterprise full-stack web dashboard featuring real-time collaborative state, granular JWT auth,
+            server-rendered analytics, and Docker-driven automated testing environments.
           </p>
-          <div class="signature">Always yours</div>
-          <div class="cta-row" style="justify-content: center; margin-top: 28px;">
-            <button class="btn secondary" id="restartBtn" type="button">Play again</button>
+          <div class="tech-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Docker</span>
           </div>
-        </section>
-      </main>
-    </div>
+          <div class="project-actions">
+            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="proj-link">
+              <span>EXPLORE REPO</span> →
+            </a>
+          </div>
+        </article>
 
-    <script src="script.js"></script>
-  </body>
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-tag">COMPUTATIONAL ALGORITHMS</span>
+            <span class="project-id">#03</span>
+          </div>
+          <h3 class="project-title">Prefab Hollow-Core Generator</h3>
+          <p class="project-summary">
+            Algorithmic structural slab subdivision system that calculates precise bearing lengths, joint shear keys,
+            and tie reinforcement schedules with strict Eurocode/ACI verification logic.
+          </p>
+          <div class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Dynamo</span>
+            <span class="tag">Vector Math</span>
+            <span class="tag">BIM</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="proj-link">
+              <span>EXPLORE REPO</span> →
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT / TRANSMISSION UPLINK -->
+    <section id="contact" class="contact-section">
+      <div class="hud-frame-box">
+        <span class="section-tag">// TRANSMISSION UPLINK</span>
+        <h2 class="section-title">LET'S BUILD <span class="accent-fire">THE FUTURE</span></h2>
+        <p class="contact-quote">
+          "I'm always open to extreme engineering challenges, high-stakes full-stack products, or BIM automation contracts."
+        </p>
+
+        <div class="contact-links">
+          <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="contact-badge">
+            <span class="icon">🐙</span>
+            <span class="text">github.com/dagiyosi-pixel</span>
+          </a>
+          <button id="copy-email" class="contact-badge copy-badge" data-email="dagiyosi5321@gmail.com">
+            <span class="icon">✉️</span>
+            <span class="text" id="email-text">dagiyosi5321@gmail.com</span>
+            <span class="copy-hint">[CLICK TO COPY]</span>
+          </button>
+        </div>
+
+        <div class="footer-meta">
+          <p>© 2026 <strong>0xDagi</strong> // ARCHITECTED WITH CAFFEINE & OBSESSION</p>
+          <p class="quote-sub">Engineered to shock and impress.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
