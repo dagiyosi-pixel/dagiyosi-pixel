@@ -1,9 +1,9 @@
 /* ==========================================================================
-   0xDagi // S-RANK GAMIFIED ENGINE JAVASCRIPT
+   DAGI YOSI (0xDagi) // CINEMATIC VOLUMETRIC EMBER & AUDIO ENGINE
    ========================================================================== */
 
-// --- 1. Sound FX Engine (Synthesized Web Audio API) ---
-class GameAudio {
+// --- 1. Cinematic Audio Synthesizer (Resonance & Drums) ---
+class MasterAudio {
   constructor() {
     this.enabled = true;
     this.ctx = null;
@@ -11,14 +11,14 @@ class GameAudio {
 
   init() {
     if (!this.ctx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) {
-        this.ctx = new AudioContext();
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
       }
     }
   }
 
-  playBlip(freq = 600, duration = 0.05) {
+  playDrum(freq = 90, decay = 0.45) {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx) return;
@@ -27,16 +27,37 @@ class GameAudio {
       const gain = this.ctx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-      gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+      osc.frequency.exponentialRampToValueAtTime(28, this.ctx.currentTime + decay);
+      gain.gain.setValueAtTime(0.14, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + decay);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start();
-      osc.stop(this.ctx.currentTime + duration);
+      osc.stop(this.ctx.currentTime + decay);
     } catch (e) {}
   }
 
-  playChessMove() {
+  playGong() {
+    if (!this.enabled) return;
+    this.init();
+    if (!this.ctx) return;
+    try {
+      [220, 440, 660, 880].forEach((f, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, this.ctx.currentTime);
+        gain.gain.setValueAtTime(0.035 / (idx + 1), this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.4);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 1.4);
+      });
+    } catch (e) {}
+  }
+
+  playPieceClick() {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx) return;
@@ -44,8 +65,8 @@ class GameAudio {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(260, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.08);
+      osc.frequency.setValueAtTime(340, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(160, this.ctx.currentTime + 0.08);
       gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
       osc.connect(gain);
@@ -54,58 +75,16 @@ class GameAudio {
       osc.stop(this.ctx.currentTime + 0.08);
     } catch (e) {}
   }
-
-  playVictory() {
-    if (!this.enabled) return;
-    this.init();
-    if (!this.ctx) return;
-    try {
-      const notes = [523.25, 659.25, 783.99, 1046.50]; // C E G C
-      notes.forEach((freq, idx) => {
-        setTimeout(() => {
-          const osc = this.ctx.createOscillator();
-          const gain = this.ctx.createGain();
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-          gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.25);
-          osc.connect(gain);
-          gain.connect(this.ctx.destination);
-          osc.start();
-          osc.stop(this.ctx.currentTime + 0.25);
-        }, idx * 100);
-      });
-    } catch (e) {}
-  }
-
-  playHakiThunder() {
-    if (!this.enabled) return;
-    this.init();
-    if (!this.ctx) return;
-    try {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(120, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.4);
-      gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.4);
-    } catch (e) {}
-  }
 }
 
-const sfx = new GameAudio();
+const audio = new MasterAudio();
 
-// --- 2. Dynamic Aura & Lightning Canvas ---
-const canvas = document.getElementById('game-canvas');
+// --- 2. Cinematic Volumetric Fire Ember Simulation ---
+const canvas = document.getElementById('fire-canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
-let particles = [];
-let lightningBolts = [];
+let embers = [];
+let mouse = { x: null, y: null, radius: 180 };
 
 function resizeCanvas() {
   width = canvas.width = window.innerWidth;
@@ -114,341 +93,326 @@ function resizeCanvas() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-class AuraParticle {
-  constructor() {
-    this.reset();
+window.addEventListener('mousemove', (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+
+  // Spawn kinetic micro-sparks on cursor move
+  if (Math.random() < 0.45) {
+    embers.push(new MasterEmber(mouse.x, mouse.y, true));
+  }
+});
+
+window.addEventListener('mouseout', () => {
+  mouse.x = null;
+  mouse.y = null;
+});
+
+class MasterEmber {
+  constructor(customX = null, customY = null, isSpark = false) {
+    this.reset(customX, customY, isSpark);
   }
 
-  reset() {
-    this.x = Math.random() * width;
-    this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 1.5;
-    this.vy = -Math.random() * 1.2 - 0.3;
-    this.size = Math.random() * 2.5 + 1;
-    this.life = Math.random() * 100 + 60;
+  reset(customX = null, customY = null, isSpark = false) {
+    this.isSpark = isSpark;
+    this.x = customX !== null ? customX + (Math.random() - 0.5) * 16 : Math.random() * width;
+    this.y = customY !== null ? customY + (Math.random() - 0.5) * 16 : height + Math.random() * 30;
+    this.size = isSpark ? Math.random() * 2 + 0.8 : Math.random() * 2.8 + 1;
+    this.speedY = isSpark ? (Math.random() - 0.5) * 2 - 1.5 : -(Math.random() * 1.6 + 0.7);
+    this.speedX = (Math.random() - 0.5) * (isSpark ? 2.5 : 1.2);
+    this.life = isSpark ? Math.random() * 35 + 25 : Math.random() * 140 + 90;
     this.maxLife = this.life;
+    this.angle = Math.random() * Math.PI * 2;
+    this.angularSpeed = (Math.random() - 0.5) * 0.035;
+    this.colorType = Math.random();
   }
 
   update() {
-    this.x += this.vx;
-    this.y += this.vy;
+    this.angle += this.angularSpeed;
+    this.x += this.speedX + Math.sin(this.angle) * 0.8;
+    this.y += this.speedY;
     this.life--;
-    if (this.life <= 0 || this.y < -10) {
-      this.reset();
-      this.y = height + 10;
+
+    // Thermal vortex displacement
+    if (mouse.x && mouse.y && !this.isSpark) {
+      const dx = mouse.x - this.x;
+      const dy = mouse.y - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < mouse.radius) {
+        const force = (mouse.radius - dist) / mouse.radius;
+        this.x -= (dx / dist) * force * 4.5;
+        this.y -= force * 3.5;
+      }
+    }
+
+    if (this.life <= 0 || this.y < -20 || this.x < -20 || this.x > width + 20) {
+      if (this.isSpark) {
+        this.dead = true;
+      } else {
+        this.reset();
+      }
     }
   }
 
-  draw(aura) {
-    const alpha = (this.life / this.maxLife) * 0.7;
+  draw() {
+    const progress = this.life / this.maxLife;
+    const alpha = Math.sin(progress * Math.PI);
+
+    ctx.save();
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 
-    if (aura === 'gear5') {
-      ctx.fillStyle = `rgba(245, 158, 11, ${alpha})`;
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = '#f59e0b';
-    } else if (aura === 'scout') {
-      ctx.fillStyle = `rgba(16, 185, 129, ${alpha})`;
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = '#10b981';
-    } else if (aura === 'chess') {
-      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = '#ffffff';
+    if (this.colorType > 0.6) {
+      ctx.fillStyle = `rgba(245, 207, 104, ${alpha * 0.85})`;
+      ctx.shadowColor = '#e5b842';
+    } else if (this.colorType > 0.2) {
+      ctx.fillStyle = `rgba(255, 106, 0, ${alpha * 0.9})`;
+      ctx.shadowColor = '#ff4500';
     } else {
-      // Monarch
-      ctx.fillStyle = `rgba(168, 85, 247, ${alpha})`;
-      ctx.shadowBlur = 12;
-      ctx.shadowColor = '#8b5cf6';
+      ctx.fillStyle = `rgba(255, 245, 230, ${alpha * 0.95})`;
+      ctx.shadowColor = '#fff2db';
     }
 
+    ctx.shadowBlur = this.size * 5;
     ctx.fill();
-    ctx.shadowBlur = 0;
+    ctx.restore();
   }
 }
 
-for (let i = 0; i < 75; i++) {
-  particles.push(new AuraParticle());
+// Populate embers
+for (let i = 0; i < 95; i++) {
+  embers.push(new MasterEmber());
 }
 
-function triggerLightning() {
-  const startX = Math.random() * width;
-  let currX = startX;
-  let currY = 0;
-  const segments = [];
-
-  while (currY < height) {
-    const nextX = currX + (Math.random() - 0.5) * 60;
-    const nextY = currY + Math.random() * 40 + 20;
-    segments.push({ x1: currX, y1: currY, x2: nextX, y2: nextY });
-    currX = nextX;
-    currY = nextY;
-  }
-
-  lightningBolts.push({ segments, opacity: 1 });
-}
-
-function animateCanvas() {
-  const currentAura = document.body.getAttribute('data-aura') || 'monarch';
+function runEmberEngine() {
   ctx.clearRect(0, 0, width, height);
-
-  // Render particles
-  particles.forEach((p) => {
-    p.update();
-    p.draw(currentAura);
-  });
-
-  // Render lightning
-  for (let i = lightningBolts.length - 1; i >= 0; i--) {
-    const bolt = lightningBolts[i];
-    ctx.beginPath();
-    bolt.segments.forEach((seg) => {
-      ctx.moveTo(seg.x1, seg.y1);
-      ctx.lineTo(seg.x2, seg.y2);
-    });
-
-    ctx.lineWidth = 2.5;
-    if (currentAura === 'gear5') {
-      ctx.strokeStyle = `rgba(239, 68, 68, ${bolt.opacity})`;
-      ctx.shadowColor = '#ef4444';
-    } else {
-      ctx.strokeStyle = `rgba(192, 132, 252, ${bolt.opacity})`;
-      ctx.shadowColor = '#a855f7';
-    }
-    ctx.shadowBlur = 15;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    bolt.opacity -= 0.05;
-    if (bolt.opacity <= 0) {
-      lightningBolts.splice(i, 1);
+  for (let i = embers.length - 1; i >= 0; i--) {
+    const e = embers[i];
+    e.update();
+    e.draw();
+    if (e.dead) {
+      embers.splice(i, 1);
     }
   }
-
-  // Occasional random lightning
-  if (Math.random() < 0.008) {
-    triggerLightning();
-  }
-
-  requestAnimationFrame(animateCanvas);
+  requestAnimationFrame(runEmberEngine);
 }
-animateCanvas();
-
-// --- 3. Aura Switcher Buttons ---
-const auraButtons = document.querySelectorAll('.aura-btn');
-auraButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const aura = btn.getAttribute('data-aura');
-    document.body.setAttribute('data-aura', aura);
-    auraButtons.forEach((b) => b.classList.remove('active'));
-    btn.classList.add('active');
-    sfx.playBlip(750, 0.08);
-    triggerLightning();
-  });
-});
+runEmberEngine();
 
 // Sound Toggle
-const soundToggle = document.getElementById('soundToggle');
-const soundIcon = document.getElementById('soundIcon');
-soundToggle.addEventListener('click', () => {
-  sfx.enabled = !sfx.enabled;
-  soundIcon.textContent = sfx.enabled ? '🔊' : '🔇';
-  if (sfx.enabled) sfx.playBlip(800, 0.06);
-});
-
-// Conqueror's Haki Blast Button
-const hakiBtn = document.getElementById('hakiBlastBtn');
-if (hakiBtn) {
-  hakiBtn.addEventListener('click', () => {
-    sfx.playHakiThunder();
-    for (let i = 0; i < 4; i++) {
-      setTimeout(triggerLightning, i * 80);
-    }
-    // Shake screen
-    document.body.style.transform = 'translate(2px, -2px)';
-    setTimeout(() => { document.body.style.transform = 'translate(-2px, 2px)'; }, 50);
-    setTimeout(() => { document.body.style.transform = 'translate(0, 0)'; }, 100);
+const audioToggle = document.getElementById('audioToggle');
+const audioIcon = document.getElementById('audioIcon');
+if (audioToggle) {
+  audioToggle.addEventListener('click', () => {
+    audio.enabled = !audio.enabled;
+    audioIcon.textContent = audio.enabled ? '🔊' : '🔇';
+    if (audio.enabled) audio.playDrum(120, 0.25);
   });
 }
 
-// --- 4. PLAYABLE INTERACTIVE CHESS MINIGAME ---
-// Tactical Puzzle: Scholar's Mate / Queen checkmate
-// White: Queen on d1 (row 7, col 3), Bishop on c4 (row 4, col 2), King on e1 (row 7, col 4)
-// Black: King on e8 (row 0, col 4), Bishop on c5 (row 3, col 2), Knight on c6 (row 2, col 2), Pawn on f7 (row 1, col 5)
-// Checkmate move: White Queen moves to f7 (row 1, col 5) delivering CHECKMATE!
+// --- 3. Kinetic Calligraphy Typewriter ---
+const phrases = [
+  "ARCHITECTING SCALABLE FULL-STACK ECOSYSTEMS.",
+  "CREATOR OF ETHIOPIA 360 // GEOSPATIAL ATLAS.",
+  "ENGINEERING GRADE 7 & 8 SQ3R ACTIVE-RECALL PLATFORM.",
+  "HIGH-STAKES AMT AVIATION CERTIFICATION PLATFORM.",
+  "AUTONOMOUS AUTODESK REVIT BIM AUTOMATION & GEOMETRY."
+];
 
-const initialBoard = [
+let pIdx = 0;
+let cIdx = 0;
+let isReversing = false;
+const typewriterEl = document.getElementById('typewriter');
+
+function cycleTypewriter() {
+  if (!typewriterEl) return;
+  const curr = phrases[pIdx];
+
+  if (isReversing) {
+    cIdx--;
+  } else {
+    cIdx++;
+  }
+
+  typewriterEl.textContent = curr.substring(0, cIdx);
+
+  let pace = isReversing ? 28 : 65;
+
+  if (!isReversing && cIdx === curr.length) {
+    pace = 2400; // Dignified pause at completion
+    isReversing = true;
+  } else if (isReversing && cIdx === 0) {
+    isReversing = false;
+    pIdx = (pIdx + 1) % phrases.length;
+    pace = 450;
+  }
+
+  setTimeout(cycleTypewriter, pace);
+}
+cycleTypewriter();
+
+// --- 4. Tactical Chess Chamber (Playable Checkmate) ---
+// White Queen d1 (r:7, c:3) strikes f7 (r:1, c:5) for checkmate!
+const dojoMatrix = [
   ['', '', '', '', '♚', '', '', ''], // 0
-  ['♟', '♟', '♟', '♟', '', '♟', '♟', '♟'], // 1  (f7 is col 5)
+  ['♟', '♟', '♟', '♟', '', '♟', '♟', '♟'], // 1 (f7 is col 5)
   ['', '', '♞', '', '', '', '', ''], // 2
   ['', '', '♝', '', '', '', '', ''], // 3
   ['', '', '♗', '', '', '', '', ''], // 4
   ['', '', '', '', '', '', '', ''], // 5
   ['♙', '♙', '♙', '♙', '', '♙', '♙', '♙'], // 6
-  ['♖', '', '', '♕', '♔', '', '♘', '♖']  // 7  (Queen is row 7, col 3)
+  ['♖', '', '', '♕', '♔', '', '♘', '♖']  // 7 (Queen r:7, c:3)
 ];
 
-let currentChess = JSON.parse(JSON.stringify(initialBoard));
+let chessState = JSON.parse(JSON.stringify(dojoMatrix));
 let selectedSquare = null;
 let puzzleSolved = false;
 
 const boardEl = document.getElementById('chessBoard');
-const msgEl = document.getElementById('chessMessage');
-const statusPill = document.getElementById('chessTurnStatus');
+const feedbackEl = document.getElementById('chessFeedback');
+const turnBadge = document.getElementById('chessTurnBadge');
 const resetBtn = document.getElementById('resetChess');
 const hintBtn = document.getElementById('hintChess');
 
-function renderChess() {
+function renderDojoGrid() {
+  if (!boardEl) return;
   boardEl.innerHTML = '';
+
   for (let r = 0; r < 8; r++) {
     for (let c = 0; c < 8; c++) {
       const sq = document.createElement('div');
       const isLight = (r + c) % 2 === 0;
-      sq.className = `chess-square ${isLight ? 'light' : 'dark'}`;
+      sq.className = `dojo-square ${isLight ? 'light-wood' : 'dark-wood'}`;
       sq.dataset.row = r;
       sq.dataset.col = c;
-      sq.textContent = currentChess[r][c];
+      sq.textContent = chessState[r][c];
 
       if (selectedSquare && selectedSquare.r === r && selectedSquare.c === c) {
-        sq.classList.add('selected');
+        sq.classList.add('highlight-selected');
       }
 
       if (selectedSquare && selectedSquare.r === 7 && selectedSquare.c === 3 && r === 1 && c === 5) {
-        sq.classList.add('target-checkmate');
+        sq.classList.add('highlight-target');
       }
 
-      sq.addEventListener('click', () => handleSquareClick(r, c));
+      sq.addEventListener('click', () => onSquareSelect(r, c));
       boardEl.appendChild(sq);
     }
   }
 }
 
-function handleSquareClick(r, c) {
+function onSquareSelect(r, c) {
   if (puzzleSolved) return;
 
-  const piece = currentChess[r][c];
-
-  // If clicking on White Queen
-  if (r === 7 && c === 3 && currentChess[r][c] === '♕') {
+  // Selecting White Queen (d1)
+  if (r === 7 && c === 3 && chessState[r][c] === '♕') {
     selectedSquare = { r, c };
-    sfx.playBlip(550, 0.04);
-    msgEl.innerHTML = `<span style="color:#fbbf24;">♕ Queen Selected!</span> Now click on Black's pawn at <strong>f7</strong> to deliver Checkmate!`;
-    renderChess();
+    audio.playPieceClick();
+    feedbackEl.innerHTML = `<span style="color:#e5b842;">♕ White Queen Selected (d1).</span> Strike Black's outpost at <strong>f7</strong> to conclude the match!`;
+    renderDojoGrid();
     return;
   }
 
-  // If Queen is selected and player clicks f7 (row 1, col 5)
+  // Striking f7 (1, 5) with Queen
   if (selectedSquare && selectedSquare.r === 7 && selectedSquare.c === 3) {
     if (r === 1 && c === 5) {
-      // DELIVER CHECKMATE!
-      currentChess[7][3] = '';
-      currentChess[1][5] = '♕';
+      // CHECKMATE!
+      chessState[7][3] = '';
+      chessState[1][5] = '♕';
       puzzleSolved = true;
       selectedSquare = null;
-      renderChess();
+      renderDojoGrid();
 
-      sfx.playVictory();
-      statusPill.textContent = 'CHECKMATE!';
-      statusPill.style.background = '#ef4444';
-      statusPill.style.color = '#fff';
+      audio.playGong();
+      audio.playDrum(80, 0.6);
+      turnBadge.textContent = 'CHECKMATE';
+      turnBadge.style.background = '#e5b842';
+      turnBadge.style.color = '#100d0a';
 
-      msgEl.innerHTML = `🏆 <strong style="color:#22c55e;">CHECKMATE! PUZZLE COMPLETED!</strong><br/>
-      <span style="color:#c084fc;">[ +10,000 EXP GAINED // S-RANK HUNTER PASS GRANTED ]</span>`;
+      feedbackEl.innerHTML = `🏆 <strong style="color:#e5b842;">CHECKMATE CONCLUDED.</strong><br/>
+      <span style="color:#fcf9f2;">Decisive tactical victory. The hallmark of an authentic master code architect.</span>`;
       return;
     } else {
-      // Invalid move
-      sfx.playBlip(200, 0.1);
-      msgEl.textContent = "That move does not deliver checkmate! Queen must strike f7!";
+      audio.playDrum(180, 0.1);
+      feedbackEl.textContent = "That move does not deliver checkmate. Strike f7 directly.";
       selectedSquare = null;
-      renderChess();
+      renderDojoGrid();
       return;
     }
   }
 
   selectedSquare = null;
-  renderChess();
+  renderDojoGrid();
 }
 
-resetBtn.addEventListener('click', () => {
-  currentChess = JSON.parse(JSON.stringify(initialBoard));
-  selectedSquare = null;
-  puzzleSolved = false;
-  statusPill.textContent = 'WHITE TO MOVE';
-  statusPill.style.background = '#22c55e';
-  statusPill.style.color = '#000';
-  msgEl.textContent = "Click White Queen (♕ on d1) then click Black Pawn (f7) to deliver Checkmate!";
-  sfx.playChessMove();
-  renderChess();
-});
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => {
+    chessState = JSON.parse(JSON.stringify(dojoMatrix));
+    selectedSquare = null;
+    puzzleSolved = false;
+    turnBadge.textContent = 'PUZZLE: ACTIVE';
+    turnBadge.style.background = '';
+    turnBadge.style.color = '';
+    feedbackEl.textContent = "Click White Queen (♕ on d1), then strike the f7 outpost to secure victory.";
+    audio.playPieceClick();
+    renderDojoGrid();
+  });
+}
 
-hintBtn.addEventListener('click', () => {
-  sfx.playBlip(700, 0.05);
-  selectedSquare = { r: 7, c: 3 };
-  msgEl.innerHTML = `💡 <strong>HINT:</strong> Queen on d1 can jump straight to <strong>f7</strong>. Bishop on c4 protects her!`;
-  renderChess();
-});
+if (hintBtn) {
+  hintBtn.addEventListener('click', () => {
+    audio.playGong();
+    selectedSquare = { r: 7, c: 3 };
+    feedbackEl.innerHTML = `💡 <strong>TACTICAL INSIGHT:</strong> The Bishop on c4 covers f7. Queen on d1 can strike directly!`;
+    renderDojoGrid();
+  });
+}
 
-renderChess();
+renderDojoGrid();
 
-// --- 5. Terminal Console ---
-const termOutput = document.getElementById('termOutput');
-const termInput = document.getElementById('termInput');
+// --- 5. Copy Email Action ---
+const copyBtn = document.getElementById('copyEmailBtn');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    const email = copyBtn.getAttribute('data-email');
+    navigator.clipboard.writeText(email).then(() => {
+      audio.playGong();
+      const hint = copyBtn.querySelector('.channel-copy-hint');
+      const prev = hint.textContent;
+      hint.textContent = '[COPIED TO CLIPBOARD!]';
+      hint.style.color = '#4ade80';
+      setTimeout(() => {
+        hint.textContent = prev;
+        hint.style.color = '';
+      }, 2500);
+    });
+  });
+}
 
-const termCmds = {
-  help: `COMMAND PROTOCOL:
-  • quests   : List all 4 production projects
-  • chess    : Read Grandmaster strategy
-  • haki     : Unleash Conqueror's Haki shockwave
-  • skills   : Inspect inventory stats
-  • clear    : Reset console screen`,
+// --- 6. Metric Numbers Counting Animation ---
+function animateKPIs() {
+  const kpiEls = document.querySelectorAll('.kpi-num[data-target]');
+  kpiEls.forEach((el) => {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const isPercent = el.textContent.includes('%') || target === 99.9 || target === 100;
+    const duration = 1600;
+    const start = performance.now();
 
-  quests: `⚔️ PRODUCTION QUESTS (PROJECTS):
-  1. ETHIOPIA // 360  -> https://ethiopia-360.vercel.app
-  2. ETHIOPIA SQ3R   -> Grade 7/8 Active Recall EdTech
-  3. AMT EXAM APP    -> Aviation Mechanics Timed Testing
-  4. REVITCOPILOT    -> Precast BIM & Structural Engine`,
-
-  chess: `♔ Chess Rule #1: In code, as in chess, never make a move without considering the opponent's counter.`,
-
-  haki: () => {
-    if (hakiBtn) hakiBtn.click();
-    return "⚡ CONQUEROR'S HAKI SHOCKWAVE DISCHARGED!";
-  },
-
-  skills: `LVL 99 Code Monarch: Python, TypeScript, React, Next.js, Revit API, C#, Docker.`,
-
-  clear: () => {
-    termOutput.innerHTML = '';
-    return '';
-  }
-};
-
-termInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const cmd = termInput.value.trim().toLowerCase();
-    termInput.value = '';
-    if (!cmd) return;
-
-    sfx.playBlip(650, 0.04);
-    const p = document.createElement('p');
-    p.innerHTML = `<span class="prompt-sym">0xDagi&gt;</span> ${cmd}`;
-    termOutput.appendChild(p);
-
-    let res = '';
-    if (termCmds[cmd]) {
-      res = typeof termCmds[cmd] === 'function' ? termCmds[cmd]() : termCmds[cmd];
-    } else {
-      res = `Directive not found: '${cmd}'. Type 'help' for available commands.`;
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const current = progress * target;
+      if (target % 1 !== 0) {
+        el.textContent = current.toFixed(1) + '%';
+      } else if (isPercent) {
+        el.textContent = Math.floor(current) + '%';
+      } else {
+        el.textContent = Math.floor(current);
+      }
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
     }
+    requestAnimationFrame(step);
+  });
+}
 
-    if (res) {
-      const respP = document.createElement('p');
-      respP.style.color = '#c084fc';
-      respP.textContent = res;
-      termOutput.appendChild(respP);
-    }
-
-    termOutput.scrollTop = termOutput.scrollHeight;
-  }
-});
+window.addEventListener('DOMContentLoaded', animateKPIs);

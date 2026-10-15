@@ -3,180 +3,472 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>0xDagi // S-RANK HUNTER & CODE ARCHITECT</title>
-  <meta name="description" content="Portfolio of Dagi — S-Rank Developer, BIM Engineer, and Creator of Ethiopia 360, Grade 7/8 SQ3R, and AMT Exam App." />
+  <title>DAGI YOSI // 0xDagi — CHIEF CODE ARCHITECT</title>
+  <meta name="description" content="Cinematic portfolio of Dagi Yosi (0xDagi) — Chief Code Architect & Full-Stack Systems Craftsman. Creator of Ethiopia 360, Grade 7/8 SQ3R, and AMT Platform." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Fira+Code:wght@400;600;700&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Yuji+Boku&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-aura="monarch">
-  <!-- Dynamic Aura & Lightning Canvas -->
-  <canvas id="game-canvas"></canvas>
+<body>
+  <!-- Cinematic 60FPS Volumetric Fire & Ember Canvas -->
+  <canvas id="fire-canvas"></canvas>
 
-  <div class="vignette"></div>
-  <div class="scanlines"></div>
+  <!-- Ambient Cinematic Atmosphere -->
+  <div class="cinematic-vignette"></div>
+  <div class="heat-atmosphere"></div>
+  <div class="film-grain"></div>
 
-  <!-- FLOATING SYSTEM NOTIFICATION (Solo Leveling Manhwa Alert) -->
-  <div class="system-hud-banner" id="systemBanner">
-    <div class="system-icon">⚡</div>
-    <div class="system-text">
-      <span class="system-alert-tag">[ SYSTEM NOTIFICATION: S-RANK AWAKENING ]</span>
-      <span class="system-alert-msg">Player <strong>0xDagi</strong> has entered the dungeon. Level 99 Monarch Activated.</span>
-    </div>
-    <button class="system-close" onclick="document.getElementById('systemBanner').style.display='none'">✕</button>
-  </div>
+  <!-- Giant Japanese Calligraphy Background Seals -->
+  <div class="kanji-bg kb-1" aria-hidden="true">匠</div>
+  <div class="kanji-bg kb-2" aria-hidden="true">炎</div>
+  <div class="kanji-bg kb-3" aria-hidden="true">覇</div>
 
-  <!-- NAVIGATION HUD -->
-  <nav class="game-nav">
-    <div class="nav-brand">
-      <span class="brand-crest">♟️</span>
-      <div class="brand-info">
-        <span class="brand-name">0xDagi</span>
-        <span class="brand-sub">LVL.99 MONARCH</span>
+  <!-- Top Cinema Header -->
+  <header class="cinema-header">
+    <div class="cinema-brand">
+      <div class="artisan-seal">匠</div>
+      <div class="brand-titles">
+        <span class="brand-kanji-sub">首席設計士 // CHIEF CODE ARCHITECT</span>
+        <span class="brand-main">DAGI YOSI <span class="alias-tag">[0xDagi]</span></span>
       </div>
     </div>
 
-    <div class="nav-links">
-      <a href="#status" class="nav-link active"><span class="k-num">01</span>STATUS</a>
-      <a href="#quests" class="nav-link"><span class="k-num">02</span>QUESTS (PROJECTS)</a>
-      <a href="#chess" class="nav-link"><span class="k-num">03</span>CHESS ARENA</a>
-      <a href="#bounty" class="nav-link"><span class="k-num">04</span>BOUNTY</a>
-      <a href="#inventory" class="nav-link"><span class="k-num">05</span>ARSENAL</a>
-      <a href="#terminal" class="nav-link"><span class="k-num">06</span>CONSOLE</a>
-    </div>
+    <nav class="cinema-nav">
+      <a href="#prologue" class="c-link active"><span class="c-kanji">零</span> PROLOGUE</a>
+      <a href="#masterworks" class="c-link"><span class="c-kanji">作</span> MASTERWORKS</a>
+      <a href="#arsenal" class="c-link"><span class="c-kanji">技</span> ARCHITECTURE</a>
+      <a href="#chamber" class="c-link"><span class="c-kanji">棋</span> TACTICAL DOJO</a>
+      <a href="#uplink" class="c-link"><span class="c-kanji">結</span> DISPATCH</a>
+    </nav>
 
-    <!-- AURA / REALM SWITCHER -->
-    <div class="aura-switcher">
-      <button class="aura-btn active" data-aura="monarch" title="Solo Leveling Shadow Monarch">
-        <span class="a-icon">👑</span>
-        <span class="a-text">MONARCH</span>
-      </button>
-      <button class="aura-btn" data-aura="gear5" title="One Piece Gear 5 / Conqueror's Haki">
-        <span class="a-icon">🏴‍☠️</span>
-        <span class="a-text">GEAR 5</span>
-      </button>
-      <button class="aura-btn" data-aura="scout" title="Attack on Titan Survey Corps">
-        <span class="a-icon">⚔️</span>
-        <span class="a-text">AOT</span>
-      </button>
-      <button class="aura-btn" data-aura="chess" title="Grandmaster Noir">
-        <span class="a-icon">♟️</span>
-        <span class="a-text">CHESS</span>
-      </button>
-      <button id="soundToggle" class="sfx-btn" title="Toggle Sound FX">
-        <span id="soundIcon">🔊</span>
+    <div class="cinema-sound-ctl">
+      <button id="audioToggle" class="btn-sound" title="Toggle Cinematic Sound">
+        <span id="audioIcon">🔊</span>
+        <span class="btn-sound-txt">AUDIO RESONANCE</span>
       </button>
     </div>
-  </nav>
+  </header>
 
-  <main class="game-world">
+  <main class="cinema-viewport">
 
-    <!-- 01. HUNTER STATUS WINDOW (SOLO LEVELING / MANHWA HUD) -->
-    <section id="status" class="section status-section">
-      <div class="status-window-container">
+    <!-- 01. PROLOGUE (CINEMATIC HERO REEL) -->
+    <section id="prologue" class="cinema-hero">
+      <div class="hero-frame">
         
-        <!-- System Window Frame -->
-        <div class="manhwa-window">
-          <div class="window-header">
-            <span class="window-dot"></span>
-            <span class="window-title">STATUS WINDOW // 0xDagi</span>
-            <span class="window-status-badge">AWAKENED</span>
+        <!-- Red Lacquer Hanko Seal -->
+        <div class="hanko-banner">
+          <span class="hanko-glyph">無双</span>
+          <span class="hanko-caption">SENIOR SYSTEMS CRAFTSMAN</span>
+        </div>
+
+        <div class="brush-callout">
+          <span class="brush-line left"></span>
+          <span>COMPUTATIONAL ARCHITECTURE • FULL-STACK PLATFORMS</span>
+          <span class="brush-line right"></span>
+        </div>
+
+        <h1 class="hero-name-brush">
+          DAGI <span class="gold-gradient">YOSI</span>
+        </h1>
+
+        <div class="hero-title-band">
+          « 0xDagi // SCALABLE WEB ECOSYSTEMS • BIM AUTOMATION • ALGORITHMIC SYSTEMS »
+        </div>
+
+        <p class="hero-manifesto">
+          I architect mission-critical software where <strong>deep computational geometry</strong> converges with 
+          <strong>modern high-throughput cloud engineering</strong>. From national geospatial mapping platforms to 
+          active-recall cognitive ed-tech and autonomous Autodesk Revit structural engines.
+        </p>
+
+        <!-- Kinetic Typewriter Console -->
+        <div class="cinematic-type-console">
+          <span class="console-prompt">&gt; </span>
+          <span id="typewriter" class="console-text"></span>
+          <span class="console-caret">|</span>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#masterworks" class="btn-gold-primary">
+            <span>EXPLORE MASTERWORKS (PROJECTS)</span>
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="btn-gold-ghost">
+            <span>GITHUB SANCTUARY</span>
+            <span class="btn-icon">✦</span>
+          </a>
+          <a href="#chamber" class="btn-gold-ghost">
+            <span>TACTICAL CHESS DOJO</span>
+            <span class="btn-icon">♟</span>
+          </a>
+        </div>
+
+        <!-- Master Engineering Metrics Inlay -->
+        <div class="hero-kpi-ribbon">
+          <div class="kpi-cell">
+            <div class="kpi-num" data-target="99.9">0%</div>
+            <div class="kpi-label">UPTIME RESILIENCE</div>
+          </div>
+          <div class="kpi-sep"></div>
+          <div class="kpi-cell">
+            <div class="kpi-num" data-target="100">0%</div>
+            <div class="kpi-label">PRODUCTION VERIFIED</div>
+          </div>
+          <div class="kpi-sep"></div>
+          <div class="kpi-cell">
+            <div class="kpi-num" data-target="4">0</div>
+            <div class="kpi-label">DEPLOYED PLATFORMS</div>
+          </div>
+          <div class="kpi-sep"></div>
+          <div class="kpi-cell">
+            <div class="kpi-num gold-accent">04:00 AM</div>
+            <div class="kpi-label">ARCHITECT PEAK FOCUS</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02. MASTERWORKS (YOUR REAL PRODUCTION PLATFORMS) -->
+    <section id="masterworks" class="cinema-section">
+      <div class="section-title-block">
+        <div class="kanji-tag">傑作録</div>
+        <h2 class="section-title-large">CORE <span class="gold-gradient">MASTERWORKS</span></h2>
+        <p class="section-subtext">Real-world production platforms built with uncompromising architectural rigor.</p>
+      </div>
+
+      <div class="masterworks-container">
+
+        <!-- MASTERWORK 1: ETHIOPIA 360 -->
+        <article class="masterwork-card flagship">
+          <div class="card-gold-corners"></div>
+          <div class="card-glow-aurora"></div>
+
+          <div class="masterwork-top">
+            <div class="category-meta">
+              <span class="hanko-tiny">地</span>
+              <span class="category-name">GEOSPATIAL PLATFORM & COMMUNITY ATLAS</span>
+            </div>
+            <a href="https://ethiopia-360.vercel.app" target="_blank" rel="noopener" class="badge-live">
+              <span class="beacon-pulse"></span> LIVE ON VERCEL ↗
+            </a>
           </div>
 
-          <div class="window-grid">
-            <!-- Left: Hunter Card -->
-            <div class="hunter-profile-card">
-              <div class="avatar-frame">
-                <div class="avatar-aura-ring"></div>
-                <div class="avatar-symbol">⚡</div>
-                <div class="rank-badge">S-RANK</div>
-              </div>
-              <h1 class="player-name">DAGI YOSI</h1>
-              <div class="player-title">« THE SHADOW CODE ARCHITECT »</div>
-              <div class="hunter-tags">
-                <span class="h-tag">FULL-STACK</span>
-                <span class="h-tag">BIM AUTOMATION</span>
-                <span class="h-tag">ALGORITHMIC DEV</span>
-              </div>
+          <h3 class="masterwork-headline">ETHIOPIA // 360</h3>
+          <div class="masterwork-tagline">National Community Atlas & Interactive Geospatial Data Explorer</div>
 
-              <!-- HP & MP BARS -->
-              <div class="stat-bars">
-                <div class="bar-group">
-                  <div class="bar-lbl"><span>HP (CODE HEALTH)</span><span>100 / 100</span></div>
-                  <div class="bar-track hp-track"><div class="bar-fill hp-fill" style="width: 100%;"></div></div>
-                </div>
-                <div class="bar-group">
-                  <div class="bar-lbl"><span>MP (CAFFEINE ESSENCE)</span><span>9999 / 9999</span></div>
-                  <div class="bar-track mp-track"><div class="bar-fill mp-fill" style="width: 99%;"></div></div>
-                </div>
-              </div>
+          <p class="masterwork-synopsis">
+            A high-speed interactive community atlas designed specifically for Ethiopia. Engineered with modern vector mapping, 
+            rapid spatial querying, custom regional layers, and responsive client-side state caching. Deployed globally on the Vercel Edge.
+          </p>
 
-              <div class="hunter-cta-btns">
-                <a href="#quests" class="btn-game primary">
-                  <span>⚔️ VIEW QUESTS</span>
-                </a>
-                <a href="#chess" class="btn-game secondary">
-                  <span>♟️ PLAY CHESS</span>
-                </a>
+          <div class="tech-inlay">
+            <span class="tech-label">CORE WEAPONS:</span>
+            <div class="tech-badge-row">
+              <span class="t-badge">Next.js</span>
+              <span class="t-badge">TypeScript</span>
+              <span class="t-badge">Vercel Edge</span>
+              <span class="t-badge">Tailwind CSS</span>
+              <span class="t-badge">Geospatial UI</span>
+            </div>
+          </div>
+
+          <div class="masterwork-actions">
+            <a href="https://ethiopia-360.vercel.app" target="_blank" rel="noopener" class="btn-card-action primary">
+              <span>LAUNCH LIVE APPLICATION</span>
+              <span class="arr">↗</span>
+            </a>
+            <a href="https://github.com/dagiyosi-pixel/ethiopia-360" target="_blank" rel="noopener" class="btn-card-action outline">
+              <span>GITHUB REPOSITORY</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- MASTERWORK 2: ETHIOPIAN GRADE 7 & 8 SQ3R -->
+        <article class="masterwork-card">
+          <div class="card-gold-corners"></div>
+
+          <div class="masterwork-top">
+            <div class="category-meta">
+              <span class="hanko-tiny">学</span>
+              <span class="category-name">COGNITIVE ED-TECH & ACTIVE RECALL</span>
+            </div>
+            <span class="badge-pwa">PWA OFFLINE-FIRST</span>
+          </div>
+
+          <h3 class="masterwork-headline">ETHIOPIA CURRICULUM SQ3R</h3>
+          <div class="masterwork-tagline">Grade 7 & 8 National Curriculum Active Recall & CBA Simulator</div>
+
+          <p class="masterwork-synopsis">
+            An offline-capable learning system implementing the verified <strong>SQ3R cognitive methodology</strong> 
+            (Survey, Question, Read, Recite, Review). Translates Ethiopian national textbook syllabi into active-recall modules, 
+            spaced repetition flashcards, and instant CBA mock exam assessments.
+          </p>
+
+          <div class="tech-inlay">
+            <span class="tech-label">CORE WEAPONS:</span>
+            <div class="tech-badge-row">
+              <span class="t-badge">Modern JavaScript</span>
+              <span class="t-badge">Service Workers</span>
+              <span class="t-badge">SQ3R Algorithmic Engine</span>
+              <span class="t-badge">Offline PWA</span>
+            </div>
+          </div>
+
+          <div class="masterwork-actions">
+            <a href="https://github.com/dagiyosi-pixel/ethiopia-curriculum-sq3r-platform" target="_blank" rel="noopener" class="btn-card-action primary">
+              <span>EXPLORE PLATFORM</span>
+              <span class="arr">→</span>
+            </a>
+            <a href="https://github.com/dagiyosi-pixel/ethiopia-curriculum-sq3r-platform" target="_blank" rel="noopener" class="btn-card-action outline">
+              <span>SOURCE CODE</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- MASTERWORK 3: AMT EXAM APP -->
+        <article class="masterwork-card">
+          <div class="card-gold-corners"></div>
+
+          <div class="masterwork-top">
+            <div class="category-meta">
+              <span class="hanko-tiny">翼</span>
+              <span class="category-name">HIGH-STAKES AERONAUTICAL CERTIFICATION</span>
+            </div>
+            <span class="badge-pwa">TIMED ASSESSMENT</span>
+          </div>
+
+          <h3 class="masterwork-headline">AMT EXAM PLATFORM</h3>
+          <div class="masterwork-tagline">Aircraft Maintenance Technician Certification Simulator</div>
+
+          <p class="masterwork-synopsis">
+            High-precision examination platform for aviation maintenance specialists. Converts dense OCR aeronautical schematics 
+            and questions into timed real-world simulator modes with multi-stage scoring analytics and error diagnosis.
+          </p>
+
+          <div class="tech-inlay">
+            <span class="tech-label">CORE WEAPONS:</span>
+            <div class="tech-badge-row">
+              <span class="t-badge">Node.js</span>
+              <span class="t-badge">OCR Extraction</span>
+              <span class="t-badge">Timed Engine</span>
+              <span class="t-badge">Aviation Standards</span>
+            </div>
+          </div>
+
+          <div class="masterwork-actions">
+            <a href="https://github.com/dagiyosi-pixel/amt-exam-app" target="_blank" rel="noopener" class="btn-card-action primary">
+              <span>INSPECT SIMULATOR</span>
+              <span class="arr">→</span>
+            </a>
+            <a href="https://github.com/dagiyosi-pixel/amt-exam-app" target="_blank" rel="noopener" class="btn-card-action outline">
+              <span>SOURCE CODE</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- MASTERWORK 4: REVITCOPILOT & BIM ENGINE -->
+        <article class="masterwork-card">
+          <div class="card-gold-corners"></div>
+
+          <div class="masterwork-top">
+            <div class="category-meta">
+              <span class="hanko-tiny">構</span>
+              <span class="category-name">COMPUTATIONAL BIM & REBAR GEOMETRY</span>
+            </div>
+            <span class="badge-live">AUTODESK ECOSYSTEM</span>
+          </div>
+
+          <h3 class="masterwork-headline">REVITCOPILOT BIM ENGINE</h3>
+          <div class="masterwork-tagline">Parametric Hollow-Core Slabs & Section Detailing Automation</div>
+
+          <p class="masterwork-synopsis">
+            High-performance WebSocket coordination bridge interfacing autonomous AI agents directly with Autodesk Revit.
+            Executes precast concrete hollow-core bearing checks, shear keys, tie schedules, and construction section graphic polish.
+          </p>
+
+          <div class="tech-inlay">
+            <span class="tech-label">CORE WEAPONS:</span>
+            <div class="tech-badge-row">
+              <span class="t-badge">C# / .NET</span>
+              <span class="t-badge">Revit API</span>
+              <span class="t-badge">Python Dynamo</span>
+              <span class="t-badge">Vector Math</span>
+            </div>
+          </div>
+
+          <div class="masterwork-actions">
+            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="btn-card-action primary">
+              <span>EXPLORE BIM STACK</span>
+              <span class="arr">→</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 03. TECHNICAL ARCHITECTURE & MASTERY -->
+    <section id="arsenal" class="cinema-section">
+      <div class="section-title-block">
+        <div class="kanji-tag">大系極致</div>
+        <h2 class="section-title-large">TECHNICAL <span class="gold-gradient">MASTERY</span></h2>
+        <p class="section-subtext">The pillars of my engineering discipline — honed across complex, production-grade applications.</p>
+      </div>
+
+      <div class="pillars-layout">
+        
+        <!-- Pillar 1 -->
+        <div class="arch-pillar">
+          <div class="arch-pillar-header">
+            <span class="arch-kanji">綱</span>
+            <div>
+              <h3>FULL-STACK WEB SYSTEMS</h3>
+              <span class="arch-sub">REACTIVITY, APIS & SCALABLE FRONTENDS</span>
+            </div>
+          </div>
+          <div class="arch-skills-grid">
+            <div class="arch-item">
+              <div class="ai-head"><span>TypeScript & JavaScript (ESNext)</span><span class="ai-lvl">95%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 95%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>React & Next.js (SSR / Edge / State)</span><span class="ai-lvl">94%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 94%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>Node.js, Express & WebSockets</span><span class="ai-lvl">90%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 90%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>HTML5 Kinetic Canvas & Motion</span><span class="ai-lvl">93%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 93%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="arch-pillar">
+          <div class="arch-pillar-header">
+            <span class="arch-kanji">構</span>
+            <div>
+              <h3>BIM & COMPUTATIONAL GEOMETRY</h3>
+              <span class="arch-sub">PARAMETRIC FORMULAS & CAD INTEGRATION</span>
+            </div>
+          </div>
+          <div class="arch-skills-grid">
+            <div class="arch-item">
+              <div class="ai-head"><span>Autodesk Revit API (C# & Python)</span><span class="ai-lvl">96%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 96%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>Python (Dynamo & Algorithmic Geometry)</span><span class="ai-lvl">95%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 95%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>AutoCAD 2D/3D & Construction QC</span><span class="ai-lvl">91%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 91%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>Structural Concrete Precast Logic</span><span class="ai-lvl">89%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 89%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="arch-pillar">
+          <div class="arch-pillar-header">
+            <span class="arch-kanji">基</span>
+            <div>
+              <h3>CLOUD, DEVOPS & PERSISTENCE</h3>
+              <span class="arch-sub">INTEGRITY, CONTAINERS & CI/CD</span>
+            </div>
+          </div>
+          <div class="arch-skills-grid">
+            <div class="arch-item">
+              <div class="ai-head"><span>PostgreSQL & Relational Schemas</span><span class="ai-lvl">91%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 91%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>Docker Containers & Linux OS</span><span class="ai-lvl">88%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 88%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>Git, GitHub Actions CI/CD</span><span class="ai-lvl">94%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 94%;"></div></div>
+            </div>
+            <div class="arch-item">
+              <div class="ai-head"><span>Vercel Edge & Cloud Hosting</span><span class="ai-lvl">92%</span></div>
+              <div class="ai-bar"><div class="ai-progress" style="width: 92%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04. TACTICAL CHESS DOJO (TACTICAL PUZZLE) -->
+    <section id="chamber" class="cinema-section">
+      <div class="section-title-block">
+        <div class="kanji-tag">盤上深謀</div>
+        <h2 class="section-title-large">THE TACTICAL <span class="gold-gradient">CHAMBER</span></h2>
+        <p class="section-subtext">Software architecture is grandmaster chess. Calculate several steps ahead of the machine.</p>
+      </div>
+
+      <div class="dojo-layout">
+        
+        <!-- Lacquered Chess Board -->
+        <div class="lacquer-board-box">
+          <div class="dojo-status-top">
+            <span class="dojo-rule">WHITE TO MOVE // FIND THE DECISIVE CHECKMATE</span>
+            <span id="chessTurnBadge" class="turn-chip">PUZZLE: ACTIVE</span>
+          </div>
+
+          <div id="chessBoard" class="cinematic-board-grid">
+            <!-- Dynamically populated in script.js -->
+          </div>
+
+          <div id="chessFeedback" class="dojo-feedback-line">
+            Click White Queen (♕ on d1), then strike the f7 outpost to secure victory.
+          </div>
+
+          <div class="dojo-actions">
+            <button id="resetChess" class="btn-dojo">RESET BOARD</button>
+            <button id="hintChess" class="btn-dojo">TACTICAL HINT</button>
+          </div>
+        </div>
+
+        <!-- Tactical Manifesto -->
+        <div class="dojo-creed">
+          <div class="hanko-box">勝</div>
+          <h3 class="creed-heading">THE ARCHITECT'S CREED</h3>
+          <p class="creed-quote">
+            "In code, as in chess, amateurs look only at where they are standing. 
+            Masters see the entire board, the tension between services, and how each move impacts the endgame."
+          </p>
+
+          <div class="creed-list">
+            <div class="creed-point">
+              <span class="creed-kanji">壱</span>
+              <div>
+                <strong>Atomic Precision:</strong>
+                <p>Functions that do one thing with zero side-effects. Relentlessly testable.</p>
               </div>
             </div>
-
-            <!-- Right: Attribute Allocation Matrix -->
-            <div class="hunter-stats-matrix">
-              <h2 class="sub-header">// ATTRIBUTE ALLOCATION</h2>
-              
-              <div class="attributes-grid">
-                <div class="attr-card" data-attr="str">
-                  <div class="attr-icon">🥊</div>
-                  <div class="attr-info">
-                    <span class="attr-name">STRENGTH (BACKEND POWER)</span>
-                    <span class="attr-desc">Node.js, Express, FastAPI, Django, Python Engines</span>
-                  </div>
-                  <div class="attr-value">96</div>
-                </div>
-
-                <div class="attr-card" data-attr="agi">
-                  <div class="attr-icon">⚡</div>
-                  <div class="attr-info">
-                    <span class="attr-name">AGILITY (FRONTEND VELOCITY)</span>
-                    <span class="attr-desc">TypeScript, React, Next.js, Dynamic Canvas UI</span>
-                  </div>
-                  <div class="attr-value">98</div>
-                </div>
-
-                <div class="attr-card" data-attr="int">
-                  <div class="attr-icon">🧠</div>
-                  <div class="attr-info">
-                    <span class="attr-name">INTELLIGENCE (ALGORITHMS)</span>
-                    <span class="attr-desc">Full-Stack Data Models, SQL/Postgres, State Orchestration</span>
-                  </div>
-                  <div class="attr-value">99</div>
-                </div>
-
-                <div class="attr-card" data-attr="sen">
-                  <div class="attr-icon">👁️</div>
-                  <div class="attr-info">
-                    <span class="attr-name">SENSE (BIM & 3D GEOMETRY)</span>
-                    <span class="attr-desc">Revit API, Dynamo, Computational Parametric Framing</span>
-                  </div>
-                  <div class="attr-value">97</div>
-                </div>
-
-                <div class="attr-card" data-attr="vit">
-                  <div class="attr-icon">🛡️</div>
-                  <div class="attr-info">
-                    <span class="attr-name">VITALITY (CRASH IMMUNITY)</span>
-                    <span class="attr-desc">Docker, Git CI/CD, Error Boundaries, Zero-Downtime</span>
-                  </div>
-                  <div class="attr-value">95</div>
-                </div>
+            <div class="creed-point">
+              <span class="creed-kanji">弐</span>
+              <div>
+                <strong>Strategic Decisiveness:</strong>
+                <p>Cutting through bloat and bloated libraries. Native performance first.</p>
               </div>
-
-              <!-- Quick Quote / Passive Skill -->
-              <div class="passive-skill-box">
-                <div class="skill-label">PASSIVE SKILL: [MONARCH'S WILL]</div>
-                <p>"When bugs manifest in production, developer gains +300% focus and immediately deploys hotfixes before dawn."</p>
+            </div>
+            <div class="creed-point">
+              <span class="creed-kanji">参</span>
+              <div>
+                <strong>Zero Downtime Mindset:</strong>
+                <p>Guard the production King. Never ship without confidence.</p>
               </div>
             </div>
           </div>
@@ -185,349 +477,51 @@
       </div>
     </section>
 
-    <!-- 02. QUEST BOARD (YOUR REAL PROJECTS: ETHIOPIA 360, GRADE 7/8, AMT EXAM) -->
-    <section id="quests" class="section quests-section">
-      <div class="section-badge-bar">
-        <span class="section-tag">⚔️ SURVEY CORPS DISPATCH BOARD</span>
-        <h2 class="title-huge">ACTIVE <span class="accent-glow">QUESTS</span> (PROJECTS)</h2>
-        <p class="section-sub">These are my authentic, battle-tested software missions deployed to production.</p>
-      </div>
+    <!-- 05. DIRECT TRANSMISSION UPLINK -->
+    <section id="uplink" class="cinema-section">
+      <div class="uplink-monolith-box">
+        <div class="hanko-box center">誓</div>
+        <h2 class="section-title-large">FORGE THE <span class="gold-gradient">EXTRAORDINARY</span></h2>
+        <p class="uplink-subtext">
+          Available for high-stakes full-stack web platforms, large-scale geospatial architectures, 
+          or computational BIM automation.
+        </p>
 
-      <div class="quests-grid">
-
-        <!-- QUEST 1: ETHIOPIA 360 -->
-        <article class="quest-card rank-s">
-          <div class="quest-stamp">S-RANK QUEST</div>
-          <div class="quest-glow"></div>
-          <div class="quest-header">
-            <span class="quest-type">🗺️ GEOSPATIAL ATLAS PLATFORM</span>
-            <span class="quest-difficulty">DIFFICULTY: ★★★★★</span>
-          </div>
-
-          <h3 class="quest-title">ETHIOPIA // 360</h3>
-          <p class="quest-tagline">Community Atlas & Interactive Geospatial Explorer for Ethiopia</p>
-          
-          <p class="quest-desc">
-            A comprehensive interactive map atlas exploring demographic, geographic, and cultural datasets 
-            across Ethiopia. Features responsive custom vector mapping, spatial filtering, and lightning-fast Vercel deployment.
-          </p>
-
-          <div class="quest-rewards">
-            <span class="reward-title">TECH WEAPONS:</span>
-            <div class="tags-cluster">
-              <span class="q-tag">Next.js</span>
-              <span class="q-tag">TypeScript</span>
-              <span class="q-tag">Vercel</span>
-              <span class="q-tag">Tailwind</span>
-              <span class="q-tag">Interactive Maps</span>
+        <div class="uplink-direct-grid">
+          <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="direct-channel-card">
+            <span class="channel-icon">🐙</span>
+            <div class="channel-meta">
+              <span class="channel-title">GITHUB REPOSITORIES</span>
+              <span class="channel-detail">github.com/dagiyosi-pixel</span>
             </div>
-          </div>
+            <span class="channel-arrow">→</span>
+          </a>
 
-          <div class="quest-actions">
-            <a href="https://ethiopia-360.vercel.app" target="_blank" rel="noopener" class="btn-quest launch">
-              <span>🚀 LAUNCH LIVE APP</span>
-            </a>
-            <a href="https://github.com/dagiyosi-pixel/ethiopia-360" target="_blank" rel="noopener" class="btn-quest code">
-              <span>📂 GITHUB REPO</span>
-            </a>
-          </div>
-        </article>
-
-        <!-- QUEST 2: GRADE 7 & 8 CURRICULUM SQ3R -->
-        <article class="quest-card rank-s">
-          <div class="quest-stamp">S-RANK QUEST</div>
-          <div class="quest-glow"></div>
-          <div class="quest-header">
-            <span class="quest-type">📚 ACTIVE RECALL ED-TECH ENGINE</span>
-            <span class="quest-difficulty">DIFFICULTY: ★★★★★</span>
-          </div>
-
-          <h3 class="quest-title">ETHIOPIA CURRICULUM SQ3R</h3>
-          <p class="quest-tagline">Grade 7 & 8 Active Recall, SQ3R Method & CBA Exam Prep Engine</p>
-          
-          <p class="quest-desc">
-            An offline-first mastery learning platform built for Ethiopian Grade 7 and 8 students.
-            Transforms complex national curriculum standards into interactive SQ3R revision modules,
-            flashcard spaced-repetition, and instant CBA mock exam simulations.
-          </p>
-
-          <div class="quest-rewards">
-            <span class="reward-title">TECH WEAPONS:</span>
-            <div class="tags-cluster">
-              <span class="q-tag">JavaScript (ES6+)</span>
-              <span class="q-tag">SQ3R Algorithm</span>
-              <span class="q-tag">PWA / Offline</span>
-              <span class="q-tag">Service Workers</span>
-              <span class="q-tag">Data Architecture</span>
+          <a href="https://ethiopia-360.vercel.app" target="_blank" rel="noopener" class="direct-channel-card">
+            <span class="channel-icon">🗺️</span>
+            <div class="channel-meta">
+              <span class="channel-title">ETHIOPIA 360 ATLAS</span>
+              <span class="channel-detail">ethiopia-360.vercel.app</span>
             </div>
-          </div>
+            <span class="channel-arrow">→</span>
+          </a>
 
-          <div class="quest-actions">
-            <a href="https://github.com/dagiyosi-pixel/ethiopia-curriculum-sq3r-platform" target="_blank" rel="noopener" class="btn-quest launch">
-              <span>📂 EXPLORE PLATFORM</span>
-            </a>
-            <a href="https://github.com/dagiyosi-pixel/ethiopia-curriculum-sq3r-platform" target="_blank" rel="noopener" class="btn-quest code">
-              <span>★ STAR REPO</span>
-            </a>
-          </div>
-        </article>
-
-        <!-- QUEST 3: AMT EXAM APP -->
-        <article class="quest-card rank-a">
-          <div class="quest-stamp">A-RANK QUEST</div>
-          <div class="quest-glow"></div>
-          <div class="quest-header">
-            <span class="quest-type">✈️ HIGH-STAKES AVIATION EXAM SYSTEM</span>
-            <span class="quest-difficulty">DIFFICULTY: ★★★★☆</span>
-          </div>
-
-          <h3 class="quest-title">AMT EXAM APP</h3>
-          <p class="quest-tagline">Aircraft Maintenance Technician Certification Simulator</p>
-          
-          <p class="quest-desc">
-            A timed testing application for aviation maintenance candidates. Parses technical OCR datasets,
-            diagrams, and aeronautics standards into timed exam simulations with in-depth performance analytics.
-          </p>
-
-          <div class="quest-rewards">
-            <span class="reward-title">TECH WEAPONS:</span>
-            <div class="tags-cluster">
-              <span class="q-tag">Node.js</span>
-              <span class="q-tag">OCR / PDF Parsing</span>
-              <span class="q-tag">Interactive Quiz Engine</span>
-              <span class="q-tag">Aviation Data</span>
+          <button id="copyEmailBtn" class="direct-channel-card copyable" data-email="dagiyosi5321@gmail.com">
+            <span class="channel-icon">✉️</span>
+            <div class="channel-meta">
+              <span class="channel-title">DIRECT DISPATCH</span>
+              <span class="channel-detail" id="emailDisplay">dagiyosi5321@gmail.com</span>
             </div>
-          </div>
-
-          <div class="quest-actions">
-            <a href="https://github.com/dagiyosi-pixel/amt-exam-app" target="_blank" rel="noopener" class="btn-quest launch">
-              <span>📂 INSPECT APP</span>
-            </a>
-            <a href="https://github.com/dagiyosi-pixel/amt-exam-app" target="_blank" rel="noopener" class="btn-quest code">
-              <span>★ STAR REPO</span>
-            </a>
-          </div>
-        </article>
-
-        <!-- QUEST 4: REVITCOPILOT & BIM ENGINE -->
-        <article class="quest-card rank-s">
-          <div class="quest-stamp">S-RANK QUEST</div>
-          <div class="quest-glow"></div>
-          <div class="quest-header">
-            <span class="quest-type">🏛️ AUTODESK REVIT AUTOMATION</span>
-            <span class="quest-difficulty">DIFFICULTY: ★★★★★</span>
-          </div>
-
-          <h3 class="quest-title">REVITCOPILOT BIM ENGINE</h3>
-          <p class="quest-tagline">Autonomous Parametric Structural Framing & Section Polisher</p>
-          
-          <p class="quest-desc">
-            High-speed WebSocket bridge connecting programmatic AI agents directly into Autodesk Revit.
-            Automates precast hollow-core slab grading, clash resolution, and construction section graphical polish.
-          </p>
-
-          <div class="quest-rewards">
-            <span class="reward-title">TECH WEAPONS:</span>
-            <div class="tags-cluster">
-              <span class="q-tag">C# / .NET</span>
-              <span class="q-tag">Revit API</span>
-              <span class="q-tag">Python Dynamo</span>
-              <span class="q-tag">WebSockets</span>
-            </div>
-          </div>
-
-          <div class="quest-actions">
-            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="btn-quest launch">
-              <span>🏛️ VIEW BIM STACK</span>
-            </a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- 03. CHESS GRANDMASTER ARENA (PLAYABLE MINIGAME!) -->
-    <section id="chess" class="section chess-section">
-      <div class="section-badge-bar">
-        <span class="section-tag">♟️ GRANDMASTER TACTICS ARENA</span>
-        <h2 class="title-huge">CHESS <span class="accent-glow">PUZZLE</span> ARENA</h2>
-        <p class="section-sub">Prove your tactical acumen. White to move — Find the checkmate!</p>
-      </div>
-
-      <div class="chess-arena-container">
-        <!-- Chess Board Frame -->
-        <div class="chess-board-box">
-          <div class="chess-header-bar">
-            <span>TACTICAL PUZZLE #04 // THE SCHOLAR'S STRIKE</span>
-            <span class="chess-turn-pill" id="chessTurnStatus">WHITE TO MOVE</span>
-          </div>
-
-          <div class="chess-grid" id="chessBoard">
-            <!-- Dynamically generated 8x8 board in JS -->
-          </div>
-
-          <div class="chess-status-msg" id="chessMessage">
-            Click White Queen (♕ on d1) then click Black Pawn (f7) to deliver Checkmate!
-          </div>
-
-          <div class="chess-controls">
-            <button class="btn-chess" id="resetChess">🔄 RESET PUZZLE</button>
-            <button class="btn-chess" id="hintChess">💡 HINT</button>
-          </div>
-        </div>
-
-        <!-- Chess Lore & Grandmaster Philosophy -->
-        <div class="chess-lore-card">
-          <div class="lore-crest">♔</div>
-          <h3>"Code is like Grandmaster Chess."</h3>
-          <p>
-            Every software architecture decision is a move. You don't just calculate the current line; 
-            you calculate five moves ahead.
-          </p>
-          <ul class="chess-rules-list">
-            <li><strong>Pawns:</strong> Clean, atomic utility functions.</li>
-            <li><strong>Knights:</strong> Unconventional, creative problem solvers.</li>
-            <li><strong>Bishops:</strong> Diagonal microservices cutting across domains.</li>
-            <li><strong>Rooks:</strong> Rock-solid database foundations and storage.</li>
-            <li><strong>Queen:</strong> Full-Stack versatility that commands the entire board.</li>
-            <li><strong>King:</strong> The production deployment. Guard it at all costs.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04. ONE PIECE WANTED BOUNTY POSTER -->
-    <section id="bounty" class="section bounty-section">
-      <div class="section-badge-bar">
-        <span class="section-tag">🏴‍☠️ WORLD GOVERNMENT BOUNTY REGISTER</span>
-        <h2 class="title-huge">WANTED <span class="accent-glow">DEAD OR ALIVE</span></h2>
-        <p class="section-sub">Targeted by the World Government for deploying high-level code directly to production.</p>
-      </div>
-
-      <div class="bounty-wrapper">
-        <div class="wanted-poster">
-          <div class="wanted-top">WANTED</div>
-          <div class="poster-photo-frame">
-            <div class="poster-skull">⚡☠️⚡</div>
-            <div class="poster-haki-lightning"></div>
-            <div class="poster-alias">0xDagi</div>
-          </div>
-          <div class="wanted-middle">DEAD OR ALIVE</div>
-          <div class="wanted-name">DAGI YOSI</div>
-          <div class="wanted-bounty">
-            <span class="b-symbol">฿</span>
-            <span class="b-number">3,000,000,000</span>
-            <span class="b-dash">-</span>
-          </div>
-          <div class="wanted-footer">
-            <span>MARINE CODE: 0x-ETHIOPIA-ARCHITECT</span>
-          </div>
-        </div>
-
-        <div class="bounty-lore">
-          <h3>« EMPEROR OF CODE »</h3>
-          <p>
-            Equipped with <strong>Advanced Conqueror's Haki</strong>, 0xDagi has broken out of Impel Down, 
-            slayed software bottlenecks in <strong>Ethiopia 360</strong>, mastered the <strong>SQ3R Learning Sea</strong>, 
-            and mastered the <strong>BIM Automation Grand Line</strong>.
-          </p>
-          <button id="hakiBlastBtn" class="btn-game haki-btn">
-            <span>⚡ UNLEASH CONQUEROR'S HAKI</span>
+            <span class="channel-copy-hint">[CLICK TO COPY]</span>
           </button>
         </div>
-      </div>
-    </section>
 
-    <!-- 05. WEAPONRY / ARSENAL -->
-    <section id="inventory" class="section inventory-section">
-      <div class="section-badge-bar">
-        <span class="section-tag">⚔️ SHADOW INVENTORY</span>
-        <h2 class="title-huge">TECH <span class="accent-glow">INVENTORY</span></h2>
-        <p class="section-sub">Equipped gear and mastery levels.</p>
-      </div>
-
-      <div class="inventory-grid">
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">🐍</div>
-          <div class="inv-name">PYTHON</div>
-          <div class="inv-lvl">LVL 95</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">⚡</div>
-          <div class="inv-name">TYPESCRIPT</div>
-          <div class="inv-lvl">LVL 94</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">⚛️</div>
-          <div class="inv-name">NEXT.JS / REACT</div>
-          <div class="inv-lvl">LVL 93</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">🏛️</div>
-          <div class="inv-name">REVIT API</div>
-          <div class="inv-lvl">LVL 96</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">🔷</div>
-          <div class="inv-name">C# & .NET</div>
-          <div class="inv-lvl">LVL 90</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">🟢</div>
-          <div class="inv-name">NODE / EXPRESS</div>
-          <div class="inv-lvl">LVL 89</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">🗄️</div>
-          <div class="inv-name">POSTGRESQL</div>
-          <div class="inv-lvl">LVL 88</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">🐳</div>
-          <div class="inv-name">DOCKER</div>
-          <div class="inv-lvl">LVL 87</div>
-        </div>
-        <div class="inv-slot rank-s">
-          <div class="inv-icon">📐</div>
-          <div class="inv-name">AUTOCAD / DYNAMO</div>
-          <div class="inv-lvl">LVL 91</div>
+        <div class="cinema-footer-bar">
+          <p>© 2026 <strong>DAGI YOSI</strong> [0xDagi] // CHIEF CODE ARCHITECT</p>
+          <p class="zen-creed">Forged in molten code. Measured in microseconds.</p>
         </div>
       </div>
     </section>
-
-    <!-- 06. LIVE HACKER TERMINAL -->
-    <section id="terminal" class="section terminal-section">
-      <div class="section-badge-bar">
-        <span class="section-tag">&gt;_ HUNTER CONSOLE</span>
-        <h2 class="title-huge">SYSTEM <span class="accent-glow">COMMAND</span></h2>
-      </div>
-
-      <div class="term-frame">
-        <div class="term-top">
-          <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
-          <span>0xDagi@system-core:~</span>
-        </div>
-        <div class="term-output" id="termOutput">
-          <p>Type <span class="hl">help</span> to view available system commands.</p>
-          <p>Try: <span class="hl">quests</span>, <span class="hl">chess</span>, <span class="hl">haki</span>, <span class="hl">clear</span>.</p>
-        </div>
-        <div class="term-prompt-line">
-          <span class="prompt-sym">0xDagi&gt;</span>
-          <input type="text" id="termInput" autocomplete="off" placeholder="type a command..." />
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="game-footer">
-      <div class="footer-crest">♟️ 0xDagi // S-RANK ARCHITECT ⚡</div>
-      <p>Built with pure obsession, anime grit, and zero compromise.</p>
-      <div class="footer-socials">
-        <a href="https://github.com/dagiyosi-pixel" target="_blank">GitHub</a>
-        <a href="https://ethiopia-360.vercel.app" target="_blank">Ethiopia 360</a>
-        <a href="mailto:dagiyosi5321@gmail.com">Contact</a>
-      </div>
-    </footer>
 
   </main>
 
