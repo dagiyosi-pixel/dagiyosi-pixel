@@ -3,440 +3,531 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>0xDagi // CODE ARCHITECT & FULL-STACK ENGINEER</title>
-  <meta name="description" content="Portfolio of Dagi — Full-Stack Developer, BIM Automation Engineer, and Code Architect." />
+  <title>0xDagi // S-RANK HUNTER & CODE ARCHITECT</title>
+  <meta name="description" content="Portfolio of Dagi — S-Rank Developer, BIM Engineer, and Creator of Ethiopia 360, Grade 7/8 SQ3R, and AMT Exam App." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Fira+Code:wght@400;600;700&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-theme="fire">
-  <!-- Interactive Canvas Background -->
-  <canvas id="bg-canvas"></canvas>
+<body data-aura="monarch">
+  <!-- Dynamic Aura & Lightning Canvas -->
+  <canvas id="game-canvas"></canvas>
 
-  <!-- Cyber Grid Overlay -->
-  <div class="cyber-grid-overlay"></div>
   <div class="vignette"></div>
+  <div class="scanlines"></div>
 
-  <!-- Navigation Bar -->
-  <nav class="hud-nav">
-    <div class="hud-brand">
-      <span class="hud-bracket">[</span>
-      <span class="brand-glitch" data-text="0xDagi">0xDagi</span>
-      <span class="hud-bracket">]</span>
-      <span class="pulse-dot"></span>
-      <span class="brand-tag">SYS_ONLINE</span>
+  <!-- FLOATING SYSTEM NOTIFICATION (Solo Leveling Manhwa Alert) -->
+  <div class="system-hud-banner" id="systemBanner">
+    <div class="system-icon">⚡</div>
+    <div class="system-text">
+      <span class="system-alert-tag">[ SYSTEM NOTIFICATION: S-RANK AWAKENING ]</span>
+      <span class="system-alert-msg">Player <strong>0xDagi</strong> has entered the dungeon. Level 99 Monarch Activated.</span>
     </div>
-    
+    <button class="system-close" onclick="document.getElementById('systemBanner').style.display='none'">✕</button>
+  </div>
+
+  <!-- NAVIGATION HUD -->
+  <nav class="game-nav">
+    <div class="nav-brand">
+      <span class="brand-crest">♟️</span>
+      <div class="brand-info">
+        <span class="brand-name">0xDagi</span>
+        <span class="brand-sub">LVL.99 MONARCH</span>
+      </div>
+    </div>
+
     <div class="nav-links">
-      <a href="#hero" class="nav-item active"><span class="nav-num">01.</span>CORE</a>
-      <a href="#arsenal" class="nav-item"><span class="nav-num">02.</span>ARSENAL</a>
-      <a href="#terminal" class="nav-item"><span class="nav-num">03.</span>TERMINAL</a>
-      <a href="#projects" class="nav-item"><span class="nav-num">04.</span>PROJECTS</a>
-      <a href="#contact" class="nav-item"><span class="nav-num">05.</span>UPLINK</a>
+      <a href="#status" class="nav-link active"><span class="k-num">01</span>STATUS</a>
+      <a href="#quests" class="nav-link"><span class="k-num">02</span>QUESTS (PROJECTS)</a>
+      <a href="#chess" class="nav-link"><span class="k-num">03</span>CHESS ARENA</a>
+      <a href="#bounty" class="nav-link"><span class="k-num">04</span>BOUNTY</a>
+      <a href="#inventory" class="nav-link"><span class="k-num">05</span>ARSENAL</a>
+      <a href="#terminal" class="nav-link"><span class="k-num">06</span>CONSOLE</a>
     </div>
 
-    <div class="nav-controls">
-      <!-- Mode Toggle -->
-      <button id="mode-toggle" class="hud-btn" title="Toggle FX Theme">
-        <span class="btn-icon">🔥</span>
-        <span class="btn-text">MODE: FIRE</span>
+    <!-- AURA / REALM SWITCHER -->
+    <div class="aura-switcher">
+      <button class="aura-btn active" data-aura="monarch" title="Solo Leveling Shadow Monarch">
+        <span class="a-icon">👑</span>
+        <span class="a-text">MONARCH</span>
       </button>
-      <!-- Sound FX Toggle -->
-      <button id="sfx-toggle" class="hud-btn" title="Toggle Audio FX">
-        <span class="sfx-icon">🔊</span>
-        <span class="sfx-status">SFX: ON</span>
+      <button class="aura-btn" data-aura="gear5" title="One Piece Gear 5 / Conqueror's Haki">
+        <span class="a-icon">🏴‍☠️</span>
+        <span class="a-text">GEAR 5</span>
+      </button>
+      <button class="aura-btn" data-aura="scout" title="Attack on Titan Survey Corps">
+        <span class="a-icon">⚔️</span>
+        <span class="a-text">AOT</span>
+      </button>
+      <button class="aura-btn" data-aura="chess" title="Grandmaster Noir">
+        <span class="a-icon">♟️</span>
+        <span class="a-text">CHESS</span>
+      </button>
+      <button id="soundToggle" class="sfx-btn" title="Toggle Sound FX">
+        <span id="soundIcon">🔊</span>
       </button>
     </div>
   </nav>
 
-  <!-- Main Content Container -->
-  <main class="page-container">
-    
-    <!-- HERO SECTION -->
-    <section id="hero" class="hero-section">
-      <div class="hero-hud-frame">
-        <div class="hud-corner top-left"></div>
-        <div class="hud-corner top-right"></div>
-        <div class="hud-corner bottom-left"></div>
-        <div class="hud-corner bottom-right"></div>
+  <main class="game-world">
 
-        <div class="status-strip">
-          <span class="badge red-glow">STATUS: LEVEL 99 CODE ARCHITECT</span>
-          <span class="badge blue-glow">LOCATION: ADDIS ABABA // CYBERSPACE</span>
-          <span class="badge green-glow">HIRE STATUS: READY TO SHIP</span>
-        </div>
-
-        <div class="hero-grid">
-          <div class="hero-content">
-            <p class="cyber-subtitle">// INITIALIZING NEURAL INTERFACE...</p>
-            <h1 class="hero-title">
-              DAGI <span class="accent-fire">YOSI</span>
-            </h1>
-            <h2 class="typewriter-container">
-              <span class="hud-bracket">&gt; </span>
-              <span id="typewriter" class="typewriter-text"></span>
-              <span class="cursor">_</span>
-            </h2>
-
-            <p class="hero-desc">
-              I don't just write code — I forge high-performance digital engines. Bridging high-level 
-              <strong>Full-Stack Web Engineering</strong> with complex <strong>BIM Automation & Computational Architecture</strong>.
-              From microservices to parametric 3D generative pipelines.
-            </p>
-
-            <div class="hero-cta">
-              <a href="#projects" class="btn-cyber primary">
-                <span class="btn-glitch"></span>
-                <span>EXPLORE BATTLEGROUNDS</span>
-                <span class="arrow">→</span>
-              </a>
-              <a href="#terminal" class="btn-cyber secondary">
-                <span>OPEN TERMINAL</span>
-                <span class="terminal-indicator">&gt;_</span>
-              </a>
-              <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="btn-cyber outline">
-                <span>GITHUB REPO</span>
-                <span class="star-badge">★</span>
-              </a>
-            </div>
+    <!-- 01. HUNTER STATUS WINDOW (SOLO LEVELING / MANHWA HUD) -->
+    <section id="status" class="section status-section">
+      <div class="status-window-container">
+        
+        <!-- System Window Frame -->
+        <div class="manhwa-window">
+          <div class="window-header">
+            <span class="window-dot"></span>
+            <span class="window-title">STATUS WINDOW // 0xDagi</span>
+            <span class="window-status-badge">AWAKENED</span>
           </div>
 
-          <!-- Hero Cyber Avatar Graphic -->
-          <div class="hero-visual">
-            <div class="hologram-wrap">
-              <div class="holo-ring outer"></div>
-              <div class="holo-ring middle"></div>
-              <div class="holo-ring inner"></div>
-              <div class="avatar-glow"></div>
-              <div class="avatar-card">
-                <div class="avatar-code-bg">
-                  <code>01000100 01000001 01000111 01001001</code>
+          <div class="window-grid">
+            <!-- Left: Hunter Card -->
+            <div class="hunter-profile-card">
+              <div class="avatar-frame">
+                <div class="avatar-aura-ring"></div>
+                <div class="avatar-symbol">⚡</div>
+                <div class="rank-badge">S-RANK</div>
+              </div>
+              <h1 class="player-name">DAGI YOSI</h1>
+              <div class="player-title">« THE SHADOW CODE ARCHITECT »</div>
+              <div class="hunter-tags">
+                <span class="h-tag">FULL-STACK</span>
+                <span class="h-tag">BIM AUTOMATION</span>
+                <span class="h-tag">ALGORITHMIC DEV</span>
+              </div>
+
+              <!-- HP & MP BARS -->
+              <div class="stat-bars">
+                <div class="bar-group">
+                  <div class="bar-lbl"><span>HP (CODE HEALTH)</span><span>100 / 100</span></div>
+                  <div class="bar-track hp-track"><div class="bar-fill hp-fill" style="width: 100%;"></div></div>
                 </div>
-                <div class="avatar-core">
-                  <div class="cyber-skull">⚡</div>
-                  <div class="core-label">0xDagi_CORE</div>
+                <div class="bar-group">
+                  <div class="bar-lbl"><span>MP (CAFFEINE ESSENCE)</span><span>9999 / 9999</span></div>
+                  <div class="bar-track mp-track"><div class="bar-fill mp-fill" style="width: 99%;"></div></div>
                 </div>
-                <div class="stat-pill">
-                  <span class="pill-dot"></span> 99.9% COMPILER VELOCITY
+              </div>
+
+              <div class="hunter-cta-btns">
+                <a href="#quests" class="btn-game primary">
+                  <span>⚔️ VIEW QUESTS</span>
+                </a>
+                <a href="#chess" class="btn-game secondary">
+                  <span>♟️ PLAY CHESS</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Attribute Allocation Matrix -->
+            <div class="hunter-stats-matrix">
+              <h2 class="sub-header">// ATTRIBUTE ALLOCATION</h2>
+              
+              <div class="attributes-grid">
+                <div class="attr-card" data-attr="str">
+                  <div class="attr-icon">🥊</div>
+                  <div class="attr-info">
+                    <span class="attr-name">STRENGTH (BACKEND POWER)</span>
+                    <span class="attr-desc">Node.js, Express, FastAPI, Django, Python Engines</span>
+                  </div>
+                  <div class="attr-value">96</div>
                 </div>
+
+                <div class="attr-card" data-attr="agi">
+                  <div class="attr-icon">⚡</div>
+                  <div class="attr-info">
+                    <span class="attr-name">AGILITY (FRONTEND VELOCITY)</span>
+                    <span class="attr-desc">TypeScript, React, Next.js, Dynamic Canvas UI</span>
+                  </div>
+                  <div class="attr-value">98</div>
+                </div>
+
+                <div class="attr-card" data-attr="int">
+                  <div class="attr-icon">🧠</div>
+                  <div class="attr-info">
+                    <span class="attr-name">INTELLIGENCE (ALGORITHMS)</span>
+                    <span class="attr-desc">Full-Stack Data Models, SQL/Postgres, State Orchestration</span>
+                  </div>
+                  <div class="attr-value">99</div>
+                </div>
+
+                <div class="attr-card" data-attr="sen">
+                  <div class="attr-icon">👁️</div>
+                  <div class="attr-info">
+                    <span class="attr-name">SENSE (BIM & 3D GEOMETRY)</span>
+                    <span class="attr-desc">Revit API, Dynamo, Computational Parametric Framing</span>
+                  </div>
+                  <div class="attr-value">97</div>
+                </div>
+
+                <div class="attr-card" data-attr="vit">
+                  <div class="attr-icon">🛡️</div>
+                  <div class="attr-info">
+                    <span class="attr-name">VITALITY (CRASH IMMUNITY)</span>
+                    <span class="attr-desc">Docker, Git CI/CD, Error Boundaries, Zero-Downtime</span>
+                  </div>
+                  <div class="attr-value">95</div>
+                </div>
+              </div>
+
+              <!-- Quick Quote / Passive Skill -->
+              <div class="passive-skill-box">
+                <div class="skill-label">PASSIVE SKILL: [MONARCH'S WILL]</div>
+                <p>"When bugs manifest in production, developer gains +300% focus and immediately deploys hotfixes before dawn."</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Quick Stats Matrix HUD -->
-        <div class="hud-stats-bar">
-          <div class="stat-cell">
-            <div class="stat-val" data-target="99.9">0%</div>
-            <div class="stat-lbl">CRASH IMMUNITY</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-cell">
-            <div class="stat-val" data-target="500">0+</div>
-            <div class="stat-lbl">BUGS EXTERMINATED</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-cell">
-            <div class="stat-val" data-target="18">0+</div>
-            <div class="stat-lbl">STACK WEAPONS</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-cell">
-            <div class="stat-val highlight">04:00 AM</div>
-            <div class="stat-lbl">PEAK ENERGY</div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- ARSENAL SECTION -->
-    <section id="arsenal" class="arsenal-section">
-      <div class="section-header">
-        <span class="section-tag">// WEAPONRY</span>
-        <h2 class="section-title">TECH <span class="accent-fire">ARSENAL</span></h2>
-        <p class="section-desc">Battle-tested tools, frameworks, and engineering disciplines in my daily rotation.</p>
+    <!-- 02. QUEST BOARD (YOUR REAL PROJECTS: ETHIOPIA 360, GRADE 7/8, AMT EXAM) -->
+    <section id="quests" class="section quests-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">⚔️ SURVEY CORPS DISPATCH BOARD</span>
+        <h2 class="title-huge">ACTIVE <span class="accent-glow">QUESTS</span> (PROJECTS)</h2>
+        <p class="section-sub">These are my authentic, battle-tested software missions deployed to production.</p>
       </div>
 
-      <div class="arsenal-tabs">
-        <button class="tab-btn active" data-filter="all">ALL WEAPONS</button>
-        <button class="tab-btn" data-filter="fullstack">FULL-STACK</button>
-        <button class="tab-btn" data-filter="bim">BIM & CAD</button>
-        <button class="tab-btn" data-filter="languages">LANGUAGES</button>
-        <button class="tab-btn" data-filter="devops">DEVOPS & DB</button>
-      </div>
+      <div class="quests-grid">
 
-      <div class="weapons-grid">
-        <!-- Python -->
-        <div class="weapon-card" data-cat="languages fullstack bim">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">🐍</span>
-            <span class="weapon-lvl">LVL 95</span>
+        <!-- QUEST 1: ETHIOPIA 360 -->
+        <article class="quest-card rank-s">
+          <div class="quest-stamp">S-RANK QUEST</div>
+          <div class="quest-glow"></div>
+          <div class="quest-header">
+            <span class="quest-type">🗺️ GEOSPATIAL ATLAS PLATFORM</span>
+            <span class="quest-difficulty">DIFFICULTY: ★★★★★</span>
           </div>
-          <h3 class="weapon-name">Python</h3>
-          <p class="weapon-detail">Automation scripts, FastAPI, Django, Revit Dynamo pipelines & computational algorithms.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 95%;"></div></div>
-        </div>
 
-        <!-- TypeScript / JS -->
-        <div class="weapon-card" data-cat="languages fullstack">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">⚡</span>
-            <span class="weapon-lvl">LVL 94</span>
-          </div>
-          <h3 class="weapon-name">TypeScript / JS</h3>
-          <p class="weapon-detail">Strict typing, dynamic UI systems, event-driven web applications and scalable frontends.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 94%;"></div></div>
-        </div>
-
-        <!-- C# / .NET -->
-        <div class="weapon-card" data-cat="languages bim">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">🔷</span>
-            <span class="weapon-lvl">LVL 90</span>
-          </div>
-          <h3 class="weapon-name">C# & .NET</h3>
-          <p class="weapon-detail">Native Revit API plugins, WPF ribbons, high-throughput desktop automation & tools.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 90%;"></div></div>
-        </div>
-
-        <!-- React & Next.js -->
-        <div class="weapon-card" data-cat="fullstack">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">⚛️</span>
-            <span class="weapon-lvl">LVL 92</span>
-          </div>
-          <h3 class="weapon-name">React & Next.js</h3>
-          <p class="weapon-detail">Server-side rendering, App Router, responsive micro-frontends and reactive state trees.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 92%;"></div></div>
-        </div>
-
-        <!-- Node & Express -->
-        <div class="weapon-card" data-cat="fullstack devops">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">🟢</span>
-            <span class="weapon-lvl">LVL 88</span>
-          </div>
-          <h3 class="weapon-name">Node.js & Express</h3>
-          <p class="weapon-detail">RESTful APIs, WebSockets, background job queues, and robust middleware pipelines.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 88%;"></div></div>
-        </div>
-
-        <!-- Autodesk Revit API -->
-        <div class="weapon-card" data-cat="bim">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">🏛️</span>
-            <span class="weapon-lvl">LVL 96</span>
-          </div>
-          <h3 class="weapon-name">Autodesk Revit API</h3>
-          <p class="weapon-detail">Automated wall/slab framing, clash arbitration, family injection, and headless extraction.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 96%;"></div></div>
-        </div>
-
-        <!-- AutoCAD & Dynamo -->
-        <div class="weapon-card" data-cat="bim">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">📐</span>
-            <span class="weapon-lvl">LVL 91</span>
-          </div>
-          <h3 class="weapon-name">AutoCAD & Dynamo</h3>
-          <p class="weapon-detail">Visual algorithmic programming, DWG layer parsing, automatic geometry alignment.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 91%;"></div></div>
-        </div>
-
-        <!-- PostgreSQL & MongoDB -->
-        <div class="weapon-card" data-cat="devops fullstack">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">🗄️</span>
-            <span class="weapon-lvl">LVL 89</span>
-          </div>
-          <h3 class="weapon-name">Postgres & MongoDB</h3>
-          <p class="weapon-detail">Relational integrity, indexing strategies, NoSQL document stores and Redis caching.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 89%;"></div></div>
-        </div>
-
-        <!-- Docker & Linux -->
-        <div class="weapon-card" data-cat="devops">
-          <div class="card-glow"></div>
-          <div class="weapon-header">
-            <span class="weapon-icon">🐳</span>
-            <span class="weapon-lvl">LVL 87</span>
-          </div>
-          <h3 class="weapon-name">Docker & Linux</h3>
-          <p class="weapon-detail">Containerized environments, multi-stage builds, shell automation, and CI/CD pipelines.</p>
-          <div class="progress-track"><div class="progress-bar" style="width: 87%;"></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIVE HACKER TERMINAL -->
-    <section id="terminal" class="terminal-section">
-      <div class="section-header">
-        <span class="section-tag">// COMMAND PROTOCOL</span>
-        <h2 class="section-title">HACKER <span class="accent-fire">TERMINAL</span></h2>
-        <p class="section-desc">Type commands to probe my systems or click the quick command chips below.</p>
-      </div>
-
-      <div class="terminal-window">
-        <div class="term-titlebar">
-          <div class="term-dots">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-          </div>
-          <div class="term-title">0xDagi@nexus-server:~ (zsh)</div>
-          <div class="term-badge">ENCRYPTED // SHA-256</div>
-        </div>
-
-        <div class="term-body" id="term-body">
-          <div class="term-row term-welcome">
-            <pre class="ascii-art">
-   ___          ___               _ 
-  / _ \__ _____/   \__ _  __ _ (_)
- / // /\ \ / _  / /\ / _` |/ _` | |
-/____//_\_\___//___/ \__,_|\__, |_|
-                           |___/   
-            </pre>
-            <p>Welcome to <strong>0xDagi Cyber Shell v3.8.0</strong>.</p>
-            <p>Type <span class="term-hl">help</span> to list available commands.</p>
-          </div>
-        </div>
-
-        <div class="term-input-line">
-          <span class="term-prompt">0xDagi@root:~$</span>
-          <input type="text" id="term-input" autocomplete="off" spellcheck="false" placeholder="type 'help' or click buttons below..." />
-        </div>
-
-        <div class="term-chips">
-          <button class="chip-btn" data-cmd="skills">⚡ skills</button>
-          <button class="chip-btn" data-cmd="projects">🚀 projects</button>
-          <button class="chip-btn" data-cmd="whoami">👤 whoami</button>
-          <button class="chip-btn" data-cmd="fire">🔥 fire-storm</button>
-          <button class="chip-btn" data-cmd="matrix">👾 matrix</button>
-          <button class="chip-btn" data-cmd="contact">📡 contact</button>
-          <button class="chip-btn" data-cmd="clear">🧹 clear</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED PROJECTS SECTION -->
-    <section id="projects" class="projects-section">
-      <div class="section-header">
-        <span class="section-tag">// BATTLEGROUNDS</span>
-        <h2 class="section-title">FEATURED <span class="accent-fire">PROJECTS</span></h2>
-        <p class="section-desc">Real code. Real impact. Built for scale, precision, and zero-compromise performance.</p>
-      </div>
-
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <article class="project-card">
-          <div class="project-card-header">
-            <span class="project-tag">BIM & API ENGINE</span>
-            <span class="project-id">#01</span>
-          </div>
-          <h3 class="project-title">RevitCopilot & Automation Bridge</h3>
-          <p class="project-summary">
-            A high-speed WebSocket coordination engine bridging AI agent directives directly with Autodesk Revit.
-            Executes autonomous clash avoidance, parametric slab grading, and full construction-section QA polish.
+          <h3 class="quest-title">ETHIOPIA // 360</h3>
+          <p class="quest-tagline">Community Atlas & Interactive Geospatial Explorer for Ethiopia</p>
+          
+          <p class="quest-desc">
+            A comprehensive interactive map atlas exploring demographic, geographic, and cultural datasets 
+            across Ethiopia. Features responsive custom vector mapping, spatial filtering, and lightning-fast Vercel deployment.
           </p>
-          <div class="tech-tags">
-            <span class="tag">C#</span>
-            <span class="tag">Revit API</span>
-            <span class="tag">Python</span>
-            <span class="tag">WebSockets</span>
+
+          <div class="quest-rewards">
+            <span class="reward-title">TECH WEAPONS:</span>
+            <div class="tags-cluster">
+              <span class="q-tag">Next.js</span>
+              <span class="q-tag">TypeScript</span>
+              <span class="q-tag">Vercel</span>
+              <span class="q-tag">Tailwind</span>
+              <span class="q-tag">Interactive Maps</span>
+            </div>
           </div>
-          <div class="project-actions">
-            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="proj-link">
-              <span>EXPLORE REPO</span> →
+
+          <div class="quest-actions">
+            <a href="https://ethiopia-360.vercel.app" target="_blank" rel="noopener" class="btn-quest launch">
+              <span>🚀 LAUNCH LIVE APP</span>
+            </a>
+            <a href="https://github.com/dagiyosi-pixel/ethiopia-360" target="_blank" rel="noopener" class="btn-quest code">
+              <span>📂 GITHUB REPO</span>
             </a>
           </div>
         </article>
 
-        <!-- Project 2 -->
-        <article class="project-card">
-          <div class="project-card-header">
-            <span class="project-tag">FULL-STACK WEB</span>
-            <span class="project-id">#02</span>
+        <!-- QUEST 2: GRADE 7 & 8 CURRICULUM SQ3R -->
+        <article class="quest-card rank-s">
+          <div class="quest-stamp">S-RANK QUEST</div>
+          <div class="quest-glow"></div>
+          <div class="quest-header">
+            <span class="quest-type">📚 ACTIVE RECALL ED-TECH ENGINE</span>
+            <span class="quest-difficulty">DIFFICULTY: ★★★★★</span>
           </div>
-          <h3 class="project-title">Nexus Cloud Architect Platform</h3>
-          <p class="project-summary">
-            Enterprise full-stack web dashboard featuring real-time collaborative state, granular JWT auth,
-            server-rendered analytics, and Docker-driven automated testing environments.
+
+          <h3 class="quest-title">ETHIOPIA CURRICULUM SQ3R</h3>
+          <p class="quest-tagline">Grade 7 & 8 Active Recall, SQ3R Method & CBA Exam Prep Engine</p>
+          
+          <p class="quest-desc">
+            An offline-first mastery learning platform built for Ethiopian Grade 7 and 8 students.
+            Transforms complex national curriculum standards into interactive SQ3R revision modules,
+            flashcard spaced-repetition, and instant CBA mock exam simulations.
           </p>
-          <div class="tech-tags">
-            <span class="tag">Next.js</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Docker</span>
+
+          <div class="quest-rewards">
+            <span class="reward-title">TECH WEAPONS:</span>
+            <div class="tags-cluster">
+              <span class="q-tag">JavaScript (ES6+)</span>
+              <span class="q-tag">SQ3R Algorithm</span>
+              <span class="q-tag">PWA / Offline</span>
+              <span class="q-tag">Service Workers</span>
+              <span class="q-tag">Data Architecture</span>
+            </div>
           </div>
-          <div class="project-actions">
-            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="proj-link">
-              <span>EXPLORE REPO</span> →
+
+          <div class="quest-actions">
+            <a href="https://github.com/dagiyosi-pixel/ethiopia-curriculum-sq3r-platform" target="_blank" rel="noopener" class="btn-quest launch">
+              <span>📂 EXPLORE PLATFORM</span>
+            </a>
+            <a href="https://github.com/dagiyosi-pixel/ethiopia-curriculum-sq3r-platform" target="_blank" rel="noopener" class="btn-quest code">
+              <span>★ STAR REPO</span>
             </a>
           </div>
         </article>
 
-        <!-- Project 3 -->
-        <article class="project-card">
-          <div class="project-card-header">
-            <span class="project-tag">COMPUTATIONAL ALGORITHMS</span>
-            <span class="project-id">#03</span>
+        <!-- QUEST 3: AMT EXAM APP -->
+        <article class="quest-card rank-a">
+          <div class="quest-stamp">A-RANK QUEST</div>
+          <div class="quest-glow"></div>
+          <div class="quest-header">
+            <span class="quest-type">✈️ HIGH-STAKES AVIATION EXAM SYSTEM</span>
+            <span class="quest-difficulty">DIFFICULTY: ★★★★☆</span>
           </div>
-          <h3 class="project-title">Prefab Hollow-Core Generator</h3>
-          <p class="project-summary">
-            Algorithmic structural slab subdivision system that calculates precise bearing lengths, joint shear keys,
-            and tie reinforcement schedules with strict Eurocode/ACI verification logic.
+
+          <h3 class="quest-title">AMT EXAM APP</h3>
+          <p class="quest-tagline">Aircraft Maintenance Technician Certification Simulator</p>
+          
+          <p class="quest-desc">
+            A timed testing application for aviation maintenance candidates. Parses technical OCR datasets,
+            diagrams, and aeronautics standards into timed exam simulations with in-depth performance analytics.
           </p>
-          <div class="tech-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Dynamo</span>
-            <span class="tag">Vector Math</span>
-            <span class="tag">BIM</span>
+
+          <div class="quest-rewards">
+            <span class="reward-title">TECH WEAPONS:</span>
+            <div class="tags-cluster">
+              <span class="q-tag">Node.js</span>
+              <span class="q-tag">OCR / PDF Parsing</span>
+              <span class="q-tag">Interactive Quiz Engine</span>
+              <span class="q-tag">Aviation Data</span>
+            </div>
           </div>
-          <div class="project-actions">
-            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="proj-link">
-              <span>EXPLORE REPO</span> →
+
+          <div class="quest-actions">
+            <a href="https://github.com/dagiyosi-pixel/amt-exam-app" target="_blank" rel="noopener" class="btn-quest launch">
+              <span>📂 INSPECT APP</span>
+            </a>
+            <a href="https://github.com/dagiyosi-pixel/amt-exam-app" target="_blank" rel="noopener" class="btn-quest code">
+              <span>★ STAR REPO</span>
             </a>
           </div>
         </article>
+
+        <!-- QUEST 4: REVITCOPILOT & BIM ENGINE -->
+        <article class="quest-card rank-s">
+          <div class="quest-stamp">S-RANK QUEST</div>
+          <div class="quest-glow"></div>
+          <div class="quest-header">
+            <span class="quest-type">🏛️ AUTODESK REVIT AUTOMATION</span>
+            <span class="quest-difficulty">DIFFICULTY: ★★★★★</span>
+          </div>
+
+          <h3 class="quest-title">REVITCOPILOT BIM ENGINE</h3>
+          <p class="quest-tagline">Autonomous Parametric Structural Framing & Section Polisher</p>
+          
+          <p class="quest-desc">
+            High-speed WebSocket bridge connecting programmatic AI agents directly into Autodesk Revit.
+            Automates precast hollow-core slab grading, clash resolution, and construction section graphical polish.
+          </p>
+
+          <div class="quest-rewards">
+            <span class="reward-title">TECH WEAPONS:</span>
+            <div class="tags-cluster">
+              <span class="q-tag">C# / .NET</span>
+              <span class="q-tag">Revit API</span>
+              <span class="q-tag">Python Dynamo</span>
+              <span class="q-tag">WebSockets</span>
+            </div>
+          </div>
+
+          <div class="quest-actions">
+            <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="btn-quest launch">
+              <span>🏛️ VIEW BIM STACK</span>
+            </a>
+          </div>
+        </article>
+
       </div>
     </section>
 
-    <!-- CONTACT / TRANSMISSION UPLINK -->
-    <section id="contact" class="contact-section">
-      <div class="hud-frame-box">
-        <span class="section-tag">// TRANSMISSION UPLINK</span>
-        <h2 class="section-title">LET'S BUILD <span class="accent-fire">THE FUTURE</span></h2>
-        <p class="contact-quote">
-          "I'm always open to extreme engineering challenges, high-stakes full-stack products, or BIM automation contracts."
-        </p>
+    <!-- 03. CHESS GRANDMASTER ARENA (PLAYABLE MINIGAME!) -->
+    <section id="chess" class="section chess-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">♟️ GRANDMASTER TACTICS ARENA</span>
+        <h2 class="title-huge">CHESS <span class="accent-glow">PUZZLE</span> ARENA</h2>
+        <p class="section-sub">Prove your tactical acumen. White to move — Find the checkmate!</p>
+      </div>
 
-        <div class="contact-links">
-          <a href="https://github.com/dagiyosi-pixel" target="_blank" rel="noopener" class="contact-badge">
-            <span class="icon">🐙</span>
-            <span class="text">github.com/dagiyosi-pixel</span>
-          </a>
-          <button id="copy-email" class="contact-badge copy-badge" data-email="dagiyosi5321@gmail.com">
-            <span class="icon">✉️</span>
-            <span class="text" id="email-text">dagiyosi5321@gmail.com</span>
-            <span class="copy-hint">[CLICK TO COPY]</span>
+      <div class="chess-arena-container">
+        <!-- Chess Board Frame -->
+        <div class="chess-board-box">
+          <div class="chess-header-bar">
+            <span>TACTICAL PUZZLE #04 // THE SCHOLAR'S STRIKE</span>
+            <span class="chess-turn-pill" id="chessTurnStatus">WHITE TO MOVE</span>
+          </div>
+
+          <div class="chess-grid" id="chessBoard">
+            <!-- Dynamically generated 8x8 board in JS -->
+          </div>
+
+          <div class="chess-status-msg" id="chessMessage">
+            Click White Queen (♕ on d1) then click Black Pawn (f7) to deliver Checkmate!
+          </div>
+
+          <div class="chess-controls">
+            <button class="btn-chess" id="resetChess">🔄 RESET PUZZLE</button>
+            <button class="btn-chess" id="hintChess">💡 HINT</button>
+          </div>
+        </div>
+
+        <!-- Chess Lore & Grandmaster Philosophy -->
+        <div class="chess-lore-card">
+          <div class="lore-crest">♔</div>
+          <h3>"Code is like Grandmaster Chess."</h3>
+          <p>
+            Every software architecture decision is a move. You don't just calculate the current line; 
+            you calculate five moves ahead.
+          </p>
+          <ul class="chess-rules-list">
+            <li><strong>Pawns:</strong> Clean, atomic utility functions.</li>
+            <li><strong>Knights:</strong> Unconventional, creative problem solvers.</li>
+            <li><strong>Bishops:</strong> Diagonal microservices cutting across domains.</li>
+            <li><strong>Rooks:</strong> Rock-solid database foundations and storage.</li>
+            <li><strong>Queen:</strong> Full-Stack versatility that commands the entire board.</li>
+            <li><strong>King:</strong> The production deployment. Guard it at all costs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. ONE PIECE WANTED BOUNTY POSTER -->
+    <section id="bounty" class="section bounty-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">🏴‍☠️ WORLD GOVERNMENT BOUNTY REGISTER</span>
+        <h2 class="title-huge">WANTED <span class="accent-glow">DEAD OR ALIVE</span></h2>
+        <p class="section-sub">Targeted by the World Government for deploying high-level code directly to production.</p>
+      </div>
+
+      <div class="bounty-wrapper">
+        <div class="wanted-poster">
+          <div class="wanted-top">WANTED</div>
+          <div class="poster-photo-frame">
+            <div class="poster-skull">⚡☠️⚡</div>
+            <div class="poster-haki-lightning"></div>
+            <div class="poster-alias">0xDagi</div>
+          </div>
+          <div class="wanted-middle">DEAD OR ALIVE</div>
+          <div class="wanted-name">DAGI YOSI</div>
+          <div class="wanted-bounty">
+            <span class="b-symbol">฿</span>
+            <span class="b-number">3,000,000,000</span>
+            <span class="b-dash">-</span>
+          </div>
+          <div class="wanted-footer">
+            <span>MARINE CODE: 0x-ETHIOPIA-ARCHITECT</span>
+          </div>
+        </div>
+
+        <div class="bounty-lore">
+          <h3>« EMPEROR OF CODE »</h3>
+          <p>
+            Equipped with <strong>Advanced Conqueror's Haki</strong>, 0xDagi has broken out of Impel Down, 
+            slayed software bottlenecks in <strong>Ethiopia 360</strong>, mastered the <strong>SQ3R Learning Sea</strong>, 
+            and mastered the <strong>BIM Automation Grand Line</strong>.
+          </p>
+          <button id="hakiBlastBtn" class="btn-game haki-btn">
+            <span>⚡ UNLEASH CONQUEROR'S HAKI</span>
           </button>
         </div>
+      </div>
+    </section>
 
-        <div class="footer-meta">
-          <p>© 2026 <strong>0xDagi</strong> // ARCHITECTED WITH CAFFEINE & OBSESSION</p>
-          <p class="quote-sub">Engineered to shock and impress.</p>
+    <!-- 05. WEAPONRY / ARSENAL -->
+    <section id="inventory" class="section inventory-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">⚔️ SHADOW INVENTORY</span>
+        <h2 class="title-huge">TECH <span class="accent-glow">INVENTORY</span></h2>
+        <p class="section-sub">Equipped gear and mastery levels.</p>
+      </div>
+
+      <div class="inventory-grid">
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">🐍</div>
+          <div class="inv-name">PYTHON</div>
+          <div class="inv-lvl">LVL 95</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">⚡</div>
+          <div class="inv-name">TYPESCRIPT</div>
+          <div class="inv-lvl">LVL 94</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">⚛️</div>
+          <div class="inv-name">NEXT.JS / REACT</div>
+          <div class="inv-lvl">LVL 93</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">🏛️</div>
+          <div class="inv-name">REVIT API</div>
+          <div class="inv-lvl">LVL 96</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">🔷</div>
+          <div class="inv-name">C# & .NET</div>
+          <div class="inv-lvl">LVL 90</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">🟢</div>
+          <div class="inv-name">NODE / EXPRESS</div>
+          <div class="inv-lvl">LVL 89</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">🗄️</div>
+          <div class="inv-name">POSTGRESQL</div>
+          <div class="inv-lvl">LVL 88</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">🐳</div>
+          <div class="inv-name">DOCKER</div>
+          <div class="inv-lvl">LVL 87</div>
+        </div>
+        <div class="inv-slot rank-s">
+          <div class="inv-icon">📐</div>
+          <div class="inv-name">AUTOCAD / DYNAMO</div>
+          <div class="inv-lvl">LVL 91</div>
         </div>
       </div>
     </section>
+
+    <!-- 06. LIVE HACKER TERMINAL -->
+    <section id="terminal" class="section terminal-section">
+      <div class="section-badge-bar">
+        <span class="section-tag">&gt;_ HUNTER CONSOLE</span>
+        <h2 class="title-huge">SYSTEM <span class="accent-glow">COMMAND</span></h2>
+      </div>
+
+      <div class="term-frame">
+        <div class="term-top">
+          <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+          <span>0xDagi@system-core:~</span>
+        </div>
+        <div class="term-output" id="termOutput">
+          <p>Type <span class="hl">help</span> to view available system commands.</p>
+          <p>Try: <span class="hl">quests</span>, <span class="hl">chess</span>, <span class="hl">haki</span>, <span class="hl">clear</span>.</p>
+        </div>
+        <div class="term-prompt-line">
+          <span class="prompt-sym">0xDagi&gt;</span>
+          <input type="text" id="termInput" autocomplete="off" placeholder="type a command..." />
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="game-footer">
+      <div class="footer-crest">♟️ 0xDagi // S-RANK ARCHITECT ⚡</div>
+      <p>Built with pure obsession, anime grit, and zero compromise.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/dagiyosi-pixel" target="_blank">GitHub</a>
+        <a href="https://ethiopia-360.vercel.app" target="_blank">Ethiopia 360</a>
+        <a href="mailto:dagiyosi5321@gmail.com">Contact</a>
+      </div>
+    </footer>
 
   </main>
 

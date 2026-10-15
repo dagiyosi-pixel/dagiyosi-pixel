@@ -1,9 +1,9 @@
 /* ==========================================================================
-   0xDagi // CYBER-KINETIC ENGINE JAVASCRIPT
+   0xDagi // S-RANK GAMIFIED ENGINE JAVASCRIPT
    ========================================================================== */
 
 // --- 1. Sound FX Engine (Synthesized Web Audio API) ---
-class CyberAudio {
+class GameAudio {
   constructor() {
     this.enabled = true;
     this.ctx = null;
@@ -18,11 +18,10 @@ class CyberAudio {
     }
   }
 
-  playBlip(freq = 600, duration = 0.04) {
+  playBlip(freq = 600, duration = 0.05) {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx) return;
-
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
@@ -37,56 +36,85 @@ class CyberAudio {
     } catch (e) {}
   }
 
-  playGlitch() {
+  playChessMove() {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx) return;
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(260, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.08);
+    } catch (e) {}
+  }
 
+  playVictory() {
+    if (!this.enabled) return;
+    this.init();
+    if (!this.ctx) return;
+    try {
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C E G C
+      notes.forEach((freq, idx) => {
+        setTimeout(() => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.25);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.25);
+        }, idx * 100);
+      });
+    } catch (e) {}
+  }
+
+  playHakiThunder() {
+    if (!this.enabled) return;
+    this.init();
+    if (!this.ctx) return;
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(220, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(80, this.ctx.currentTime + 0.1);
-      gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.1);
+      osc.frequency.setValueAtTime(120, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.4);
+      gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.1);
+      osc.stop(this.ctx.currentTime + 0.4);
     } catch (e) {}
   }
 }
 
-const sfx = new CyberAudio();
+const sfx = new GameAudio();
 
-// --- 2. Interactive Canvas Particle Background (Fire & Cyber Grid) ---
-const canvas = document.getElementById('bg-canvas');
+// --- 2. Dynamic Aura & Lightning Canvas ---
+const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
-
 let width, height;
 let particles = [];
-let mouse = { x: null, y: null, radius: 120 };
+let lightningBolts = [];
 
 function resizeCanvas() {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
 }
-
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-window.addEventListener('mousemove', (e) => {
-  mouse.x = e.x;
-  mouse.y = e.y;
-});
-
-window.addEventListener('mouseout', () => {
-  mouse.x = null;
-  mouse.y = null;
-});
-
-class Particle {
+class AuraParticle {
   constructor() {
     this.reset();
   }
@@ -94,49 +122,45 @@ class Particle {
   reset() {
     this.x = Math.random() * width;
     this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 1.2;
-    this.vy = -Math.random() * 1.5 - 0.5; // Upward fire embers
+    this.vx = (Math.random() - 0.5) * 1.5;
+    this.vy = -Math.random() * 1.2 - 0.3;
     this.size = Math.random() * 2.5 + 1;
-    this.life = Math.random() * 100 + 80;
+    this.life = Math.random() * 100 + 60;
     this.maxLife = this.life;
   }
 
-  update(theme) {
+  update() {
     this.x += this.vx;
     this.y += this.vy;
     this.life--;
-
-    // Mouse evasion / interaction
-    if (mouse.x && mouse.y) {
-      const dx = mouse.x - this.x;
-      const dy = mouse.y - this.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < mouse.radius) {
-        const force = (mouse.radius - dist) / mouse.radius;
-        this.x -= (dx / dist) * force * 5;
-        this.y -= (dy / dist) * force * 5;
-      }
-    }
-
-    if (this.life <= 0 || this.y < -10 || this.x < -10 || this.x > width + 10) {
+    if (this.life <= 0 || this.y < -10) {
       this.reset();
       this.y = height + 10;
     }
   }
 
-  draw(theme) {
-    const alpha = (this.life / this.maxLife) * 0.8;
+  draw(aura) {
+    const alpha = (this.life / this.maxLife) * 0.7;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 
-    if (theme === 'fire') {
-      ctx.fillStyle = `rgba(255, ${Math.floor(69 + (1 - alpha) * 100)}, 0, ${alpha})`;
+    if (aura === 'gear5') {
+      ctx.fillStyle = `rgba(245, 158, 11, ${alpha})`;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#f59e0b';
+    } else if (aura === 'scout') {
+      ctx.fillStyle = `rgba(16, 185, 129, ${alpha})`;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#10b981';
+    } else if (aura === 'chess') {
+      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
       ctx.shadowBlur = 8;
-      ctx.shadowColor = '#ff4500';
+      ctx.shadowColor = '#ffffff';
     } else {
-      ctx.fillStyle = `rgba(0, 255, 136, ${alpha})`;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = '#00ff88';
+      // Monarch
+      ctx.fillStyle = `rgba(168, 85, 247, ${alpha})`;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = '#8b5cf6';
     }
 
     ctx.fill();
@@ -144,298 +168,287 @@ class Particle {
   }
 }
 
-// Populate particles
-for (let i = 0; i < 90; i++) {
-  particles.push(new Particle());
+for (let i = 0; i < 75; i++) {
+  particles.push(new AuraParticle());
 }
 
-function animateParticles() {
-  const currentTheme = document.body.getAttribute('data-theme') || 'fire';
+function triggerLightning() {
+  const startX = Math.random() * width;
+  let currX = startX;
+  let currY = 0;
+  const segments = [];
+
+  while (currY < height) {
+    const nextX = currX + (Math.random() - 0.5) * 60;
+    const nextY = currY + Math.random() * 40 + 20;
+    segments.push({ x1: currX, y1: currY, x2: nextX, y2: nextY });
+    currX = nextX;
+    currY = nextY;
+  }
+
+  lightningBolts.push({ segments, opacity: 1 });
+}
+
+function animateCanvas() {
+  const currentAura = document.body.getAttribute('data-aura') || 'monarch';
   ctx.clearRect(0, 0, width, height);
 
-  // Render & connect particles within range
-  for (let i = 0; i < particles.length; i++) {
-    particles[i].update(currentTheme);
-    particles[i].draw(currentTheme);
+  // Render particles
+  particles.forEach((p) => {
+    p.update();
+    p.draw(currentAura);
+  });
 
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+  // Render lightning
+  for (let i = lightningBolts.length - 1; i >= 0; i--) {
+    const bolt = lightningBolts[i];
+    ctx.beginPath();
+    bolt.segments.forEach((seg) => {
+      ctx.moveTo(seg.x1, seg.y1);
+      ctx.lineTo(seg.x2, seg.y2);
+    });
 
-      if (dist < 90) {
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        const lineAlpha = (1 - dist / 90) * 0.18;
-        ctx.strokeStyle = currentTheme === 'fire' 
-          ? `rgba(255, 69, 0, ${lineAlpha})` 
-          : `rgba(0, 255, 136, ${lineAlpha})`;
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-      }
+    ctx.lineWidth = 2.5;
+    if (currentAura === 'gear5') {
+      ctx.strokeStyle = `rgba(239, 68, 68, ${bolt.opacity})`;
+      ctx.shadowColor = '#ef4444';
+    } else {
+      ctx.strokeStyle = `rgba(192, 132, 252, ${bolt.opacity})`;
+      ctx.shadowColor = '#a855f7';
+    }
+    ctx.shadowBlur = 15;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    bolt.opacity -= 0.05;
+    if (bolt.opacity <= 0) {
+      lightningBolts.splice(i, 1);
     }
   }
 
-  requestAnimationFrame(animateParticles);
+  // Occasional random lightning
+  if (Math.random() < 0.008) {
+    triggerLightning();
+  }
+
+  requestAnimationFrame(animateCanvas);
+}
+animateCanvas();
+
+// --- 3. Aura Switcher Buttons ---
+const auraButtons = document.querySelectorAll('.aura-btn');
+auraButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const aura = btn.getAttribute('data-aura');
+    document.body.setAttribute('data-aura', aura);
+    auraButtons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    sfx.playBlip(750, 0.08);
+    triggerLightning();
+  });
+});
+
+// Sound Toggle
+const soundToggle = document.getElementById('soundToggle');
+const soundIcon = document.getElementById('soundIcon');
+soundToggle.addEventListener('click', () => {
+  sfx.enabled = !sfx.enabled;
+  soundIcon.textContent = sfx.enabled ? '🔊' : '🔇';
+  if (sfx.enabled) sfx.playBlip(800, 0.06);
+});
+
+// Conqueror's Haki Blast Button
+const hakiBtn = document.getElementById('hakiBlastBtn');
+if (hakiBtn) {
+  hakiBtn.addEventListener('click', () => {
+    sfx.playHakiThunder();
+    for (let i = 0; i < 4; i++) {
+      setTimeout(triggerLightning, i * 80);
+    }
+    // Shake screen
+    document.body.style.transform = 'translate(2px, -2px)';
+    setTimeout(() => { document.body.style.transform = 'translate(-2px, 2px)'; }, 50);
+    setTimeout(() => { document.body.style.transform = 'translate(0, 0)'; }, 100);
+  });
 }
 
-animateParticles();
+// --- 4. PLAYABLE INTERACTIVE CHESS MINIGAME ---
+// Tactical Puzzle: Scholar's Mate / Queen checkmate
+// White: Queen on d1 (row 7, col 3), Bishop on c4 (row 4, col 2), King on e1 (row 7, col 4)
+// Black: King on e8 (row 0, col 4), Bishop on c5 (row 3, col 2), Knight on c6 (row 2, col 2), Pawn on f7 (row 1, col 5)
+// Checkmate move: White Queen moves to f7 (row 1, col 5) delivering CHECKMATE!
 
-// --- 3. Kinetic Typewriter Cycling ---
-const phrases = [
-  "FULL-STACK WEB ARCHITECT",
-  "PREFAB BIM AUTOMATION SPECIALIST",
-  "TURNING CAFFEINE INTO PRODUCTION CODE",
-  "HIGH-PERFORMANCE ALGORITHMIC SYSTEMS",
-  "MICROSERVICES // WEBSOCKETS // CAD PLUGINS"
+const initialBoard = [
+  ['', '', '', '', '♚', '', '', ''], // 0
+  ['♟', '♟', '♟', '♟', '', '♟', '♟', '♟'], // 1  (f7 is col 5)
+  ['', '', '♞', '', '', '', '', ''], // 2
+  ['', '', '♝', '', '', '', '', ''], // 3
+  ['', '', '♗', '', '', '', '', ''], // 4
+  ['', '', '', '', '', '', '', ''], // 5
+  ['♙', '♙', '♙', '♙', '', '♙', '♙', '♙'], // 6
+  ['♖', '', '', '♕', '♔', '', '♘', '♖']  // 7  (Queen is row 7, col 3)
 ];
 
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typewriterEl = document.getElementById('typewriter');
+let currentChess = JSON.parse(JSON.stringify(initialBoard));
+let selectedSquare = null;
+let puzzleSolved = false;
 
-function typeEffect() {
-  const currentPhrase = phrases[phraseIndex];
+const boardEl = document.getElementById('chessBoard');
+const msgEl = document.getElementById('chessMessage');
+const statusPill = document.getElementById('chessTurnStatus');
+const resetBtn = document.getElementById('resetChess');
+const hintBtn = document.getElementById('hintChess');
 
-  if (isDeleting) {
-    charIndex--;
-  } else {
-    charIndex++;
+function renderChess() {
+  boardEl.innerHTML = '';
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const sq = document.createElement('div');
+      const isLight = (r + c) % 2 === 0;
+      sq.className = `chess-square ${isLight ? 'light' : 'dark'}`;
+      sq.dataset.row = r;
+      sq.dataset.col = c;
+      sq.textContent = currentChess[r][c];
+
+      if (selectedSquare && selectedSquare.r === r && selectedSquare.c === c) {
+        sq.classList.add('selected');
+      }
+
+      if (selectedSquare && selectedSquare.r === 7 && selectedSquare.c === 3 && r === 1 && c === 5) {
+        sq.classList.add('target-checkmate');
+      }
+
+      sq.addEventListener('click', () => handleSquareClick(r, c));
+      boardEl.appendChild(sq);
+    }
   }
-
-  typewriterEl.textContent = currentPhrase.substring(0, charIndex);
-
-  let speed = isDeleting ? 40 : 80;
-
-  if (!isDeleting && charIndex === currentPhrase.length) {
-    speed = 1800; // Pause at end of phrase
-    isDeleting = true;
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-    speed = 400;
-  }
-
-  setTimeout(typeEffect, speed);
 }
 
-typeEffect();
+function handleSquareClick(r, c) {
+  if (puzzleSolved) return;
 
-// --- 4. Interactive Hacker Terminal ---
-const termBody = document.getElementById('term-body');
-const termInput = document.getElementById('term-input');
-const chipButtons = document.querySelectorAll('.chip-btn');
+  const piece = currentChess[r][c];
 
-const terminalCommands = {
-  help: `AVAILABLE COMMANDS:
-  • skills    : List primary tech stack weapons
-  • projects  : Inspect mission battlegrounds
-  • whoami    : Print developer profile & origin
-  • fire      : Switch interface to Fire Theme
-  • matrix    : Switch interface to Matrix Theme
-  • contact   : Get uplink coordinates
-  • clear     : Purge terminal display
-  • sudo      : Execute administrative override`,
+  // If clicking on White Queen
+  if (r === 7 && c === 3 && currentChess[r][c] === '♕') {
+    selectedSquare = { r, c };
+    sfx.playBlip(550, 0.04);
+    msgEl.innerHTML = `<span style="color:#fbbf24;">♕ Queen Selected!</span> Now click on Black's pawn at <strong>f7</strong> to deliver Checkmate!`;
+    renderChess();
+    return;
+  }
 
-  skills: `⚡ 0xDagi PRIMARY ARSENAL:
-  [LANGUAGES]    Python (95%), TypeScript (94%), C#/.NET (90%), SQL, HTML5/CSS3
-  [FULL-STACK]   React, Next.js, Node.js, Express, FastAPI, Django
-  [BIM & CAD]    Revit API, Dynamo, AutoCAD, Algorithmic Geometry
-  [DEVOPS & DB]  Docker, Linux, PostgreSQL, Redis, MongoDB, GitHub Actions`,
+  // If Queen is selected and player clicks f7 (row 1, col 5)
+  if (selectedSquare && selectedSquare.r === 7 && selectedSquare.c === 3) {
+    if (r === 1 && c === 5) {
+      // DELIVER CHECKMATE!
+      currentChess[7][3] = '';
+      currentChess[1][5] = '♕';
+      puzzleSolved = true;
+      selectedSquare = null;
+      renderChess();
 
-  projects: `🚀 RECENT BATTLEGROUNDS:
-  #01 RevitCopilot & Automation Bridge (C#, Revit API, Python)
-  #02 Nexus Cloud Architect Dashboard (Next.js, TypeScript, Postgres)
-  #03 Prefab Hollow-Core Generator (Python, Dynamo, Structural Math)
-  Run 'contact' to collaborate on next-gen builds.`,
+      sfx.playVictory();
+      statusPill.textContent = 'CHECKMATE!';
+      statusPill.style.background = '#ef4444';
+      statusPill.style.color = '#fff';
 
-  whoami: `👤 OPERATIVE IDENTITY:
-  Name      : Dagi Yosi (0xDagi)
-  Role      : Full-Stack Engineer & BIM Automation Architect
-  Location  : Addis Ababa, Ethiopia → Global Cyberspace
-  Philosophy: "Never compromise on speed, reliability, or design aesthetics."`,
+      msgEl.innerHTML = `🏆 <strong style="color:#22c55e;">CHECKMATE! PUZZLE COMPLETED!</strong><br/>
+      <span style="color:#c084fc;">[ +10,000 EXP GAINED // S-RANK HUNTER PASS GRANTED ]</span>`;
+      return;
+    } else {
+      // Invalid move
+      sfx.playBlip(200, 0.1);
+      msgEl.textContent = "That move does not deliver checkmate! Queen must strike f7!";
+      selectedSquare = null;
+      renderChess();
+      return;
+    }
+  }
 
-  contact: `📡 TRANSMISSION UPLINK:
-  GitHub : https://github.com/dagiyosi-pixel
-  Email  : dagiyosi5321@gmail.com
-  Status : OPEN FOR CONTRACTS & ELITE ENGINEERING ROLES`,
+  selectedSquare = null;
+  renderChess();
+}
 
-  fire: () => {
-    setTheme('fire');
-    return '🔥 SYSTEM STATUS: FIRE THEME ACTIVATED.';
+resetBtn.addEventListener('click', () => {
+  currentChess = JSON.parse(JSON.stringify(initialBoard));
+  selectedSquare = null;
+  puzzleSolved = false;
+  statusPill.textContent = 'WHITE TO MOVE';
+  statusPill.style.background = '#22c55e';
+  statusPill.style.color = '#000';
+  msgEl.textContent = "Click White Queen (♕ on d1) then click Black Pawn (f7) to deliver Checkmate!";
+  sfx.playChessMove();
+  renderChess();
+});
+
+hintBtn.addEventListener('click', () => {
+  sfx.playBlip(700, 0.05);
+  selectedSquare = { r: 7, c: 3 };
+  msgEl.innerHTML = `💡 <strong>HINT:</strong> Queen on d1 can jump straight to <strong>f7</strong>. Bishop on c4 protects her!`;
+  renderChess();
+});
+
+renderChess();
+
+// --- 5. Terminal Console ---
+const termOutput = document.getElementById('termOutput');
+const termInput = document.getElementById('termInput');
+
+const termCmds = {
+  help: `COMMAND PROTOCOL:
+  • quests   : List all 4 production projects
+  • chess    : Read Grandmaster strategy
+  • haki     : Unleash Conqueror's Haki shockwave
+  • skills   : Inspect inventory stats
+  • clear    : Reset console screen`,
+
+  quests: `⚔️ PRODUCTION QUESTS (PROJECTS):
+  1. ETHIOPIA // 360  -> https://ethiopia-360.vercel.app
+  2. ETHIOPIA SQ3R   -> Grade 7/8 Active Recall EdTech
+  3. AMT EXAM APP    -> Aviation Mechanics Timed Testing
+  4. REVITCOPILOT    -> Precast BIM & Structural Engine`,
+
+  chess: `♔ Chess Rule #1: In code, as in chess, never make a move without considering the opponent's counter.`,
+
+  haki: () => {
+    if (hakiBtn) hakiBtn.click();
+    return "⚡ CONQUEROR'S HAKI SHOCKWAVE DISCHARGED!";
   },
 
-  matrix: () => {
-    setTheme('matrix');
-    return '👾 SYSTEM STATUS: CYBER MATRIX PROTOCOL ENGAGED.';
-  },
+  skills: `LVL 99 Code Monarch: Python, TypeScript, React, Next.js, Revit API, C#, Docker.`,
 
   clear: () => {
-    termBody.innerHTML = '';
+    termOutput.innerHTML = '';
     return '';
-  },
-
-  sudo: `[SECURITY ALERT] User 'guest' is not in the sudoers file. This incident will be reported to 0xDagi.`
+  }
 };
-
-function executeCommand(rawCmd) {
-  const cmd = rawCmd.trim().toLowerCase();
-  if (!cmd) return;
-
-  sfx.playBlip(750, 0.05);
-
-  const row = document.createElement('div');
-  row.className = 'term-row';
-
-  const cmdLine = document.createElement('div');
-  cmdLine.innerHTML = `<span class="term-prompt">0xDagi@root:~$</span> <span class="term-cmd">${rawCmd}</span>`;
-  row.appendChild(cmdLine);
-
-  let outputText = '';
-  if (terminalCommands[cmd]) {
-    if (typeof terminalCommands[cmd] === 'function') {
-      outputText = terminalCommands[cmd]();
-    } else {
-      outputText = terminalCommands[cmd];
-    }
-  } else {
-    outputText = `command not found: ${cmd}. Type 'help' for available directives.`;
-  }
-
-  if (outputText) {
-    const outDiv = document.createElement('div');
-    outDiv.className = 'term-output';
-    outDiv.textContent = outputText;
-    row.appendChild(outDiv);
-  }
-
-  termBody.appendChild(row);
-  termBody.scrollTop = termBody.scrollHeight;
-}
 
 termInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
-    const val = termInput.value;
+    const cmd = termInput.value.trim().toLowerCase();
     termInput.value = '';
-    executeCommand(val);
-  }
-});
+    if (!cmd) return;
 
-chipButtons.forEach((chip) => {
-  chip.addEventListener('click', () => {
-    const cmd = chip.getAttribute('data-cmd');
-    executeCommand(cmd);
-  });
-});
+    sfx.playBlip(650, 0.04);
+    const p = document.createElement('p');
+    p.innerHTML = `<span class="prompt-sym">0xDagi&gt;</span> ${cmd}`;
+    termOutput.appendChild(p);
 
-// --- 5. Arsenal Tabs Filtering ---
-const tabButtons = document.querySelectorAll('.tab-btn');
-const weaponCards = document.querySelectorAll('.weapon-card');
-
-tabButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    sfx.playBlip(550, 0.03);
-    tabButtons.forEach((b) => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.getAttribute('data-filter');
-
-    weaponCards.forEach((card) => {
-      const cats = card.getAttribute('data-cat') || '';
-      if (filter === 'all' || cats.includes(filter)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
-});
-
-// --- 6. Theme Switching ---
-const modeToggle = document.getElementById('mode-toggle');
-
-function setTheme(theme) {
-  document.body.setAttribute('data-theme', theme);
-  const btnText = modeToggle.querySelector('.btn-text');
-  const btnIcon = modeToggle.querySelector('.btn-icon');
-
-  if (theme === 'fire') {
-    btnText.textContent = 'MODE: FIRE';
-    btnIcon.textContent = '🔥';
-  } else {
-    btnText.textContent = 'MODE: MATRIX';
-    btnIcon.textContent = '👾';
-  }
-  sfx.playGlitch();
-}
-
-modeToggle.addEventListener('click', () => {
-  const current = document.body.getAttribute('data-theme') || 'fire';
-  const next = current === 'fire' ? 'matrix' : 'fire';
-  setTheme(next);
-});
-
-// --- 7. Audio Toggle ---
-const sfxToggle = document.getElementById('sfx-toggle');
-sfxToggle.addEventListener('click', () => {
-  sfx.enabled = !sfx.enabled;
-  const status = sfxToggle.querySelector('.sfx-status');
-  const icon = sfxToggle.querySelector('.sfx-icon');
-  if (sfx.enabled) {
-    status.textContent = 'SFX: ON';
-    icon.textContent = '🔊';
-    sfx.playBlip(800, 0.06);
-  } else {
-    status.textContent = 'SFX: OFF';
-    icon.textContent = '🔇';
-  }
-});
-
-// --- 8. Copy Email ---
-const copyBtn = document.getElementById('copy-email');
-if (copyBtn) {
-  copyBtn.addEventListener('click', () => {
-    const email = copyBtn.getAttribute('data-email');
-    navigator.clipboard.writeText(email).then(() => {
-      sfx.playBlip(1000, 0.08);
-      const hint = copyBtn.querySelector('.copy-hint');
-      hint.textContent = '[COPIED TO CLIPBOARD!]';
-      hint.style.color = '#00ff88';
-      setTimeout(() => {
-        hint.textContent = '[CLICK TO COPY]';
-        hint.style.color = '';
-      }, 2500);
-    });
-  });
-}
-
-// --- 9. Stat Counter Animation ---
-function animateStats() {
-  const statVals = document.querySelectorAll('.stat-val[data-target]');
-  statVals.forEach((el) => {
-    const target = parseFloat(el.getAttribute('data-target'));
-    const isFloat = target % 1 !== 0;
-    let current = 0;
-    const duration = 1500;
-    const start = performance.now();
-
-    function step(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      current = progress * target;
-      if (isFloat) {
-        el.textContent = current.toFixed(1) + '%';
-      } else {
-        el.textContent = Math.floor(current) + '+';
-      }
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
+    let res = '';
+    if (termCmds[cmd]) {
+      res = typeof termCmds[cmd] === 'function' ? termCmds[cmd]() : termCmds[cmd];
+    } else {
+      res = `Directive not found: '${cmd}'. Type 'help' for available commands.`;
     }
 
-    requestAnimationFrame(step);
-  });
-}
+    if (res) {
+      const respP = document.createElement('p');
+      respP.style.color = '#c084fc';
+      respP.textContent = res;
+      termOutput.appendChild(respP);
+    }
 
-window.addEventListener('DOMContentLoaded', animateStats);
+    termOutput.scrollTop = termOutput.scrollHeight;
+  }
+});
