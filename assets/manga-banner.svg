@@ -1,109 +1,135 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
   <defs>
-    <!-- Blueprint Gradient Background -->
-    <linearGradient id="bpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E5F4FF" />
-      <stop offset="45%" stop-color="#F7FBFF" />
-      <stop offset="100%" stop-color="#E5F4FF" />
+    <!-- Dark Ink Gradient Background -->
+    <linearGradient id="inkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090B" />
+      <stop offset="45%" stop-color="#14212D" />
+      <stop offset="100%" stop-color="#09090B" />
     </linearGradient>
 
-    <!-- Azure Accent Gradient -->
-    <linearGradient id="azureGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- Comic Crimson Gradient -->
+    <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF2233" />
+      <stop offset="60%" stop-color="#FF4455" />
+      <stop offset="100%" stop-color="#FFAA00" />
+    </linearGradient>
+
+    <!-- Azure Cyan Glow -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#173C5B" />
-      <stop offset="60%" stop-color="#399DD6" />
+      <stop offset="50%" stop-color="#399DD6" />
       <stop offset="100%" stop-color="#8CCDF2" />
     </linearGradient>
 
-    <!-- Warm Gold Gradient -->
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#D49A32" />
-      <stop offset="100%" stop-color="#E5A93C" />
-    </linearGradient>
-
-    <!-- Blueprint Grid Pattern -->
-    <pattern id="bpGridMajor" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C9E9FC" stroke-width="1.2" />
-      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#C9E9FC" stroke-width="0.5" stroke-dasharray="2,2" />
+    <!-- Manga Screentone Dot Matrix Pattern -->
+    <pattern id="mangaDots" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="1.5" fill="#399DD6" opacity="0.25" />
     </pattern>
 
-    <!-- Subtle Dot Pattern -->
-    <pattern id="dotPattern" width="16" height="16" patternUnits="userSpaceOnUse">
-      <circle cx="8" cy="8" r="1.2" fill="#8CCDF2" opacity="0.6" />
+    <!-- Red Crosshatch Pattern -->
+    <pattern id="redHatch" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#FF2233" stroke-width="1.2" opacity="0.3" />
     </pattern>
   </defs>
 
-  <!-- Background Base -->
-  <rect width="1200" height="360" fill="url(#bpGrad)" />
-  <rect width="1200" height="360" fill="url(#bpGridMajor)" />
-  <rect width="1200" height="360" fill="url(#dotPattern)" />
+  <!-- Base Ink Background -->
+  <rect width="1200" height="420" fill="url(#inkGrad)" />
+  <rect width="1200" height="420" fill="url(#mangaDots)" />
+  <rect x="0" y="240" width="1200" height="180" fill="url(#redHatch)" opacity="0.4" />
 
-  <!-- Architectural Crosshair Coordinate Ticks -->
-  <g stroke="#399DD6" stroke-width="1.2">
-    <line x1="40" y1="30" x2="40" y2="50" /><line x1="30" y1="40" x2="50" y2="40" />
-    <line x1="1160" y1="30" x2="1160" y2="50" /><line x1="1150" y1="40" x2="1170" y2="40" />
-    <line x1="40" y1="310" x2="40" y2="330" /><line x1="30" y1="320" x2="50" y2="320" />
-    <line x1="1160" y1="310" x2="1160" y2="330" /><line x1="1150" y1="320" x2="1170" y2="320" />
+  <!-- Outer Manga Panel Border -->
+  <rect x="12" y="12" width="1176" height="396" fill="none" stroke="#FF2233" stroke-width="4" rx="4" />
+  <rect x="20" y="20" width="1160" height="380" fill="none" stroke="#173C5B" stroke-width="2" />
+
+  <!-- ==================== RADIANT RED PERSPECTIVE RAYS (VANISHING TOWARD CENTER APEX) ==================== -->
+  <g stroke="#FF2233" stroke-width="1.8" opacity="0.85">
+    <!-- Focal Apex: (600, 70) -->
+    <line x1="600" y1="70" x2="60" y2="420" />
+    <line x1="600" y1="70" x2="180" y2="420" />
+    <line x1="600" y1="70" x2="300" y2="420" />
+    <line x1="600" y1="70" x2="420" y2="420" />
+    <line x1="600" y1="70" x2="540" y2="420" />
+    <line x1="600" y1="70" x2="660" y2="420" />
+    <line x1="600" y1="70" x2="780" y2="420" />
+    <line x1="600" y1="70" x2="900" y2="420" />
+    <line x1="600" y1="70" x2="1020" y2="420" />
+    <line x1="600" y1="70" x2="1140" y2="420" />
   </g>
 
-  <!-- Watermark Hanja / Kanji: 設計 (Design / Architecture) -->
-  <text x="960" y="270" font-family="'Noto Sans JP', 'Segoe UI', sans-serif" font-weight="900" font-size="220" fill="#399DD6" opacity="0.06" text-anchor="middle">設計</text>
-
-  <!-- Left Blueprint Banner Spine -->
-  <polygon points="0,0 36,0 18,360 0,360" fill="#173C5B" />
-  <polygon points="40,0 44,0 26,360 22,360" fill="#399DD6" />
-
-  <!-- Top Technical Badges -->
-  <rect x="70" y="38" width="190" height="26" fill="#173C5B" rx="3" />
-  <text x="165" y="55" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">0xDAGI // BLUEPRINT</text>
-
-  <rect x="270" y="38" width="190" height="26" fill="#FFFFFF" stroke="#173C5B" stroke-width="1.5" rx="3" />
-  <text x="365" y="55" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#173C5B" text-anchor="middle" letter-spacing="1">PROJECT: ESTATE DEVELOPER</text>
-
-  <rect x="470" y="38" width="130" height="26" fill="url(#goldGrad)" rx="3" />
-  <text x="535" y="55" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#173C5B" text-anchor="middle" letter-spacing="1">VERIFIED ARCH</text>
-
-  <!-- Main Headline Typography -->
-  <text x="70" y="148" font-family="'Arial Black', Impact, sans-serif" font-weight="900" font-size="76" fill="#173C5B" letter-spacing="1">
-    DAGMAWI <tspan fill="#399DD6">YOSEF</tspan>
-  </text>
-
-  <!-- Manhwa Onomatopoeia & Alias -->
-  <text x="680" y="146" font-family="'Noto Sans JP', sans-serif" font-weight="900" font-size="38" fill="#399DD6" letter-spacing="2">
-    ダギ
-  </text>
-  <text x="760" y="146" font-family="'Courier New', monospace" font-weight="bold" font-size="28" fill="#E5A93C">
-    [0xDAGI]
-  </text>
-
-  <!-- Subtitle Strip -->
-  <text x="72" y="194" font-family="'Courier New', monospace" font-weight="bold" font-size="18" fill="#173C5B" letter-spacing="2.5">
-    ARCHITECTURAL MANHWA <tspan fill="#399DD6">•</tspan> PRECAST BIM <tspan fill="#399DD6">•</tspan> CREATIVE 3D WEBGL
-  </text>
-
-  <!-- Creed Quote -->
-  <text x="72" y="234" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="500" fill="#334155" letter-spacing="0.4">
-    "Building ideas beyond the blueprint. Where drawings become structures and structures become interactive software."
-  </text>
-  <text x="72" y="258" font-family="'Courier New', monospace" font-size="13" fill="#399DD6" font-weight="bold">
-    &gt; "First make it work, then make it right, then make it fast."
-  </text>
-
-  <!-- Bottom Technical Pills -->
-  <g transform="translate(70, 288)">
-    <rect x="0" y="0" width="180" height="32" fill="#FFFFFF" stroke="#173C5B" stroke-width="1.5" rx="4" />
-    <circle cx="16" cy="16" r="4" fill="#399DD6" />
-    <text x="30" y="21" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#173C5B">REVIT API &amp; PRECAST</text>
-
-    <rect x="195" y="0" width="170" height="32" fill="#FFFFFF" stroke="#173C5B" stroke-width="1.5" rx="4" />
-    <circle cx="211" cy="16" r="4" fill="#E5A93C" />
-    <text x="225" y="21" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#173C5B">STRUCTURAL LAB</text>
-
-    <rect x="380" y="0" width="185" height="32" fill="#FFFFFF" stroke="#173C5B" stroke-width="1.5" rx="4" />
-    <circle cx="396" cy="16" r="4" fill="#22c55e" />
-    <text x="410" y="21" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#173C5B">THREE.JS &amp; SHADERS</text>
+  <!-- Cyan Cross Vectors -->
+  <g stroke="#399DD6" stroke-width="1.2" opacity="0.5">
+    <line x1="600" y1="70" x2="0" y2="210" />
+    <line x1="600" y1="70" x2="1200" y2="210" />
+    <line x1="600" y1="70" x2="0" y2="330" />
+    <line x1="600" y1="70" x2="1200" y2="330" />
   </g>
 
-  <!-- Outer Architectural Drawing Border -->
-  <rect x="6" y="6" width="1188" height="348" fill="none" stroke="#173C5B" stroke-width="2.5" />
-  <rect x="12" y="12" width="1176" height="336" fill="none" stroke="#399DD6" stroke-width="1" stroke-dasharray="8,4" />
+  <!-- Celestial Wireframe Dome Rings at Apex -->
+  <g fill="none" stroke="#FF2233" stroke-width="1.5" opacity="0.7">
+    <circle cx="600" cy="70" r="45" stroke-dasharray="4,3" />
+    <circle cx="600" cy="70" r="90" stroke-dasharray="6,4" />
+    <circle cx="600" cy="70" r="140" stroke-dasharray="8,5" />
+    <ellipse cx="600" cy="70" rx="140" ry="40" stroke="#399DD6" />
+    <ellipse cx="600" cy="70" rx="140" ry="75" stroke="#399DD6" />
+  </g>
+
+  <!-- Grand Perspective Monolithic Staircase (Centered) -->
+  <g fill="#14212D" stroke="#FFFFFF" stroke-width="1.5">
+    <!-- Step 1 to 6 in perspective -->
+    <polygon points="560,160 640,160 655,175 545,175" fill="#173C5B" />
+    <polygon points="545,175 655,175 675,195 525,195" fill="#14212D" stroke="#FF2233" />
+    <polygon points="525,195 675,195 700,220 500,220" fill="#173C5B" />
+    <polygon points="500,220 700,220 735,250 465,250" fill="#14212D" stroke="#FF2233" />
+    <polygon points="465,250 735,250 775,285 425,285" fill="#173C5B" />
+    <polygon points="425,285 775,285 825,325 375,325" fill="#14212D" stroke="#FFFFFF" stroke-width="2" />
+    <polygon points="375,325 825,325 885,370 315,370" fill="#09090B" stroke="#FF2233" stroke-width="2.5" />
+    <polygon points="315,370 885,370 950,420 250,420" fill="#14212D" stroke="#FFFFFF" stroke-width="3" />
+  </g>
+
+  <!-- Japanese SFX Kanji Watermarks -->
+  <text x="140" y="140" font-family="'Noto Sans JP', 'Segoe UI', sans-serif" font-weight="900" font-size="64" fill="#FF2233" opacity="0.85" transform="rotate(-8 140 140)">ドーン!</text>
+  <text x="1050" y="160" font-family="'Noto Sans JP', 'Segoe UI', sans-serif" font-weight="900" font-size="54" fill="#399DD6" opacity="0.75" transform="rotate(6 1050 160)">ゴゴゴゴ</text>
+
+  <!-- Diagonal Comic Slashes Across Corners -->
+  <polygon points="12,12 180,12 12,180" fill="#FF2233" opacity="0.8" />
+  <text x="45" y="55" font-family="'Courier New', monospace" font-weight="900" font-size="13" fill="#FFFFFF" transform="rotate(-45 45 55)">0xDAGI // MANHWA</text>
+
+  <polygon points="1188,408 1020,408 1188,240" fill="#399DD6" opacity="0.6" />
+
+  <!-- ==================== HEADER BRANDING TYPOGRAPHY ==================== -->
+  <!-- Top Technical Identification Strip -->
+  <g transform="translate(60, 48)">
+    <rect x="0" y="0" width="220" height="28" fill="#FF2233" rx="3" />
+    <text x="110" y="19" font-family="'Courier New', monospace" font-weight="900" font-size="12" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">DAGMAWI YOSEF</text>
+
+    <rect x="232" y="0" width="260" height="28" fill="#14212D" stroke="#399DD6" stroke-width="2" rx="3" />
+    <text x="362" y="19" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#8CCDF2" text-anchor="middle" letter-spacing="1">PROJECT: THE BLUEPRINT UNIVERSE</text>
+  </g>
+
+  <!-- Giant Heroic Title -->
+  <text x="60" y="135" font-family="'Anton', 'Arial Black', sans-serif" font-size="78" fill="#FFFFFF" letter-spacing="2">THE BLUEPRINT UNIVERSE</text>
+  <text x="60" y="185" font-family="'Anton', 'Arial Black', sans-serif" font-size="34" fill="#FF2233" letter-spacing="1">ARCHITECTURAL MANHWA × COMPUTATIONAL PRECAST × CREATIVE 3D</text>
+
+  <!-- Technical Subtitle Ribbon -->
+  <g transform="translate(60, 205)">
+    <rect x="0" y="0" width="620" height="32" fill="#09090B" stroke="#FF2233" stroke-width="2" rx="3" />
+    <text x="18" y="21" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#F7FBFF">
+      &gt; REVIT API TRANSACTIONS • HOLLOW-CORE HC-250 • GLSL SHADERS • THREE.JS
+    </text>
+  </g>
+
+  <!-- Bottom Technical Badges Bar -->
+  <g transform="translate(60, 365)" font-family="'Courier New', monospace" font-size="11" font-weight="bold">
+    <rect x="0" y="0" width="165" height="26" fill="#173C5B" stroke="#399DD6" rx="3" />
+    <text x="82" y="18" fill="#FFFFFF" text-anchor="middle">🏛️ PRECAST BIM</text>
+
+    <rect x="175" y="0" width="195" height="26" fill="#173C5B" stroke="#399DD6" rx="3" />
+    <text x="272" y="18" fill="#FFFFFF" text-anchor="middle">📐 STRUCTURAL SOLVERS</text>
+
+    <rect x="380" y="0" width="180" height="26" fill="#173C5B" stroke="#399DD6" rx="3" />
+    <text x="470" y="18" fill="#FFFFFF" text-anchor="middle">🌊 GLSL SHADER LAB</text>
+
+    <rect x="570" y="0" width="160" height="26" fill="#FF2233" rx="3" />
+    <text x="650" y="18" fill="#FFFFFF" text-anchor="middle">⚡ LIVE 3D ENGINE</text>
+  </g>
 </svg>
