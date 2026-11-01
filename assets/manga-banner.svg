@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
+  <defs>
+    <!-- Dark Ink Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="40%" stop-color="#09090b" />
+      <stop offset="100%" stop-color="#121217" />
+    </linearGradient>
+
+    <!-- Crimson Slash Gradient -->
+    <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff1a2a" />
+      <stop offset="50%" stop-color="#ff2233" />
+      <stop offset="100%" stop-color="#ff5533" />
+    </linearGradient>
+
+    <!-- Screentone Dot Pattern -->
+    <pattern id="screentone" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="1.5" fill="#27272a" opacity="0.6" />
+    </pattern>
+
+    <!-- Speedline Hatch Pattern -->
+    <pattern id="hatch" width="20" height="20" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="#ff2233" stroke-width="1" opacity="0.15" />
+    </pattern>
+
+    <!-- Glow Filter -->
+    <filter id="crimsonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="360" fill="url(#bgGrad)" />
+
+  <!-- Manga Screentone Texture -->
+  <rect width="1200" height="360" fill="url(#screentone)" />
+  <rect width="1200" height="360" fill="url(#hatch)" />
+
+  <!-- Speedlines Fan (Right side) -->
+  <g stroke="#ffffff" opacity="0.04" stroke-width="1">
+    <line x1="1200" y1="0" x2="600" y2="180" />
+    <line x1="1200" y1="60" x2="600" y2="180" />
+    <line x1="1200" y1="120" x2="600" y2="180" />
+    <line x1="1200" y1="180" x2="600" y2="180" />
+    <line x1="1200" y1="240" x2="600" y2="180" />
+    <line x1="1200" y1="300" x2="600" y2="180" />
+    <line x1="1200" y1="360" x2="600" y2="180" />
+  </g>
+
+  <!-- Background Japanese Watermark Kanji -->
+  <text x="880" y="270" font-family="'Noto Sans JP', 'Segoe UI', sans-serif" font-weight="900" font-size="210" fill="#ffffff" opacity="0.03" text-anchor="middle" select-none="true">創造</text>
+
+  <!-- Left Accent Blade Slash -->
+  <polygon points="0,0 48,0 24,360 0,360" fill="url(#crimsonGrad)" />
+  <polygon points="54,0 58,0 38,360 34,360" fill="#ffffff" opacity="0.4" />
+
+  <!-- Top Brutalist Tag -->
+  <rect x="70" y="38" width="160" height="26" fill="#ff2233" />
+  <text x="150" y="55" font-family="'Courier New', monospace" font-weight="bold" font-size="12" fill="#ffffff" text-anchor="middle" letter-spacing="2">0xDAGI // SYSTEM</text>
+
+  <rect x="238" y="38" width="130" height="26" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+  <text x="303" y="55" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#a1a1aa" text-anchor="middle" letter-spacing="1">VER. 2026.11</text>
+
+  <!-- Main Headline Typography -->
+  <text x="70" y="150" font-family="'Arial Black', Impact, sans-serif" font-weight="900" font-size="82" fill="#f4f4f5" letter-spacing="1">
+    DAGI<tspan fill="#ff2233">YOSI</tspan>
+  </text>
+
+  <!-- Japanese SFX Accent -->
+  <text x="540" y="148" font-family="'Noto Sans JP', 'Segoe UI', sans-serif" font-weight="900" font-size="44" fill="#ff2233" letter-spacing="4">
+    ダギ
+  </text>
+  <text x="660" y="148" font-family="'Noto Sans JP', 'Segoe UI', sans-serif" font-weight="900" font-size="32" fill="#ffffff" opacity="0.3" letter-spacing="2">
+    ドーン!
+  </text>
+
+  <!-- Subtitle Strip -->
+  <text x="72" y="196" font-family="'Courier New', monospace" font-weight="bold" font-size="19" fill="#e4e4e7" letter-spacing="3">
+    CREATIVE 3D CODER <tspan fill="#ff2233">•</tspan> FULL-STACK ARCHITECT <tspan fill="#ff2233">•</tspan> BIM SYSTEMS
+  </text>
+
+  <!-- Descriptive Creed -->
+  <text x="72" y="238" font-family="'Segoe UI', -apple-system, sans-serif" font-size="14" fill="#a1a1aa" letter-spacing="0.5">
+    Crafting high-contrast WebGL experiences, hardened APIs, and algorithmic spatial automations.
+  </text>
+  <text x="72" y="260" font-family="'Courier New', monospace" font-size="13" fill="#ff2233" font-weight="bold">
+    &gt; "First make it work, then make it right, then make it fast."
+  </text>
+
+  <!-- Bottom Interactive Status Row -->
+  <g transform="translate(70, 292)">
+    <!-- Pill 1 -->
+    <rect x="0" y="0" width="180" height="30" fill="#18181b" stroke="#ff2233" stroke-width="1.5" rx="3" />
+    <circle cx="16" cy="15" r="4" fill="#ff2233" />
+    <text x="30" y="20" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#f4f4f5">WEBGL // THREE.JS</text>
+
+    <!-- Pill 2 -->
+    <rect x="195" y="0" width="160" height="30" fill="#18181b" stroke="#3f3f46" stroke-width="1" rx="3" />
+    <circle cx="211" cy="15" r="4" fill="#22c55e" />
+    <text x="225" y="20" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#f4f4f5">PYTHON &amp; APIS</text>
+
+    <!-- Pill 3 -->
+    <rect x="370" y="0" width="185" height="30" fill="#18181b" stroke="#3f3f46" stroke-width="1" rx="3" />
+    <circle cx="386" cy="15" r="4" fill="#38bdf8" />
+    <text x="400" y="20" font-family="'Courier New', monospace" font-weight="bold" font-size="11" fill="#f4f4f5">BIM &amp; REVIT API</text>
+  </g>
+
+  <!-- Corner Border Accents -->
+  <line x1="6" y1="6" x2="40" y2="6" stroke="#ff2233" stroke-width="3" />
+  <line x1="6" y1="6" x2="6" y2="40" stroke="#ff2233" stroke-width="3" />
+  
+  <line x1="1194" y1="6" x2="1160" y2="6" stroke="#ff2233" stroke-width="3" />
+  <line x1="1194" y1="6" x2="1194" y2="40" stroke="#ff2233" stroke-width="3" />
+
+  <line x1="1194" y1="354" x2="1160" y2="354" stroke="#ff2233" stroke-width="3" />
+  <line x1="1194" y1="354" x2="1194" y2="320" stroke="#ff2233" stroke-width="3" />
+
+  <line x1="6" y1="354" x2="40" y2="354" stroke="#ff2233" stroke-width="3" />
+  <line x1="6" y1="354" x2="6" y2="320" stroke="#ff2233" stroke-width="3" />
+
+  <!-- Outer Frame -->
+  <rect x="3" y="3" width="1194" height="354" fill="none" stroke="#27272a" stroke-width="2" />
+</svg>
