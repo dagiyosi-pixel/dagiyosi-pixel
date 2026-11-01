@@ -1,127 +1,126 @@
 <div align="center">
 
-  <!-- ==================== MANGA-NOIR HERO BANNER ==================== -->
-  <img src="./assets/manga-banner.svg" alt="0xDagi // DAGIYOSI Manga Banner" width="100%" />
+  <!-- ==================== THE BLUEPRINT UNIVERSE HERO BANNER ==================== -->
+  <img src="./assets/manga-banner.svg" alt="Dagmawi Yosef (0xDagi) The Blueprint Universe Banner" width="100%" />
 
   <br/><br/>
 
-  <!-- ==================== THE 3D WEBGL EXPERIENCE CALL-TO-ACTION ==================== -->
+  <!-- ==================== THE 3D BLUEPRINT CONSTRUCTOR CALL-TO-ACTION ==================== -->
   <a href="https://dagiyosi-pixel.github.io">
-    <img src="https://img.shields.io/badge/▶_LAUNCH_3D_MANGA_EXPERIENCE-ENTER_THE_EXPERIENCE-ff2233?style=for-the-badge&logo=three.js&logoColor=white" height="42" alt="Launch 3D WebGL Portfolio" />
+    <img src="https://img.shields.io/badge/▶_ENTER_THE_BLUEPRINT_UNIVERSE-3D_INTERACTIVE_CONSTRUCTOR-173C5B?style=for-the-badge&logo=three.js&logoColor=399DD6" height="42" alt="Launch 3D Blueprint Universe" />
   </a>
 
   <br/><br/>
 
   <!-- ==================== ANIMATED TERMINAL TYPING SVG ==================== -->
   <a href="https://dagiyosi-pixel.github.io">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=3000&pause=900&color=FF2233&center=true&vCenter=true&multiline=true&repeat=true&width=860&height=110&lines=%E2%9A%A1+Bridging+creative+code%2C+hardened+APIs+%26+spatial+engineering;%F0%9F%96%A4+Manga-Noir+WebGL+%E2%80%A2+Real-time+GLSL+cross-hatch+shaders;%F0%9F%8F%9B%EF%B8%8F+BIM+Automation+%E2%80%A2+Precast+Frame+%26+Hollow-Core+Algorithms;%F0%9F%93%9A+Creator+of+Ethiopian+National+Curriculum+Platform+(SQ3R)" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=3000&pause=900&color=399DD6&center=true&vCenter=true&multiline=true&repeat=true&width=860&height=110&lines=%E2%9A%A1+Building+ideas+beyond+the+blueprint;%F0%9F%8F%9B%EF%B8%8F+Precast+BIM+Automation+%E2%80%A2+Revit+API+%26+Hollow-Core+Algorithms;%F0%9F%93%90+Theory+of+Structures+Mastery+Lab+%E2%80%A2+Real-time+Solvers;%E2%9C%A8+Fantasy+Architecture+%C3%97+Modern+Blueprint+%C3%97+Creative+3D" alt="Typing SVG" />
   </a>
 
   <br/>
 
   <!-- ==================== STATUS SHIELDS ==================== -->
   <a href="https://github.com/dagiyosi-pixel">
-    <img src="https://komarev.com/ghpvc/?username=dagiyosi-pixel&label=PROFILE+RADAR&color=ff2233&style=for-the-badge" alt="Profile views" />
+    <img src="https://komarev.com/ghpvc/?username=dagiyosi-pixel&label=BLUEPRINT+VISITORS&color=173C5B&style=for-the-badge" alt="Profile views" />
   </a>
   &nbsp;
-  <img src="https://img.shields.io/badge/STATUS-OPEN_TO_BUILDS-09090b?style=for-the-badge&logo=codeforces&logoColor=ff2233&labelColor=09090b" alt="Status" />
+  <img src="https://img.shields.io/badge/STATUS-OPEN_FOR_BUILDS-399DD6?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=173C5B" alt="Status" />
   &nbsp;
-  <img src="https://img.shields.io/badge/LOCATION-ADDIS_ABABA_%2F%2F_REMOTE-09090b?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=09090b" alt="Location" />
+  <img src="https://img.shields.io/badge/LOCATION-ADDIS_ABABA_%2F%2F_REMOTE-173C5B?style=for-the-badge&logo=googlemaps&logoColor=8CCDF2&labelColor=173C5B" alt="Location" />
 
 </div>
 
 ---
 
-### ⚔️ ACT 01 // THE ARCHETYPE (`whoami`)
+### 📐 SECTION A // THE MULTIDISCIPLINARY ARCHETYPE (`whoami`)
 
 ```yaml
-identity: Dagiyosi (0xDagi / ダギ)
-discipline: Creative 3D Coding • Full-Stack Engineering • Computational BIM
+identity: Dagmawi Yosef (0xDagi / ダギ)
+universe: The Blueprint Universe
+inspiration: Fantasy Construction Manhwa ("The Greatest Estate Developer") × Architectural Rigor
+disciplines:
+  - Computational BIM Architecture (Revit API, Precast Frame Automation)
+  - Structural Engineering Software (Theory of Structures Mastery Lab, Solvers)
+  - Creative 3D & Full-Stack (Three.js, WebGL, GLSL Shaders, Python, TypeScript)
 creed: "First make it work, then make it right, then make it fast."
-superpower: Merging graphic-novel aesthetics with rock-solid algorithmic engineering.
-active_vault:
-  - WebGL & Three.js Shaders (GLSL Cel-Shading & Cross-Hatching)
-  - Full-Stack Architecture (FastAPI, Node.js, PostgreSQL, TypeScript)
-  - Revit API & Precast Structural Automation (Hollow-Core Slabs, Corbels, Ledge Beams)
 contact: dagiyosi5321@gmail.com
 ```
 
-> *"I work at the intersection of design, engineering, and spatial systems. I care about semantic markup, responsive layouts that behave on every viewport, accessible components, and code that stays clean six months later. On the backend, I wire up hardened APIs, databases, and authentication so the frontend has something indestructible to talk to."*
+> *"I work at the intersection of architecture, structural engineering, and digital technology. Like an architectural workshop where raw earth turns into stone and drawings become structures, I believe in writing software that transforms mathematical equations and spatial ideas into rock-solid, production-grade applications."*
 
 ---
 
-### 🧰 ACT 02 // TECHNICAL ARSENAL
+### 🧰 SECTION B // TECHNICAL TOOLBELT & WEAPONS
 
-| Sector | Weapons of Choice |
+| Domain | Weapons of Choice |
 | :--- | :--- |
-| **🎨 Creative 3D & Frontend** | `Three.js` `WebGL / GLSL` `GSAP 3` `Lenis Scroll` `React` `TypeScript` `Tailwind CSS` |
-| **⚙️ Backend & Systems** | `Python (FastAPI / Flask)` `Node.js (Express)` `RESTful APIs` `WebSocket Bridges` |
-| **🗄️ Databases & Tooling** | `PostgreSQL` `Supabase` `SQLite` `Prisma ORM` `Git` `GitHub Actions CI/CD` |
-| **🏛️ Computational BIM** | `Autodesk Revit API` `pyRevit` `Precast Hollow-Core Engines` `PCI / Eurocode Sizing` |
+| **🏛️ Computational BIM** | **Autodesk Revit API**, pyRevit, Precast Hollow-Core Engines, Inverted-T Ledge Verifiers, Eurocode 2 & PCI 8th Ed. |
+| **📐 Structural Analysis** | Virtual Work, Slope Deflection, Moment Distribution Matrix Solvers, KaTeX Engine |
+| **🎨 Creative 3D & WebGL** | **Three.js**, **GLSL Shaders**, **GSAP 3**, **Lenis Smooth Scroll**, HTML5 Canvas (1200x840 HD) |
+| **⚙️ Backend & Systems** | **Python (FastAPI / Flask)**, **Node.js**, **PostgreSQL**, RESTful APIs, WebSockets |
+| **🛠️ Daily Drivers & Ops** | Git, GitHub Actions CI/CD, Linux Terminal, PowerShell, Chrome DevTools |
 
 <br/>
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js" />
+  <img src="https://img.shields.io/badge/Autodesk_Revit-0696D7?style=for-the-badge&logo=autodesk&logoColor=white" alt="Revit API" />
+  <img src="https://img.shields.io/badge/Three.js-173C5B?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js" />
   <img src="https://img.shields.io/badge/WebGL-990000?style=for-the-badge&logo=webgl&logoColor=white" alt="WebGL" />
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/Autodesk_Revit-0696D7?style=for-the-badge&logo=autodesk&logoColor=white" alt="Revit API" />
 </div>
 
 ---
 
-### 🏛️ ACT 03 // MASTER CHRONICLES (FLAGSHIP BUILDS)
+### 🏛️ SECTION C // SELECTED CHRONICLES (VERIFIED BUILDS)
 
-#### 1. 🇪🇹 [Ethiopian National Curriculum Platform • Grade 7 & 8 SQ3R Examination Mastery](https://dagiyosi-pixel.github.io/ethiopia-curriculum-sq3r-platform/)
-An authentic, offline-first study, examination simulation, and honors certification platform for Ethiopian middle school students based on the evidence-backed **SQ3R methodology** (Survey, Question, Read, Recite, Review) and aligned with the official FDRE Ministry of Education CBA curriculum.
-* **Curriculum Coverage:** 96 Units & 184 Subtopics across Mathematics, General Science, English, Social Studies, Citizenship Education, and IT.
-* **🏛️ Ministry Exam Hall Simulator (የፈተና አዳራሽ):** Timed mock examination engine with selectable question counts (10, 20, 40, or 60 Qs), real-time countdown clock, flag/bookmark review, letter grading ($A+$ Distinction to $F$), and diagnostic prescriptions.
-* **🎓 Shareable "Ministry Honors Certificate" Generator (የምስክር ወረቀት):** Custom HTML5 Canvas ($1200 \times 840$ px) drawing the official FDRE MoE crest, Ethiopian tricolor ribbon, verified score, student rank, and 1-click HD PNG export.
-* **⚡ Active Recall Flashcards & Practice Engine:** Leitner 3D flip cards, speed-match games, and 577+ Ministry-style diagnostic questions with step-by-step distractor autopsies.
-* **🌐 Links:** [🚀 Launch Live App](https://dagiyosi-pixel.github.io/ethiopia-curriculum-sq3r-platform/) • [📁 Inspect Repository](https://github.com/dagiyosi-pixel/ethiopia-curriculum-sq3r-platform)
-
-#### 2. 🏗️ [Precast BIM & Computational Structural Suite](https://github.com/dagiyosi-pixel)
+#### 1. 🏗️ [Precast BIM & Computational Structural Suite](https://github.com/dagiyosi-pixel)
 Algorithmic framework for automated structural precast modeling inside Autodesk Revit API.
-* **Hollow-Core Slab Layout Engine:** Algorithmic slab placement, transverse cutout handling, and web integrity preservation.
-* **Inverted-T & L-Beams:** Bearing length verification, ledge shear checks, and corbel connection detailing under Eurocode & PCI standards.
+* **Hollow-Core Layout Engine:** Algorithmic slab placement, transverse cutout handling, and web integrity preservation.
+* **Inverted-T & L-Beams:** Bearing length verification (min 90mm), ledge shear checks, and corbel connection detailing under Eurocode & PCI standards.
 * **Transaction Safe:** Automated element creation, unique piece mark tracking, and fabrication schedule exports inside strict Revit API Transactions.
 
-#### 3. ⚡ [Manga-Noir WebGL 3D Interactive Portfolio](https://dagiyosi-pixel.github.io)
-The GPU-accelerated 3D manga-noir website showcasing real-time GLSL cel-shading, dynamic ink crosshatch post-processing, Lenis momentum scrolling, interactive 3D manga hand tracking, and synthesized Web Audio sound design.
-* **🌐 Links:** [🚀 Enter the 3D Experience](https://dagiyosi-pixel.github.io) • [📁 Inspect Source Code](https://github.com/dagiyosi-pixel/dagiyosi-pixel.github.io)
+#### 2. 📐 [Theory of Structures Mastery Lab](https://github.com/dagiyosi-pixel/theory-of-structures-mastery-lab)
+Interactive analytical platform computing determinate & indeterminate structural systems.
+* **7 Core Methods:** Stability & determinacy, conjugate beam, virtual work, consistent deformation, three moment equation, slope deflection, and moment distribution.
+* **Exact Math & Visualization:** Real-time matrix stiffness calculations, KaTeX LaTeX rendering, and continuous Bending Moment Diagrams (BMD) / Shear Force Diagrams (SFD).
+
+#### 3. 🇪🇹 [Ethiopian National Curriculum Platform • Grade 7 & 8 SQ3R Mastery](https://dagiyosi-pixel.github.io/ethiopia-curriculum-sq3r-platform/)
+Authentic offline-first study, examination simulation, and honors certification platform aligned with official FDRE Ministry of Education CBA standards.
+* **Scope:** 96 Units & 184 Subtopics across Mathematics, General Science, English, Social Studies, and IT.
+* **🏛️ Timed Exam Hall Simulator (የፈተና አዳራሽ):** Real-time countdown timer, flag/bookmark review, letter grading ($A+$ to $F$), and chapter diagnostic autopsies.
+* **🎓 Honors Certificate Generator (የምስክር ወረቀት):** Custom HTML5 Canvas ($1200 \times 840$ px) drawing the FDRE MoE crest, verified scores, and 1-click HD PNG export.
+
+#### 4. 🌐 [The Blueprint Universe // 3D Interactive Web Portfolio](https://dagiyosi-pixel.github.io)
+Live interactive architectural experience featuring the Three.js **Blueprint Constructor** (exploded views, layer toggles, technical dimension callouts) and **Architectural Drawing Viewer** (Section 1:50, modular framing plan, stair recess).
 
 ---
 
-### 📊 ACT 04 // CODING RADAR & ACTIVITY
+### 📊 SECTION D // ACTIVITY & CODING RADAR
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=dagiyosi-pixel&show_icons=true&theme=radical&bg_color=09090b&title_color=ff2233&text_color=f4f4f5&icon_color=ff2233&border_color=27272a&hide_border=false" alt="GitHub Stats" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=dagiyosi-pixel&show_icons=true&theme=nord&bg_color=173C5B&title_color=8CCDF2&text_color=F7FBFF&icon_color=399DD6&border_color=399DD6&hide_border=false" alt="GitHub Stats" width="48%" />
   &nbsp;
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=dagiyosi-pixel&theme=radical&background=09090b&ring=ff2233&fire=ff2233&currStreakLabel=ff2233&border=27272a" alt="GitHub Streak" width="48%" />
-</div>
-
-<br/>
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=dagiyosi-pixel&layout=compact&theme=radical&bg_color=09090b&title_color=ff2233&text_color=f4f4f5&border_color=27272a" alt="Top Languages" width="48%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=dagiyosi-pixel&theme=nord&background=173C5B&ring=399DD6&fire=E5A93C&currStreakLabel=8CCDF2&border=399DD6" alt="GitHub Streak" width="48%" />
 </div>
 
 ---
 
-### 📜 ACT 05 // SUMMON / CONTRACT
+### 📜 SECTION E // THE CONTRACT (SUMMON ME)
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
+│ ARCHITECT:  DAGMAWI YOSEF (0xDagi)                                     │
+│ UNIVERSE:   THE BLUEPRINT UNIVERSE                                     │
 │ EMAIL:      dagiyosi5321@gmail.com                                     │
 │ GITHUB:     https://github.com/dagiyosi-pixel                          │
 │ PORTFOLIO:  https://dagiyosi-pixel.github.io                          │
-│ STATUS:     AVAILABLE FOR FULL-STACK & CREATIVE BUILDS                 │
+│ CREED:      AVAILABLE FOR COMPUTATIONAL ARCHITECTURE & 3D BUILDS       │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
 <div align="center">
-  <sub>Designed & engineered with manga-noir precision by <strong>0xDagi</strong>. © 2026</sub>
+  <sub>Conceived & engineered with architectural precision by <strong>Dagmawi Yosef (0xDagi)</strong>. © 2026</sub>
 </div>
